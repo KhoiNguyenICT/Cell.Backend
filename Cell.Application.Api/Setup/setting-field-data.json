@@ -1,0 +1,1450 @@
+﻿[
+  /*START SEED DATA T_DATA_BUSINESS_UNIT*/
+  {
+    "Name": "Id",
+    "Caption": "Id",
+    "Description": "Id",
+    "StorageType": "STATIC",
+    "DataType": "GUID",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Code",
+    "Caption": "Code",
+    "Description": "Code",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Department",
+    "Caption": "Bộ phận",
+    "Description": "Bộ phận",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Title",
+    "Caption": "Chức danh",
+    "Description": "Chức danh",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Address",
+    "Caption": "Địa chỉ",
+    "Description": "Địa chỉ",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Phone",
+    "Caption": "Điện thoại",
+    "Description": "Điện thoại",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Email",
+    "Caption": "Email",
+    "Description": "Email",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Facebook",
+    "Caption": "Facebook",
+    "Description": "Facebook",
+    "StorageType": "DYNAMIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Description",
+    "Caption": "Ghi chú",
+    "Description": "Ghi chú",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Gender",
+    "Caption": "Giới tính",
+    "Description": "Giới tính",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Type",
+    "Caption": "Loại hình",
+    "Description": "Loại hình",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "TaxCode",
+    "Caption": "Mã số thuế",
+    "Description": "Mã số thuế",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Category",
+    "Caption": "Ngành nghề",
+    "Description": "Ngành nghề",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "IdentityDate",
+    "Caption": "Ngày cấp CMND",
+    "Description": "Ngày cấp CMND",
+    "StorageType": "STATIC",
+    "DataType": "DATE_TIME",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "LastContactDate",
+    "Caption": "Ngày chăm sóc cuối cùng",
+    "Description": "Ngày chăm sóc cuối cùng",
+    "StorageType": "STATIC",
+    "DataType": "DATE_TIME",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Listing",
+    "Caption": "Nguồn",
+    "Description": "Nguồn",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "DisplayImage",
+    "Caption": "Người phụ trách",
+    "Description": "Người phụ trách",
+    "StorageType": "STATIC",
+    "DataType": "GUID",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "CreatedBy",
+    "Caption": "Người tạo",
+    "Description": "Người tạo",
+    "StorageType": "STATIC",
+    "DataType": "GUID",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "IdentityCity",
+    "Caption": "Nơi cấp CMND",
+    "Description": "Nơi cấp CMND",
+    "StorageType": "DYNAMIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Organization",
+    "Caption": "Phòng ban công tác",
+    "Description": "Phòng ban công tác",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "District",
+    "Caption": "Quận huyện",
+    "Description": "Quận huyện",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "IdentityCode",
+    "Caption": "Số CMND",
+    "Description": "Số CMND",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "DisplayName",
+    "Caption": "Tên cá nhân đại diện",
+    "Description": "Tên cá nhân đại diện",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Name",
+    "Caption": "Tên khách hàng",
+    "Description": "Tên khách hàng",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Location",
+    "Caption": "Tỉnh/Thành phố",
+    "Description": "Tỉnh/Thành phố",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Website",
+    "Caption": "Website",
+    "Description": "Website",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  /*END SEED DATA T_DATA_BUSINESS_UNIT*/
+
+  /*START SEED DATA T_DATA_BUSINESS_UNIT*/
+  {
+    "Name": "Id",
+    "Caption": "Id",
+    "Description": "Id",
+    "StorageType": "STATIC",
+    "DataType": "GUID",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Code",
+    "Caption": "Code",
+    "Description": "Code",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Department",
+    "Caption": "Bộ phận",
+    "Description": "Bộ phận",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Title",
+    "Caption": "Chức danh",
+    "Description": "Chức danh",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Parent",
+    "Caption": "Doanh nghiệp",
+    "Description": "Doanh nghiệp",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Address",
+    "Caption": "Địa chỉ",
+    "Description": "Địa chỉ",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Phone",
+    "Caption": "Điện thoại",
+    "Description": "Điện thoại",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Email",
+    "Caption": "Email",
+    "Description": "Email",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Facebook",
+    "Caption": "Facebook",
+    "Description": "Facebook",
+    "StorageType": "DYNAMIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Description",
+    "Caption": "Ghi chú",
+    "Description": "Ghi chú",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Gender",
+    "Caption": "Giới tính",
+    "Description": "Giới tính",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Linkedin",
+    "Caption": "Linkedin",
+    "Description": "Linkedin",
+    "StorageType": "DYNAMIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "TaxCode",
+    "Caption": "Mã số thuế",
+    "Description": "Mã số thuế",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "DisplayImage",
+    "Caption": "Người phụ trách",
+    "Description": "Người phụ trách",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "IdentityDate",
+    "Caption": "Ngày cấp CMND",
+    "Description": "Ngày cấp CMND",
+    "StorageType": "DYNAMIC",
+    "DataType": "DATE_TIME",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "IdentityCity",
+    "Caption": "Nơi cấp CMND",
+    "Description": "Nơi cấp CMND",
+    "StorageType": "DYNAMIC",
+    "DataType": "DATE_TIME",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "District",
+    "Caption": "Quận huyện",
+    "Description": "Quận huyện",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "IdentityCode",
+    "Caption": "Số CMND",
+    "Description": "Số CMND",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Name",
+    "Caption": "Tên đầy đủ",
+    "Description": "Tên đầy đủ",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Location",
+    "Caption": "Tỉnh thành",
+    "Description": "Tỉnh thành",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Website",
+    "Caption": "Website",
+    "Description": "Website",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  /*END SEED DATA T_DATA_CONTACT*/
+
+  /*START SEED DATA T_DATA_CONTACT_LOGS*/
+  {
+    "Name": "Id",
+    "Caption": "Id",
+    "Description": "Id",
+    "StorageType": "STATIC",
+    "DataType": "GUID",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Code",
+    "Caption": "Code",
+    "Description": "Code",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "PlanStartDate",
+    "Caption": "Ngày liên hệ",
+    "Description": "Ngày liên hệ",
+    "StorageType": "STATIC",
+    "DataType": "DATE_TIME",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Parent",
+    "Caption": "Công ty",
+    "Description": "Công ty",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Manager",
+    "Caption": "Khách hàng (quản lý)",
+    "Description": "Khách hàng (quản lý)",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Type",
+    "Caption": "Hình thức liên hệ",
+    "Description": "Hình thức liên hệ",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Name",
+    "Caption": "Nội dung",
+    "Description": "Nội dung",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Description",
+    "Caption": "Kết quả",
+    "Description": "Kết quả",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  /*END SEED DATA T_DATA_CONTACT_LOGS*/
+
+  /*START SEED DATA T_DATA_CONTRACT*/
+  {
+    "Name": "Id",
+    "Caption": "Id",
+    "Description": "Id",
+    "StorageType": "STATIC",
+    "DataType": "GUID",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Code",
+    "Caption": "Code",
+    "Description": "Code",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Project",
+    "Caption": "Bộ phận",
+    "Description": "Bộ phận",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Progress",
+    "Caption": "Chi phí Outsource",
+    "Description": "Chi phí Outsource",
+    "StorageType": "STATIC",
+    "DataType": "DOUBLE",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Parent",
+    "Caption": "Công ty",
+    "Description": "Công ty",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Address",
+    "Caption": "Địa chỉ",
+    "Description": "Địa chỉ",
+    "StorageType": "DYNAMIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Phone",
+    "Caption": "Điện thoại",
+    "Description": "Điện thoại",
+    "StorageType": "DYNAMIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Email",
+    "Caption": "Email",
+    "Description": "Email",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Facebook",
+    "Caption": "Facebook",
+    "Description": "Facebook",
+    "StorageType": "DYNAMIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Price1",
+    "Caption": "Giá gói 1",
+    "Description": "Giá gói 1",
+    "StorageType": "STATIC",
+    "DataType": "DOUBLE",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Price2",
+    "Caption": "Giá gói 2",
+    "Description": "Giá gói 2",
+    "StorageType": "STATIC",
+    "DataType": "DOUBLE",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Price3",
+    "Caption": "Giá gói 3",
+    "Description": "Giá gói 3",
+    "StorageType": "STATIC",
+    "DataType": "DOUBLE",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Price4",
+    "Caption": "Giá gói 4",
+    "Description": "Giá gói 4",
+    "StorageType": "STATIC",
+    "DataType": "DOUBLE",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "ActualManHour",
+    "Caption": "Giá trị hợp đồng",
+    "Description": "Giá trị hợp đồng",
+    "StorageType": "STATIC",
+    "DataType": "DOUBLE",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "ReportManHour",
+    "Caption": "Giá trị hợp đồng CRM",
+    "Description": "Giá trị hợp đồng CRM",
+    "StorageType": "STATIC",
+    "DataType": "DOUBLE",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "ReviewManHour",
+    "Caption": "Giá trị hợp đồng POS",
+    "Description": "Giá trị hợp đồng POS",
+    "StorageType": "STATIC",
+    "DataType": "DOUBLE",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Product1",
+    "Caption": "Gói ký 1",
+    "Description": "Gói ký 1",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Product2",
+    "Caption": "Gói ký 2",
+    "Description": "Gói ký 2",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Product3",
+    "Caption": "Gói ký 3",
+    "Description": "Gói ký 3",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Product4",
+    "Caption": "Gói ký 4",
+    "Description": "Gói ký 4",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Type",
+    "Caption": "Hình thức",
+    "Description": "Hình thức",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "ContractId",
+    "Caption": "ID hợp đồng",
+    "Description": "ID hợp đồng",
+    "StorageType": "STATIC",
+    "DataType": "INT",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Manager",
+    "Caption": "Khách hàng (quản lý)",
+    "Description": "Khách hàng (quản lý)",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Category",
+    "Caption": "Loại hợp đồng",
+    "Description": "Loại hợp đồng",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Name",
+    "Caption": "Mã hợp đồng",
+    "Description": "Mã hợp đồng",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "TaxCode",
+    "Caption": "Mã số thuế",
+    "Description": "Mã số thuế",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "ActualStartDate",
+    "Caption": "Ngày bắt đầu",
+    "Description": "Ngày bắt đầu",
+    "StorageType": "STATIC",
+    "DataType": "DATE_TIME",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "IdentityDate",
+    "Caption": "Ngày cấp CMND",
+    "Description": "Ngày cấp CMND",
+    "StorageType": "DYNAMIC",
+    "DataType": "DATE_TIME",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Deadline",
+    "Caption": "Ngày hết hạn",
+    "Description": "Ngày hết hạn",
+    "StorageType": "STATIC",
+    "DataType": "DATE_TIME",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "ActualFinishDate",
+    "Caption": "Ngày kết thúc",
+    "Description": "Ngày kết thúc",
+    "StorageType": "STATIC",
+    "DataType": "DATE_TIME",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "PlanStartDate",
+    "Caption": "Ngày ký hợp đồng",
+    "Description": "Ngày ký hợp đồng",
+    "StorageType": "STATIC",
+    "DataType": "DATE_TIME",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Worker",
+    "Caption": "Người phụ trách",
+    "Description": "Người phụ trách",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "IdentityCity",
+    "Caption": "Nơi cấp CMND",
+    "Description": "Nơi cấp CMND",
+    "StorageType": "DYNAMIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "ControlApproveContent",
+    "Caption": "Nội dung KSNB duyệt",
+    "Description": "Nội dung KSNB duyệt",
+    "StorageType": "DYNAMIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "LeaderApproveContent",
+    "Caption": "Nội dung Leader duyệt",
+    "Description": "Nội dung Leader duyệt",
+    "StorageType": "DYNAMIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Milestone",
+    "Caption": "Quận huyện",
+    "Description": "Quận huyện",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "IdentityCode",
+    "Caption": "Số CMND",
+    "Description": "Số CMND",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "ProductMonth1",
+    "Caption": "Số tháng 1",
+    "Description": "Số tháng 1",
+    "StorageType": "STATIC",
+    "DataType": "INT",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "ProductMonth2",
+    "Caption": "Số tháng 2",
+    "Description": "Số tháng 2",
+    "StorageType": "STATIC",
+    "DataType": "INT",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "ProductMonth3",
+    "Caption": "Số tháng 3",
+    "Description": "Số tháng 3",
+    "StorageType": "STATIC",
+    "DataType": "INT",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "ProductMonth4",
+    "Caption": "Số tháng 4",
+    "Description": "Số tháng 4",
+    "StorageType": "STATIC",
+    "DataType": "INT",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "CompletedManHour",
+    "Caption": "Số tiền đã trả",
+    "Description": "Số tiền đã trả",
+    "StorageType": "STATIC",
+    "DataType": "DOUBLE",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "BonusMonth1",
+    "Caption": "Tặng tháng 1",
+    "Description": "Tặng tháng 1",
+    "StorageType": "STATIC",
+    "DataType": "INT",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "BonusMonth2",
+    "Caption": "Tặng tháng 2",
+    "Description": "Tặng tháng 2",
+    "StorageType": "STATIC",
+    "DataType": "INT",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "BonusMonth3",
+    "Caption": "Tặng tháng 3",
+    "Description": "Tặng tháng 3",
+    "StorageType": "STATIC",
+    "DataType": "INT",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "BonusMonth4",
+    "Caption": "Tặng tháng 4",
+    "Description": "Tặng tháng 4",
+    "StorageType": "STATIC",
+    "DataType": "INT",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Feature",
+    "Caption": "Tỉnh thành",
+    "Description": "Tỉnh thành",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Status",
+    "Caption": "Trạng thái",
+    "Description": "Trạng thái",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Website",
+    "Caption": "Website",
+    "Description": "Website",
+    "StorageType": "DYNAMIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  /*END SEED DATA T_DATA_CONTRACT*/
+
+  /*START SEED DATA T_DATA_CONTRACT_PRODUCT*/
+  {
+    "Name": "Id",
+    "Caption": "Id",
+    "Description": "Id",
+    "StorageType": "STATIC",
+    "DataType": "GUID",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "TableName": "T_DATA_CONTRACT_PRODUCT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Code",
+    "Caption": "Code",
+    "Description": "Code",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "TableName": "T_DATA_CONTRACT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Parent",
+    "Caption": "Hợp đồng",
+    "Description": "Hợp đồng",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "TableName": "T_DATA_CONTRACT_PRODUCT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Category",
+    "Caption": "Sản phẩm",
+    "Description": "Sản phẩm",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "TableName": "T_DATA_CONTRACT_PRODUCT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "PlanManHour",
+    "Caption": "Giá trị",
+    "Description": "Giá trị",
+    "StorageType": "STATIC",
+    "DataType": "DOUBLE",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "TableName": "T_DATA_CONTRACT_PRODUCT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  /*END SEED DATA T_DATA_CONTRACT_PRODUCT*/
+
+  /*START SEED DATA T_DATA_INVOICE*/
+  {
+    "Name": "Id",
+    "Caption": "Id",
+    "Description": "Id",
+    "StorageType": "STATIC",
+    "DataType": "GUID",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Code",
+    "Caption": "Code",
+    "Description": "Code",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Parent",
+    "Caption": "Hợp đồng",
+    "Description": "Hợp đồng",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "PlanManHour",
+    "Caption": "Giá trị",
+    "Description": "Giá trị",
+    "StorageType": "STATIC",
+    "DataType": "DOUBLE",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Created",
+    "Caption": "Ngày tạo",
+    "Description": "Ngày tạo",
+    "StorageType": "STATIC",
+    "DataType": "DATE_TIME",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Modified",
+    "Caption": "Ngày cập nhật",
+    "Description": "Ngày cập nhật",
+    "StorageType": "STATIC",
+    "DataType": "DATE_TIME",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Status",
+    "Caption": "Trạng thái",
+    "Description": "Trạng thái",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  /*END SEED DATA T_DATA_INVOICE*/
+
+  /*START SEED DATA T_DATA_PRODUCT*/
+  {
+    "Name": "Id",
+    "Caption": "Id",
+    "Description": "Id",
+    "StorageType": "STATIC",
+    "DataType": "GUID",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Code",
+    "Caption": "Code",
+    "Description": "Code",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Parent",
+    "Caption": "Bộ phận",
+    "Description": "Bộ phận",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "CommissionFee",
+    "Caption": "Doanh số cho kinh doanh (%)",
+    "Description": "Doanh số cho kinh doanh (%)",
+    "StorageType": "STATIC",
+    "DataType": "DOUBLE",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Location",
+    "Caption": "Đơn vị tính",
+    "Description": "Đơn vị tính",
+    "StorageType": "STATIC",
+    "DataType": "DOUBLE",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Websites",
+    "Caption": "Giá đề xuất",
+    "Description": "Giá đề xuất",
+    "StorageType": "STATIC",
+    "DataType": "DOUBLE",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Category",
+    "Caption": "Loại sản phẩm",
+    "Description": "Loại sản phẩm",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Type",
+    "Caption": "Loại thanh toán",
+    "Description": "Loại thanh toán",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Tags",
+    "Caption": "Description",
+    "Description": "Description",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Name",
+    "Caption": "Tên sản phẩm",
+    "Description": "Tên sản phẩm",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  /*END SEED DATA T_DATA_PRODUCT*/
+
+  /*START SEED DATA T_DATA_RECEIPT*/
+  {
+    "Name": "Id",
+    "Caption": "Id",
+    "Description": "Id",
+    "StorageType": "STATIC",
+    "DataType": "GUID",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C07",
+    "TableName": "T_DATA_RECEIPT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Code",
+    "Caption": "Code",
+    "Description": "Code",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C07",
+    "TableName": "T_DATA_RECEIPT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Parent",
+    "Caption": "Hợp đồng",
+    "Description": "Hợp đồng",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C07",
+    "TableName": "T_DATA_RECEIPT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "PlanManHour",
+    "Caption": "Số tiền nộp",
+    "Description": "Số tiền nộp",
+    "StorageType": "STATIC",
+    "DataType": "DOUBLE",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C07",
+    "TableName": "T_DATA_RECEIPT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Worker",
+    "Caption": "Người nộp",
+    "Description": "Người nộp",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C07",
+    "TableName": "T_DATA_RECEIPT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Type",
+    "Caption": "Hình thức thanh toán",
+    "Description": "Hình thức thanh toán",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C07",
+    "TableName": "T_DATA_RECEIPT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Description",
+    "Caption": "Ghi chú",
+    "Description": "Ghi chú",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C07",
+    "TableName": "T_DATA_RECEIPT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Manager",
+    "Caption": "Người duyệt",
+    "Description": "Người duyệt",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C07",
+    "TableName": "T_DATA_RECEIPT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "ReviewFinishDate",
+    "Caption": "Ngày duyệt",
+    "Description": "Ngày duyệt",
+    "StorageType": "STATIC",
+    "DataType": "DATE_TIME",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C07",
+    "TableName": "T_DATA_RECEIPT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  /*END SEED DATA T_DATA_RECEIPT*/
+
+  /*START SEED DATA T_DATA_DISTRICT*/
+  {
+    "Name": "Id",
+    "Caption": "Id",
+    "Description": "Id",
+    "StorageType": "STATIC",
+    "DataType": "GUID",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C08",
+    "TableName": "T_DATA_DISTRICT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Code",
+    "Caption": "Code",
+    "Description": "Code",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C08",
+    "TableName": "T_DATA_DISTRICT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Name",
+    "Caption": "Quận huyện",
+    "Description": "Quận huyện",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C08",
+    "TableName": "T_DATA_DISTRICT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Parent",
+    "Caption": "Tỉnh thành",
+    "Description": "Tỉnh thành",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C08",
+    "TableName": "T_DATA_DISTRICT",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  /*END SEED DATA T_DATA_DISTRICT*/
+
+  /*START SEED DATA T_DATA_PROVINCE*/
+  {
+    "Name": "Id",
+    "Caption": "Id",
+    "Description": "Id",
+    "StorageType": "STATIC",
+    "DataType": "GUID",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C09",
+    "TableName": "T_DATA_PROVINCE",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Code",
+    "Caption": "Code",
+    "Description": "Code",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C09",
+    "TableName": "T_DATA_PROVINCE",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  },
+  {
+    "Name": "Name",
+    "Caption": "Tỉnh thành",
+    "Description": "Tỉnh thành",
+    "StorageType": "STATIC",
+    "DataType": "STRING",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C09",
+    "TableName": "T_DATA_PROVINCE",
+    "Settings": "{\"Form\": {},\"View\": {}}"
+  }
+]

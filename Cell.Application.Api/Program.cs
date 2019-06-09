@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Cell.Infrastructure;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Cell.Application.Api
@@ -14,7 +10,15 @@ namespace Cell.Application.Api
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            CreateWebHostBuilder(args).Build()
+                .MigrateDbContext<AppDbContext>((context, services) =>
+                {
+                    var env = services.GetService<IHostingEnvironment>();
+                    var logger = services.GetService<ILogger<AppDbContextSeed>>();
+                    new AppDbContextSeed(context)
+                        .SeedAsync(context, env, logger)
+                        .Wait();
+                }).Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
