@@ -23,9 +23,9 @@ namespace Cell.Application.Api.Controllers
         }
 
         [HttpPost("search")]
-        public async Task<IActionResult> Search(SearchCommand command)
+        public async Task<IActionResult> Search(SearchSettingFieldCommand command)
         {
-            var spec = SettingFieldSpecs.SearchByQuery(command.Query);
+            var spec = SettingFieldSpecs.SearchByQuery(command.Query).And(SettingFieldSpecs.SearchByTableId(command.TableId));
             var queryable = _settingFieldRepository.QueryAsync(spec, command.Sorts);
             var items = await queryable.Skip(command.Skip).Take(command.Take).ToListAsync();
             return Ok(new QueryResult<SettingFieldCommand>
@@ -49,7 +49,7 @@ namespace Cell.Application.Api.Controllers
             var isInvalid = await _settingFieldRepository.ExistsAsync(spec);
             if (isInvalid)
             {
-                throw new CellException("Setting table name must be unique");
+                throw new CellException("Setting field name must be unique");
             }
 
             var settingField = command.To<SettingField>();

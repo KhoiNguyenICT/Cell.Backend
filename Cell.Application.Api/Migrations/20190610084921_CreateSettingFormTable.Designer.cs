@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cell.Application.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190609063250_Initialize")]
-    partial class Initialize
+    [Migration("20190610084921_CreateSettingFormTable")]
+    partial class CreateSettingFormTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,59 @@ namespace Cell.Application.Api.Migrations
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Cell.Domain.Aggregates.SettingActionAggregate.SettingAction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID");
+
+                    b.Property<string>("Code")
+                        .HasColumnName("CODE");
+
+                    b.Property<string>("ContainerType")
+                        .HasColumnName("CONTAINER_TYPE")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnName("CREATED");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
+
+                    b.Property<string>("Description")
+                        .HasColumnName("DESCRIPTION");
+
+                    b.Property<DateTimeOffset>("Modified")
+                        .HasColumnName("MODIFIED");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("NAME");
+
+                    b.Property<string>("Settings")
+                        .HasColumnName("SETTINGS");
+
+                    b.Property<Guid>("TableId")
+                        .HasColumnName("TABLE_ID");
+
+                    b.Property<string>("TableName")
+                        .HasColumnName("TABLE_NAME")
+                        .HasMaxLength(200);
+
+                    b.Property<int>("Version")
+                        .HasColumnName("VERSION");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_SETTING_ACTION");
+                });
 
             modelBuilder.Entity("Cell.Domain.Aggregates.SettingFieldAggregate.SettingField", b =>
                 {
@@ -93,6 +146,58 @@ namespace Cell.Application.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("T_SETTING_FIELD");
+                });
+
+            modelBuilder.Entity("Cell.Domain.Aggregates.SettingFormAggregate.SettingForm", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID");
+
+                    b.Property<string>("Code")
+                        .HasColumnName("CODE");
+
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnName("CREATED");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
+
+                    b.Property<string>("Description")
+                        .HasColumnName("DESCRIPTION");
+
+                    b.Property<Guid>("LayoutId")
+                        .HasColumnName("LAYOUT_ID");
+
+                    b.Property<DateTimeOffset>("Modified")
+                        .HasColumnName("MODIFIED");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("NAME");
+
+                    b.Property<string>("Settings")
+                        .HasColumnName("SETTINGS");
+
+                    b.Property<Guid>("TableId")
+                        .HasColumnName("TABLE_ID");
+
+                    b.Property<string>("TableName")
+                        .HasColumnName("TABLE_NAME")
+                        .HasMaxLength(200);
+
+                    b.Property<int>("Version")
+                        .HasColumnName("VERSION");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_SETTING_FORM");
                 });
 
             modelBuilder.Entity("Cell.Domain.Aggregates.SettingTableAggregate.SettingTable", b =>

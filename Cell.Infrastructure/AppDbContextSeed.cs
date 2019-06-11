@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
+using Cell.Domain.Aggregates.SettingActionAggregate;
 using Cell.Domain.Aggregates.SettingFieldAggregate;
 using Cell.Domain.Aggregates.SettingTableAggregate;
 using Newtonsoft.Json;
@@ -40,6 +41,7 @@ namespace Cell.Infrastructure
 
                     await InitSettingTable();
                     await InitSettingField();
+                    await InitSettingAction();
 
                     await dbContext.SaveChangesAsync();
                 }
@@ -76,6 +78,16 @@ namespace Cell.Infrastructure
                 var input = File.ReadAllText(CreatePath("setting-field-data.json"));
                 var settingField = JsonConvert.DeserializeObject<List<SettingField>>(input);
                 _context.SettingFields.AddRange(settingField);
+            }
+        }
+
+        private async Task InitSettingAction()
+        {
+            if (!await _context.SettingTables.AnyAsync())
+            {
+                var input = File.ReadAllText(CreatePath("setting-action-data.json"));
+                var settingAction = JsonConvert.DeserializeObject<List<SettingAction>>(input);
+                _context.SettingActions.AddRange(settingAction);
             }
         }
     }

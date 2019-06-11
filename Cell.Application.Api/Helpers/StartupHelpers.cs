@@ -1,12 +1,11 @@
-﻿
-
-using System.Reflection;
-using AutoMapper;
+﻿using AutoMapper;
 using Cell.Application.Api.Mappers;
 using Cell.Core.Constants;
 using Cell.Core.Extensions;
 using Cell.Domain.Aggregates.BasedTableAggregate;
+using Cell.Domain.Aggregates.SettingActionAggregate;
 using Cell.Domain.Aggregates.SettingFieldAggregate;
+using Cell.Domain.Aggregates.SettingFormAggregate;
 using Cell.Domain.Aggregates.SettingTableAggregate;
 using Cell.Infrastructure;
 using Cell.Infrastructure.Repositories;
@@ -16,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using System.Reflection;
 
 namespace Cell.Application.Api.Helpers
 {
@@ -71,6 +71,8 @@ namespace Cell.Application.Api.Helpers
             services.AddScoped<IBasedTableRepository, BasedTableRepository>();
             services.AddScoped<ISettingFieldRepository, SettingFieldRepository>();
             services.AddScoped<ISettingTableRepository, SettingTableRepository>();
+            services.AddScoped<ISettingActionRepository, SettingActionRepository>();
+            services.AddScoped<ISettingFormRepository, SettingFormRepository>();
             return services;
         }
     }

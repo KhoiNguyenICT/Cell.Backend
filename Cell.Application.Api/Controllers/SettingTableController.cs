@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Cell.Application.Api.Commands;
+﻿using Cell.Application.Api.Commands;
 using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
+using Cell.Domain.Aggregates.BasedTableAggregate;
 using Cell.Domain.Aggregates.SettingTableAggregate;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using Cell.Domain.Aggregates.BasedTableAggregate;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -20,7 +20,7 @@ namespace Cell.Application.Api.Controllers
         private readonly IBasedTableRepository _basedTableRepository;
 
         public SettingTableController(
-            ISettingTableRepository settingTableRepository, 
+            ISettingTableRepository settingTableRepository,
             IBasedTableRepository basedTableRepository)
         {
             _settingTableRepository = settingTableRepository;
@@ -53,19 +53,15 @@ namespace Cell.Application.Api.Controllers
             var spec = SettingTableSpecs.GetByNameSpec(command.Name);
             var isInvalid = await _settingTableRepository.ExistsAsync(spec);
             if (isInvalid)
-            {
                 throw new CellException("Setting table name must be unique");
-            }
-
-            var settingTable = command.To<SettingTable>();
             _settingTableRepository.Add(new SettingTable(
-                settingTable.Name,
-                settingTable.Description,
-                settingTable.Code,
-                settingTable.BasedTable,
-                settingTable.Settings));
+                command.Name,
+                command.Description,
+                command.Code,
+                command.BasedTable,
+                JsonConvert.SerializeObject(command.Settings)));
             await _settingTableRepository.CommitAsync();
-            return Ok(settingTable.To<SettingTableCommand>());
+            return Ok();
         }
 
         [HttpPost("update")]
@@ -73,9 +69,9 @@ namespace Cell.Application.Api.Controllers
         {
             var settingTable = await _settingTableRepository.GetByIdAsync(command.Id);
             settingTable.Update(
-                command.Name, 
-                command.Description, 
-                command.Code, 
+                command.Name,
+                command.Description,
+                command.Code,
                 JsonConvert.SerializeObject(command.Settings));
             await _settingTableRepository.CommitAsync();
             return Ok();

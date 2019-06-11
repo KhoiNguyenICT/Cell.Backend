@@ -1,3 +1,355 @@
 ﻿[
+  /*T_DATA_BUSINESS_UNIT*/
+  {
+    "Name": "Save",
+    "Code": "DataGroup.Buttons.save-redirect.0d332",
+    "ContainerType": "FORM",
+    "Description": "Lưu", 
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}"
+  },
+  {
+    "Name": "Save",
+    "Code": "DataGroup.Buttons.save-popup.0d1c6",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}"
+  },
+  {
+    "Code": "DataGroup.Buttons.close.09c9b",
+    "ContainerType": "FORM",
+    "Description": "Đóng",
+    "Name": "Close",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT"
+  },
+  {
+    "Code": "DataGroup.Buttons.edit-personal.0hg0f",
+    "ContainerType": "FORM",
+    "Description": "Sửa",
+    "Name": "Edit",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT"
+  },
+  {
+    "Code": "DataGroup.Buttons.delete.0cd77",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT"
+  },
+  /*T_DATA_BUSINESS_UNIT*/
 
+  /*T_DATA_CONTACT*/
+  {
+    "Code": "DataGroup.Buttons.save-redirect.0655h",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT"
+  },
+  {
+    "Code": "DataGroup.Buttons.save-popup.077f0",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT"
+  },
+  {
+    "Code": "DataGroup.Buttons.close.0b87a",
+    "ContainerType": "FORM",
+    "Description": "Đóng",
+    "Name": "Close",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT"
+  },
+  {
+    "Code": "DataGroup.Buttons.edit.032dd",
+    "ContainerType": "FORM",
+    "Description": "Sửa",
+    "Name": "Edit",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT"
+  },
+  {
+    "Code": "DataGroup.Buttons.delete.0gd50",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT"
+  },
+  /*T_DATA_CONTACT*/
+
+  /*T_DATA_CONTACT_LOGS*/
+  {
+    "Code": "DataGroup.Buttons.save-redirect.08d5d",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS"
+  },
+  {
+    "Code": "DataGroup.Buttons.save-popup.068d3",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS"
+  },
+  {
+    "Code": "DataGroup.Buttons.close.0cf8d",
+    "ContainerType": "FORM",
+    "Description": "Đóng",
+    "Name": "Close",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS"
+  },
+  {
+    "Code": "DataGroup.Buttons.edit.08h9d",
+    "ContainerType": "FORM",
+    "Description": "Sửa",
+    "Name": "Edit",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS"
+  },
+  {
+    "Code": "DataGroup.Buttons.delete.00992",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS"
+  },
+  /*T_DATA_CONTACT_LOGS*/
+
+  /*T_DATA_CONTRACT*/
+  {
+    "Code": "DataGroup.Buttons.save-redirect.04hf5",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT"
+  },
+  {
+    "Code": "DataGroup.Buttons.delete.00992",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT"
+  },
+  {
+    "Code": "DataGroup.Buttons.close.0ach7",
+    "ContainerType": "FORM",
+    "Description": "Đóng",
+    "Name": "Close",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT"
+  },
+  {
+    "Code": "DataGroup.Buttons.edit.004fa",
+    "ContainerType": "FORM",
+    "Description": "Sửa",
+    "Name": "Edit",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT"
+  },
+  {
+    "Code": "DataGroup.Buttons.delete.071ff",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT"
+  },
+  {
+    "Code": "DataGroup.Buttons.leader-approve.0g2cb",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Phê duyệt",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT"
+  },
+  {
+    "Code": "DataGroup.Buttons.control-approve.00a09",
+    "ContainerType": "FORM",
+    "Description": "Phê duyệt",
+    "Name": "Control Approve",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT"
+  },
+  /*T_DATA_CONTRACT*/
+
+  /*T_DATA_CONTRACT_PRODUCT*/
+  {
+    "Code": "DataGroup.Buttons.save-redirect.063f3",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "TableName": "T_DATA_CONTRACT_PRODUCT"
+  },
+  {
+    "Code": "DataGroup.Buttons.save-popup.0297g",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "TableName": "T_DATA_CONTRACT_PRODUCT"
+  },
+  {
+    "Code": "DataGroup.Buttons.close.06cd0",
+    "ContainerType": "FORM",
+    "Description": "Đóng",
+    "Name": "Close",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "TableName": "T_DATA_CONTRACT_PRODUCT"
+  },
+  {
+    "Code": "DataGroup.Buttons.edit.0fa2c",
+    "ContainerType": "FORM",
+    "Description": "Sửa",
+    "Name": "Edit",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "TableName": "T_DATA_CONTRACT_PRODUCT"
+  },
+  {
+    "Code": "DataGroup.Buttons.delete.0146b",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "TableName": "T_DATA_CONTRACT_PRODUCT"
+  },
+  /*T_DATA_CONTRACT_PRODUCT*/
+
+  /*T_DATA_INVOICE*/
+  {
+    "Code": "DataGroup.Buttons.save-redirect.0a763",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE"
+  },
+  {
+    "Code": "DataGroup.Buttons.save-popup.04312",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE"
+  },
+  {
+    "Code": "DataGroup.Buttons.close.0ee83",
+    "ContainerType": "FORM",
+    "Description": "Đóng",
+    "Name": "Close",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE"
+  },
+  {
+    "Code": "DataGroup.Buttons.edit.0ga4g",
+    "ContainerType": "FORM",
+    "Description": "Sửa",
+    "Name": "Edit",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE"
+  },
+  {
+    "Code": "DataGroup.Buttons.delete.06h6f",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE"
+  },
+  /*T_DATA_INVOICE*/
+
+  /*T_DATA_PRODUCT*/
+  {
+    "Code": "DataGroup.Buttons.save-redirect.0a7cf",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT"
+  },
+  {
+    "Code": "DataGroup.Buttons.save-popup.0ba7d",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT"
+  },
+  {
+    "Code": "DataGroup.Buttons.close.09060",
+    "ContainerType": "FORM",
+    "Description": "Đóng",
+    "Name": "Close",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT"
+  },
+  {
+    "Code": "DataGroup.Buttons.edit.0h28e",
+    "ContainerType": "FORM",
+    "Description": "Xửa",
+    "Name": "Edit",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT"
+  },
+  {
+    "Code": "DataGroup.Buttons.delete.03dh1",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT"
+  }
+  /*T_DATA_PRODUCT*/
 ]
