@@ -1,4 +1,6 @@
-﻿using Cell.Application.Api.Helpers;
+﻿using System.Collections.Generic;
+using Cell.Application.Api.Helpers;
+using Cell.Core.Constants;
 using Cell.Core.Errors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,8 +38,7 @@ namespace Cell.Application.Api
                             .AllowAnyOrigin()
                             .AllowAnyMethod()
                             .AllowAnyHeader()
-                            .AllowCredentials()
-                            .WithOrigins("http://localhost:4200"));
+                            .AllowCredentials());
                 });
             services.AddMvc(options => { options.Filters.Add<CellExceptionFilter>(); })
                 .AddJsonOptions(options =>

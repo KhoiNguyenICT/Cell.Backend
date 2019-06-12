@@ -2,6 +2,7 @@
   /*START SEED DATA T_DATA_BUSINESS_UNIT*/
   {
     "Name": "Id",
+    "Code": "SYSTEM",
     "Caption": "Id",
     "Description": "Id",
     "StorageType": "STATIC",
@@ -12,6 +13,7 @@
   },
   {
     "Name": "Code",
+    "Code": "SYSTEM",
     "Caption": "Code",
     "Description": "Code",
     "StorageType": "STATIC",
@@ -22,6 +24,7 @@
   },
   {
     "Name": "Department",
+    "Code": "USER",
     "Caption": "Bộ phận",
     "Description": "Bộ phận",
     "StorageType": "STATIC",
@@ -32,6 +35,7 @@
   },
   {
     "Name": "Title",
+    "Code": "USER",
     "Caption": "Chức danh",
     "Description": "Chức danh",
     "StorageType": "STATIC",
@@ -42,6 +46,7 @@
   },
   {
     "Name": "Address",
+    "Code": "USER",
     "Caption": "Địa chỉ",
     "Description": "Địa chỉ",
     "StorageType": "STATIC",
@@ -52,6 +57,7 @@
   },
   {
     "Name": "Phone",
+    "Code": "USER",
     "Caption": "Điện thoại",
     "Description": "Điện thoại",
     "StorageType": "STATIC",
@@ -62,6 +68,7 @@
   },
   {
     "Name": "Email",
+    "Code": "USER",
     "Caption": "Email",
     "Description": "Email",
     "StorageType": "STATIC",
@@ -72,6 +79,7 @@
   },
   {
     "Name": "Facebook",
+    "Code": "USER",
     "Caption": "Facebook",
     "Description": "Facebook",
     "StorageType": "DYNAMIC",
@@ -82,6 +90,7 @@
   },
   {
     "Name": "Description",
+    "Code": "USER",
     "Caption": "Ghi chú",
     "Description": "Ghi chú",
     "StorageType": "STATIC",
@@ -92,6 +101,7 @@
   },
   {
     "Name": "Gender",
+    "Code": "USER",
     "Caption": "Giới tính",
     "Description": "Giới tính",
     "StorageType": "STATIC",
@@ -102,6 +112,7 @@
   },
   {
     "Name": "Type",
+    "Code": "USER",
     "Caption": "Loại hình",
     "Description": "Loại hình",
     "StorageType": "STATIC",
@@ -112,6 +123,7 @@
   },
   {
     "Name": "TaxCode",
+    "Code": "USER",
     "Caption": "Mã số thuế",
     "Description": "Mã số thuế",
     "StorageType": "STATIC",
@@ -122,6 +134,7 @@
   },
   {
     "Name": "Category",
+    "Code": "USER",
     "Caption": "Ngành nghề",
     "Description": "Ngành nghề",
     "StorageType": "STATIC",
@@ -132,6 +145,7 @@
   },
   {
     "Name": "IdentityDate",
+    "Code": "USER",
     "Caption": "Ngày cấp CMND",
     "Description": "Ngày cấp CMND",
     "StorageType": "STATIC",
@@ -142,6 +156,7 @@
   },
   {
     "Name": "LastContactDate",
+    "Code": "USER",
     "Caption": "Ngày chăm sóc cuối cùng",
     "Description": "Ngày chăm sóc cuối cùng",
     "StorageType": "STATIC",
@@ -152,6 +167,7 @@
   },
   {
     "Name": "Listing",
+    "Code": "USER",
     "Caption": "Nguồn",
     "Description": "Nguồn",
     "StorageType": "STATIC",
@@ -162,6 +178,7 @@
   },
   {
     "Name": "DisplayImage",
+    "Code": "USER",
     "Caption": "Người phụ trách",
     "Description": "Người phụ trách",
     "StorageType": "STATIC",
@@ -172,6 +189,7 @@
   },
   {
     "Name": "CreatedBy",
+    "Code": "SYSTEM",
     "Caption": "Người tạo",
     "Description": "Người tạo",
     "StorageType": "STATIC",
@@ -182,6 +200,7 @@
   },
   {
     "Name": "IdentityCity",
+    "Code": "USER",
     "Caption": "Nơi cấp CMND",
     "Description": "Nơi cấp CMND",
     "StorageType": "DYNAMIC",
@@ -192,6 +211,7 @@
   },
   {
     "Name": "Organization",
+    "Code": "USER",
     "Caption": "Phòng ban công tác",
     "Description": "Phòng ban công tác",
     "StorageType": "STATIC",
@@ -202,6 +222,7 @@
   },
   {
     "Name": "District",
+    "Code": "USER",
     "Caption": "Quận huyện",
     "Description": "Quận huyện",
     "StorageType": "STATIC",
@@ -212,6 +233,7 @@
   },
   {
     "Name": "IdentityCode",
+    "Code": "USER",
     "Caption": "Số CMND",
     "Description": "Số CMND",
     "StorageType": "STATIC",
@@ -222,6 +244,7 @@
   },
   {
     "Name": "DisplayName",
+    "Code": "USER",
     "Caption": "Tên cá nhân đại diện",
     "Description": "Tên cá nhân đại diện",
     "StorageType": "STATIC",
@@ -232,6 +255,7 @@
   },
   {
     "Name": "Name",
+    "Code": "SYSTEM",
     "Caption": "Tên khách hàng",
     "Description": "Tên khách hàng",
     "StorageType": "STATIC",
@@ -242,6 +266,7 @@
   },
   {
     "Name": "Location",
+    "Code": "USER",
     "Caption": "Tỉnh/Thành phố",
     "Description": "Tỉnh/Thành phố",
     "StorageType": "STATIC",
@@ -252,6 +277,7 @@
   },
   {
     "Name": "Website",
+    "Code": "USER",
     "Caption": "Website",
     "Description": "Website",
     "StorageType": "STATIC",
@@ -265,6 +291,7 @@
   /*START SEED DATA T_DATA_BUSINESS_UNIT*/
   {
     "Name": "Id",
+    "Code": "SYSTEM",
     "Caption": "Id",
     "Description": "Id",
     "StorageType": "STATIC",
@@ -275,6 +302,7 @@
   },
   {
     "Name": "Code",
+    "Code": "SYSTEM",
     "Caption": "Code",
     "Description": "Code",
     "StorageType": "STATIC",
@@ -285,6 +313,7 @@
   },
   {
     "Name": "Department",
+    "Code": "USER",
     "Caption": "Bộ phận",
     "Description": "Bộ phận",
     "StorageType": "STATIC",
@@ -295,6 +324,7 @@
   },
   {
     "Name": "Title",
+    "Code": "USER",
     "Caption": "Chức danh",
     "Description": "Chức danh",
     "StorageType": "STATIC",
@@ -305,6 +335,7 @@
   },
   {
     "Name": "Parent",
+    "Code": "USER",
     "Caption": "Doanh nghiệp",
     "Description": "Doanh nghiệp",
     "StorageType": "STATIC",
@@ -315,6 +346,7 @@
   },
   {
     "Name": "Address",
+    "Code": "USER",
     "Caption": "Địa chỉ",
     "Description": "Địa chỉ",
     "StorageType": "STATIC",
@@ -325,6 +357,7 @@
   },
   {
     "Name": "Phone",
+    "Code": "USER",
     "Caption": "Điện thoại",
     "Description": "Điện thoại",
     "StorageType": "STATIC",
@@ -335,6 +368,7 @@
   },
   {
     "Name": "Email",
+    "Code": "USER",
     "Caption": "Email",
     "Description": "Email",
     "StorageType": "STATIC",
@@ -345,6 +379,7 @@
   },
   {
     "Name": "Facebook",
+    "Code": "USER",
     "Caption": "Facebook",
     "Description": "Facebook",
     "StorageType": "DYNAMIC",
@@ -355,6 +390,7 @@
   },
   {
     "Name": "Description",
+    "Code": "USER",
     "Caption": "Ghi chú",
     "Description": "Ghi chú",
     "StorageType": "STATIC",
@@ -365,6 +401,7 @@
   },
   {
     "Name": "Gender",
+    "Code": "USER",
     "Caption": "Giới tính",
     "Description": "Giới tính",
     "StorageType": "STATIC",
@@ -375,6 +412,7 @@
   },
   {
     "Name": "Linkedin",
+    "Code": "USER",
     "Caption": "Linkedin",
     "Description": "Linkedin",
     "StorageType": "DYNAMIC",
@@ -385,6 +423,7 @@
   },
   {
     "Name": "TaxCode",
+    "Code": "USER",
     "Caption": "Mã số thuế",
     "Description": "Mã số thuế",
     "StorageType": "STATIC",
@@ -395,6 +434,7 @@
   },
   {
     "Name": "DisplayImage",
+    "Code": "USER",
     "Caption": "Người phụ trách",
     "Description": "Người phụ trách",
     "StorageType": "STATIC",
@@ -405,6 +445,7 @@
   },
   {
     "Name": "IdentityDate",
+    "Code": "USER",
     "Caption": "Ngày cấp CMND",
     "Description": "Ngày cấp CMND",
     "StorageType": "DYNAMIC",
@@ -415,6 +456,7 @@
   },
   {
     "Name": "IdentityCity",
+    "Code": "USER",
     "Caption": "Nơi cấp CMND",
     "Description": "Nơi cấp CMND",
     "StorageType": "DYNAMIC",
@@ -425,6 +467,7 @@
   },
   {
     "Name": "District",
+    "Code": "USER",
     "Caption": "Quận huyện",
     "Description": "Quận huyện",
     "StorageType": "STATIC",
@@ -435,6 +478,7 @@
   },
   {
     "Name": "IdentityCode",
+    "Code": "USER",
     "Caption": "Số CMND",
     "Description": "Số CMND",
     "StorageType": "STATIC",
@@ -445,6 +489,7 @@
   },
   {
     "Name": "Name",
+    "Code": "SYSTEM",
     "Caption": "Tên đầy đủ",
     "Description": "Tên đầy đủ",
     "StorageType": "STATIC",
@@ -455,6 +500,7 @@
   },
   {
     "Name": "Location",
+    "Code": "USER",
     "Caption": "Tỉnh thành",
     "Description": "Tỉnh thành",
     "StorageType": "STATIC",
@@ -465,6 +511,7 @@
   },
   {
     "Name": "Website",
+    "Code": "USER",
     "Caption": "Website",
     "Description": "Website",
     "StorageType": "STATIC",
@@ -478,6 +525,7 @@
   /*START SEED DATA T_DATA_CONTACT_LOGS*/
   {
     "Name": "Id",
+    "Code": "SYSTEM",
     "Caption": "Id",
     "Description": "Id",
     "StorageType": "STATIC",
@@ -488,6 +536,7 @@
   },
   {
     "Name": "Code",
+    "Code": "SYSTEM",
     "Caption": "Code",
     "Description": "Code",
     "StorageType": "STATIC",
@@ -498,6 +547,7 @@
   },
   {
     "Name": "PlanStartDate",
+    "Code": "USER",
     "Caption": "Ngày liên hệ",
     "Description": "Ngày liên hệ",
     "StorageType": "STATIC",
@@ -508,6 +558,7 @@
   },
   {
     "Name": "Parent",
+    "Code": "USER",
     "Caption": "Công ty",
     "Description": "Công ty",
     "StorageType": "STATIC",
@@ -518,6 +569,7 @@
   },
   {
     "Name": "Manager",
+    "Code": "USER",
     "Caption": "Khách hàng (quản lý)",
     "Description": "Khách hàng (quản lý)",
     "StorageType": "STATIC",
@@ -528,6 +580,7 @@
   },
   {
     "Name": "Type",
+    "Code": "USER",
     "Caption": "Hình thức liên hệ",
     "Description": "Hình thức liên hệ",
     "StorageType": "STATIC",
@@ -538,6 +591,7 @@
   },
   {
     "Name": "Name",
+    "Code": "SYSTEM",
     "Caption": "Nội dung",
     "Description": "Nội dung",
     "StorageType": "STATIC",
@@ -548,6 +602,7 @@
   },
   {
     "Name": "Description",
+    "Code": "USER",
     "Caption": "Kết quả",
     "Description": "Kết quả",
     "StorageType": "STATIC",
@@ -561,6 +616,7 @@
   /*START SEED DATA T_DATA_CONTRACT*/
   {
     "Name": "Id",
+    "Code": "SYSTEM",
     "Caption": "Id",
     "Description": "Id",
     "StorageType": "STATIC",
@@ -571,6 +627,7 @@
   },
   {
     "Name": "Code",
+    "Code": "SYSTEM",
     "Caption": "Code",
     "Description": "Code",
     "StorageType": "STATIC",
@@ -581,6 +638,7 @@
   },
   {
     "Name": "Project",
+    "Code": "USER",
     "Caption": "Bộ phận",
     "Description": "Bộ phận",
     "StorageType": "STATIC",
@@ -591,6 +649,7 @@
   },
   {
     "Name": "Progress",
+    "Code": "USER",
     "Caption": "Chi phí Outsource",
     "Description": "Chi phí Outsource",
     "StorageType": "STATIC",
@@ -601,6 +660,7 @@
   },
   {
     "Name": "Parent",
+    "Code": "USER",
     "Caption": "Công ty",
     "Description": "Công ty",
     "StorageType": "STATIC",
@@ -611,6 +671,7 @@
   },
   {
     "Name": "Address",
+    "Code": "USER",
     "Caption": "Địa chỉ",
     "Description": "Địa chỉ",
     "StorageType": "DYNAMIC",
@@ -621,6 +682,7 @@
   },
   {
     "Name": "Phone",
+    "Code": "USER",
     "Caption": "Điện thoại",
     "Description": "Điện thoại",
     "StorageType": "DYNAMIC",
@@ -631,6 +693,7 @@
   },
   {
     "Name": "Email",
+    "Code": "USER",
     "Caption": "Email",
     "Description": "Email",
     "StorageType": "STATIC",
@@ -641,6 +704,7 @@
   },
   {
     "Name": "Facebook",
+    "Code": "USER",
     "Caption": "Facebook",
     "Description": "Facebook",
     "StorageType": "DYNAMIC",
@@ -651,6 +715,7 @@
   },
   {
     "Name": "Price1",
+    "Code": "USER",
     "Caption": "Giá gói 1",
     "Description": "Giá gói 1",
     "StorageType": "STATIC",
@@ -661,6 +726,7 @@
   },
   {
     "Name": "Price2",
+    "Code": "USER",
     "Caption": "Giá gói 2",
     "Description": "Giá gói 2",
     "StorageType": "STATIC",
@@ -671,6 +737,7 @@
   },
   {
     "Name": "Price3",
+    "Code": "USER",
     "Caption": "Giá gói 3",
     "Description": "Giá gói 3",
     "StorageType": "STATIC",
@@ -681,6 +748,7 @@
   },
   {
     "Name": "Price4",
+    "Code": "USER",
     "Caption": "Giá gói 4",
     "Description": "Giá gói 4",
     "StorageType": "STATIC",
@@ -691,6 +759,7 @@
   },
   {
     "Name": "ActualManHour",
+    "Code": "USER",
     "Caption": "Giá trị hợp đồng",
     "Description": "Giá trị hợp đồng",
     "StorageType": "STATIC",
@@ -701,6 +770,7 @@
   },
   {
     "Name": "ReportManHour",
+    "Code": "USER",
     "Caption": "Giá trị hợp đồng CRM",
     "Description": "Giá trị hợp đồng CRM",
     "StorageType": "STATIC",
@@ -711,6 +781,7 @@
   },
   {
     "Name": "ReviewManHour",
+    "Code": "USER",
     "Caption": "Giá trị hợp đồng POS",
     "Description": "Giá trị hợp đồng POS",
     "StorageType": "STATIC",
@@ -721,6 +792,7 @@
   },
   {
     "Name": "Product1",
+    "Code": "USER",
     "Caption": "Gói ký 1",
     "Description": "Gói ký 1",
     "StorageType": "STATIC",
@@ -731,6 +803,7 @@
   },
   {
     "Name": "Product2",
+    "Code": "USER",
     "Caption": "Gói ký 2",
     "Description": "Gói ký 2",
     "StorageType": "STATIC",
@@ -741,6 +814,7 @@
   },
   {
     "Name": "Product3",
+    "Code": "USER",
     "Caption": "Gói ký 3",
     "Description": "Gói ký 3",
     "StorageType": "STATIC",
@@ -751,6 +825,7 @@
   },
   {
     "Name": "Product4",
+    "Code": "USER",
     "Caption": "Gói ký 4",
     "Description": "Gói ký 4",
     "StorageType": "STATIC",
@@ -761,6 +836,7 @@
   },
   {
     "Name": "Type",
+    "Code": "USER",
     "Caption": "Hình thức",
     "Description": "Hình thức",
     "StorageType": "STATIC",
@@ -771,6 +847,7 @@
   },
   {
     "Name": "ContractId",
+    "Code": "USER",
     "Caption": "ID hợp đồng",
     "Description": "ID hợp đồng",
     "StorageType": "STATIC",
@@ -781,6 +858,7 @@
   },
   {
     "Name": "Manager",
+    "Code": "USER",
     "Caption": "Khách hàng (quản lý)",
     "Description": "Khách hàng (quản lý)",
     "StorageType": "STATIC",
@@ -791,6 +869,7 @@
   },
   {
     "Name": "Category",
+    "Code": "USER",
     "Caption": "Loại hợp đồng",
     "Description": "Loại hợp đồng",
     "StorageType": "STATIC",
@@ -801,6 +880,7 @@
   },
   {
     "Name": "Name",
+    "Code": "SYSTEM",
     "Caption": "Mã hợp đồng",
     "Description": "Mã hợp đồng",
     "StorageType": "STATIC",
@@ -811,6 +891,7 @@
   },
   {
     "Name": "TaxCode",
+    "Code": "USER",
     "Caption": "Mã số thuế",
     "Description": "Mã số thuế",
     "StorageType": "STATIC",
@@ -821,6 +902,7 @@
   },
   {
     "Name": "ActualStartDate",
+    "Code": "USER",
     "Caption": "Ngày bắt đầu",
     "Description": "Ngày bắt đầu",
     "StorageType": "STATIC",
@@ -831,6 +913,7 @@
   },
   {
     "Name": "IdentityDate",
+    "Code": "USER",
     "Caption": "Ngày cấp CMND",
     "Description": "Ngày cấp CMND",
     "StorageType": "DYNAMIC",
@@ -841,6 +924,7 @@
   },
   {
     "Name": "Deadline",
+    "Code": "USER",
     "Caption": "Ngày hết hạn",
     "Description": "Ngày hết hạn",
     "StorageType": "STATIC",
@@ -851,6 +935,7 @@
   },
   {
     "Name": "ActualFinishDate",
+    "Code": "USER",
     "Caption": "Ngày kết thúc",
     "Description": "Ngày kết thúc",
     "StorageType": "STATIC",
@@ -861,6 +946,7 @@
   },
   {
     "Name": "PlanStartDate",
+    "Code": "USER",
     "Caption": "Ngày ký hợp đồng",
     "Description": "Ngày ký hợp đồng",
     "StorageType": "STATIC",
@@ -871,6 +957,7 @@
   },
   {
     "Name": "Worker",
+    "Code": "USER",
     "Caption": "Người phụ trách",
     "Description": "Người phụ trách",
     "StorageType": "STATIC",
@@ -881,6 +968,7 @@
   },
   {
     "Name": "IdentityCity",
+    "Code": "USER",
     "Caption": "Nơi cấp CMND",
     "Description": "Nơi cấp CMND",
     "StorageType": "DYNAMIC",
@@ -891,6 +979,7 @@
   },
   {
     "Name": "ControlApproveContent",
+    "Code": "USER",
     "Caption": "Nội dung KSNB duyệt",
     "Description": "Nội dung KSNB duyệt",
     "StorageType": "DYNAMIC",
@@ -901,6 +990,7 @@
   },
   {
     "Name": "LeaderApproveContent",
+    "Code": "USER",
     "Caption": "Nội dung Leader duyệt",
     "Description": "Nội dung Leader duyệt",
     "StorageType": "DYNAMIC",
@@ -911,6 +1001,7 @@
   },
   {
     "Name": "Milestone",
+    "Code": "USER",
     "Caption": "Quận huyện",
     "Description": "Quận huyện",
     "StorageType": "STATIC",
@@ -921,6 +1012,7 @@
   },
   {
     "Name": "IdentityCode",
+    "Code": "USER",
     "Caption": "Số CMND",
     "Description": "Số CMND",
     "StorageType": "STATIC",
@@ -931,6 +1023,7 @@
   },
   {
     "Name": "ProductMonth1",
+    "Code": "USER",
     "Caption": "Số tháng 1",
     "Description": "Số tháng 1",
     "StorageType": "STATIC",
@@ -941,6 +1034,7 @@
   },
   {
     "Name": "ProductMonth2",
+    "Code": "USER",
     "Caption": "Số tháng 2",
     "Description": "Số tháng 2",
     "StorageType": "STATIC",
@@ -951,6 +1045,7 @@
   },
   {
     "Name": "ProductMonth3",
+    "Code": "USER",
     "Caption": "Số tháng 3",
     "Description": "Số tháng 3",
     "StorageType": "STATIC",
@@ -961,6 +1056,7 @@
   },
   {
     "Name": "ProductMonth4",
+    "Code": "USER",
     "Caption": "Số tháng 4",
     "Description": "Số tháng 4",
     "StorageType": "STATIC",
@@ -971,6 +1067,7 @@
   },
   {
     "Name": "CompletedManHour",
+    "Code": "USER",
     "Caption": "Số tiền đã trả",
     "Description": "Số tiền đã trả",
     "StorageType": "STATIC",
@@ -981,6 +1078,7 @@
   },
   {
     "Name": "BonusMonth1",
+    "Code": "USER",
     "Caption": "Tặng tháng 1",
     "Description": "Tặng tháng 1",
     "StorageType": "STATIC",
@@ -991,6 +1089,7 @@
   },
   {
     "Name": "BonusMonth2",
+    "Code": "USER",
     "Caption": "Tặng tháng 2",
     "Description": "Tặng tháng 2",
     "StorageType": "STATIC",
@@ -1001,6 +1100,7 @@
   },
   {
     "Name": "BonusMonth3",
+    "Code": "USER",
     "Caption": "Tặng tháng 3",
     "Description": "Tặng tháng 3",
     "StorageType": "STATIC",
@@ -1011,6 +1111,7 @@
   },
   {
     "Name": "BonusMonth4",
+    "Code": "USER",
     "Caption": "Tặng tháng 4",
     "Description": "Tặng tháng 4",
     "StorageType": "STATIC",
@@ -1021,6 +1122,7 @@
   },
   {
     "Name": "Feature",
+    "Code": "USER",
     "Caption": "Tỉnh thành",
     "Description": "Tỉnh thành",
     "StorageType": "STATIC",
@@ -1031,6 +1133,7 @@
   },
   {
     "Name": "Status",
+    "Code": "USER",
     "Caption": "Trạng thái",
     "Description": "Trạng thái",
     "StorageType": "STATIC",
@@ -1041,6 +1144,7 @@
   },
   {
     "Name": "Website",
+    "Code": "USER",
     "Caption": "Website",
     "Description": "Website",
     "StorageType": "DYNAMIC",
@@ -1054,6 +1158,7 @@
   /*START SEED DATA T_DATA_CONTRACT_PRODUCT*/
   {
     "Name": "Id",
+    "Code": "SYSTEM",
     "Caption": "Id",
     "Description": "Id",
     "StorageType": "STATIC",
@@ -1064,6 +1169,7 @@
   },
   {
     "Name": "Code",
+    "Code": "SYSTEM",
     "Caption": "Code",
     "Description": "Code",
     "StorageType": "STATIC",
@@ -1074,6 +1180,7 @@
   },
   {
     "Name": "Parent",
+    "Code": "USER",
     "Caption": "Hợp đồng",
     "Description": "Hợp đồng",
     "StorageType": "STATIC",
@@ -1084,6 +1191,7 @@
   },
   {
     "Name": "Category",
+    "Code": "USER",
     "Caption": "Sản phẩm",
     "Description": "Sản phẩm",
     "StorageType": "STATIC",
@@ -1094,6 +1202,7 @@
   },
   {
     "Name": "PlanManHour",
+    "Code": "USER",
     "Caption": "Giá trị",
     "Description": "Giá trị",
     "StorageType": "STATIC",
@@ -1107,6 +1216,7 @@
   /*START SEED DATA T_DATA_INVOICE*/
   {
     "Name": "Id",
+    "Code": "SYSTEM",
     "Caption": "Id",
     "Description": "Id",
     "StorageType": "STATIC",
@@ -1117,6 +1227,7 @@
   },
   {
     "Name": "Code",
+    "Code": "SYSTEM",
     "Caption": "Code",
     "Description": "Code",
     "StorageType": "STATIC",
@@ -1127,6 +1238,7 @@
   },
   {
     "Name": "Parent",
+    "Code": "USER",
     "Caption": "Hợp đồng",
     "Description": "Hợp đồng",
     "StorageType": "STATIC",
@@ -1137,6 +1249,7 @@
   },
   {
     "Name": "PlanManHour",
+    "Code": "USER",
     "Caption": "Giá trị",
     "Description": "Giá trị",
     "StorageType": "STATIC",
@@ -1147,6 +1260,7 @@
   },
   {
     "Name": "Created",
+    "Code": "USER",
     "Caption": "Ngày tạo",
     "Description": "Ngày tạo",
     "StorageType": "STATIC",
@@ -1157,6 +1271,7 @@
   },
   {
     "Name": "Modified",
+    "Code": "USER",
     "Caption": "Ngày cập nhật",
     "Description": "Ngày cập nhật",
     "StorageType": "STATIC",
@@ -1167,6 +1282,7 @@
   },
   {
     "Name": "Status",
+    "Code": "USER",
     "Caption": "Trạng thái",
     "Description": "Trạng thái",
     "StorageType": "STATIC",
@@ -1180,6 +1296,7 @@
   /*START SEED DATA T_DATA_PRODUCT*/
   {
     "Name": "Id",
+    "Code": "SYSTEM",
     "Caption": "Id",
     "Description": "Id",
     "StorageType": "STATIC",
@@ -1190,6 +1307,7 @@
   },
   {
     "Name": "Code",
+    "Code": "SYSTEM",
     "Caption": "Code",
     "Description": "Code",
     "StorageType": "STATIC",
@@ -1200,6 +1318,7 @@
   },
   {
     "Name": "Parent",
+    "Code": "USER",
     "Caption": "Bộ phận",
     "Description": "Bộ phận",
     "StorageType": "STATIC",
@@ -1210,6 +1329,7 @@
   },
   {
     "Name": "CommissionFee",
+    "Code": "USER",
     "Caption": "Doanh số cho kinh doanh (%)",
     "Description": "Doanh số cho kinh doanh (%)",
     "StorageType": "STATIC",
@@ -1220,6 +1340,7 @@
   },
   {
     "Name": "Location",
+    "Code": "USER",
     "Caption": "Đơn vị tính",
     "Description": "Đơn vị tính",
     "StorageType": "STATIC",
@@ -1230,6 +1351,7 @@
   },
   {
     "Name": "Websites",
+    "Code": "USER",
     "Caption": "Giá đề xuất",
     "Description": "Giá đề xuất",
     "StorageType": "STATIC",
@@ -1240,6 +1362,7 @@
   },
   {
     "Name": "Category",
+    "Code": "USER",
     "Caption": "Loại sản phẩm",
     "Description": "Loại sản phẩm",
     "StorageType": "STATIC",
@@ -1250,6 +1373,7 @@
   },
   {
     "Name": "Type",
+    "Code": "USER",
     "Caption": "Loại thanh toán",
     "Description": "Loại thanh toán",
     "StorageType": "STATIC",
@@ -1260,6 +1384,7 @@
   },
   {
     "Name": "Tags",
+    "Code": "USER",
     "Caption": "Description",
     "Description": "Description",
     "StorageType": "STATIC",
@@ -1270,6 +1395,7 @@
   },
   {
     "Name": "Name",
+    "Code": "SYSTEM",
     "Caption": "Tên sản phẩm",
     "Description": "Tên sản phẩm",
     "StorageType": "STATIC",
@@ -1283,6 +1409,7 @@
   /*START SEED DATA T_DATA_RECEIPT*/
   {
     "Name": "Id",
+    "Code": "SYSTEM",
     "Caption": "Id",
     "Description": "Id",
     "StorageType": "STATIC",
@@ -1293,6 +1420,7 @@
   },
   {
     "Name": "Code",
+    "Code": "SYSTEM",
     "Caption": "Code",
     "Description": "Code",
     "StorageType": "STATIC",
@@ -1303,6 +1431,7 @@
   },
   {
     "Name": "Parent",
+    "Code": "USER",
     "Caption": "Hợp đồng",
     "Description": "Hợp đồng",
     "StorageType": "STATIC",
@@ -1313,6 +1442,7 @@
   },
   {
     "Name": "PlanManHour",
+    "Code": "USER",
     "Caption": "Số tiền nộp",
     "Description": "Số tiền nộp",
     "StorageType": "STATIC",
@@ -1323,6 +1453,7 @@
   },
   {
     "Name": "Worker",
+    "Code": "USER",
     "Caption": "Người nộp",
     "Description": "Người nộp",
     "StorageType": "STATIC",
@@ -1333,6 +1464,7 @@
   },
   {
     "Name": "Type",
+    "Code": "USER",
     "Caption": "Hình thức thanh toán",
     "Description": "Hình thức thanh toán",
     "StorageType": "STATIC",
@@ -1343,6 +1475,7 @@
   },
   {
     "Name": "Description",
+    "Code": "SYSTEM",
     "Caption": "Ghi chú",
     "Description": "Ghi chú",
     "StorageType": "STATIC",
@@ -1353,6 +1486,7 @@
   },
   {
     "Name": "Manager",
+    "Code": "USER",
     "Caption": "Người duyệt",
     "Description": "Người duyệt",
     "StorageType": "STATIC",
@@ -1363,6 +1497,7 @@
   },
   {
     "Name": "ReviewFinishDate",
+    "Code": "USER",
     "Caption": "Ngày duyệt",
     "Description": "Ngày duyệt",
     "StorageType": "STATIC",
@@ -1376,6 +1511,7 @@
   /*START SEED DATA T_DATA_DISTRICT*/
   {
     "Name": "Id",
+    "Code": "SYSTEM",
     "Caption": "Id",
     "Description": "Id",
     "StorageType": "STATIC",
@@ -1386,6 +1522,7 @@
   },
   {
     "Name": "Code",
+    "Code": "SYSTEM",
     "Caption": "Code",
     "Description": "Code",
     "StorageType": "STATIC",
@@ -1396,6 +1533,7 @@
   },
   {
     "Name": "Name",
+    "Code": "SYSTEM",
     "Caption": "Quận huyện",
     "Description": "Quận huyện",
     "StorageType": "STATIC",
@@ -1406,6 +1544,7 @@
   },
   {
     "Name": "Parent",
+    "Code": "USER",
     "Caption": "Tỉnh thành",
     "Description": "Tỉnh thành",
     "StorageType": "STATIC",
@@ -1419,6 +1558,7 @@
   /*START SEED DATA T_DATA_PROVINCE*/
   {
     "Name": "Id",
+    "Code": "SYSTEM",
     "Caption": "Id",
     "Description": "Id",
     "StorageType": "STATIC",
@@ -1429,6 +1569,7 @@
   },
   {
     "Name": "Code",
+    "Code": "SYSTEM",
     "Caption": "Code",
     "Description": "Code",
     "StorageType": "STATIC",
@@ -1439,6 +1580,7 @@
   },
   {
     "Name": "Name",
+    "Code": "SYSTEM",
     "Caption": "Tỉnh thành",
     "Description": "Tỉnh thành",
     "StorageType": "STATIC",

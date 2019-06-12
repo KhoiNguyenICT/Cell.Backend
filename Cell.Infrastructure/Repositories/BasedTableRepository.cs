@@ -58,7 +58,7 @@ namespace Cell.Infrastructure.Repositories
                             PATH_ID nvarchar(1000)
                         );";
             var queryCreateBasedTable = model.IsTree ? queryIsTree : queryNotTree;
-            using (var connection = new SqlConnection())
+            using (var connection = new SqlConnection(_connectionString))
             {
                 if (connection.State == ConnectionState.Closed)
                     connection.Open();

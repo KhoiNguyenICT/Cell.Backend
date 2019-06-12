@@ -6,6 +6,10 @@ namespace Cell.Application.Api.Commands
     {
         public string BasedTable { get; set; }
 
+        public int CountFieldItems { get; set; }
+
+        public int CountActionItems { get; set; }
+
         public List<SettingTableSettingsConfigurationCommand> Settings { get; set; }
     }
 

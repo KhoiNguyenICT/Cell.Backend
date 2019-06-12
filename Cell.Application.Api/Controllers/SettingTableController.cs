@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cell.Domain.Aggregates.SettingActionAggregate;
+using Cell.Domain.Aggregates.SettingFieldAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -18,25 +20,41 @@ namespace Cell.Application.Api.Controllers
     {
         private readonly ISettingTableRepository _settingTableRepository;
         private readonly IBasedTableRepository _basedTableRepository;
+        private readonly ISettingFieldRepository _settingFieldRepository;
+        private readonly ISettingActionRepository _settingActionRepository;
 
         public SettingTableController(
             ISettingTableRepository settingTableRepository,
-            IBasedTableRepository basedTableRepository)
+            IBasedTableRepository basedTableRepository, 
+            ISettingFieldRepository settingFieldRepository, 
+            ISettingActionRepository settingActionRepository)
         {
             _settingTableRepository = settingTableRepository;
             _basedTableRepository = basedTableRepository;
+            _settingFieldRepository = settingFieldRepository;
+            _settingActionRepository = settingActionRepository;
         }
 
         [HttpPost("search")]
         public async Task<IActionResult> Search(SearchCommand command)
         {
+            var settingTableItems = new List<SettingTableCommand>();
             var spec = SettingTableSpecs.SearchByQuery(command.Query);
             var queryable = _settingTableRepository.QueryAsync(spec, command.Sorts);
             var items = await queryable.Skip(command.Skip).Take(command.Take).ToListAsync();
+            foreach (var settingTable in items)
+            {
+                var countFieldItems = await _settingFieldRepository.Count(settingTable.Id);
+                var countActionItems = await _settingActionRepository.Count(settingTable.Id);
+                var settingTableCommand = settingTable.To<SettingTableCommand>();
+                settingTableCommand.CountFieldItems = countFieldItems;
+                settingTableCommand.CountActionItems = countActionItems;
+                settingTableItems.Add(settingTableCommand);
+            }
             return Ok(new QueryResult<SettingTableCommand>
             {
                 Count = queryable.Count(),
-                Items = items.To<List<SettingTableCommand>>()
+                Items = settingTableItems
             });
         }
 

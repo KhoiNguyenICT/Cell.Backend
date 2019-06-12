@@ -2,7 +2,7 @@
   /*T_DATA_BUSINESS_UNIT*/
   {
     "Name": "Save",
-    "Code": "DataGroup.Buttons.save-redirect.0d332",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Lưu", 
     "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
@@ -11,7 +11,7 @@
   },
   {
     "Name": "Save",
-    "Code": "DataGroup.Buttons.save-popup.0d1c6",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Lưu",
     "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
@@ -19,7 +19,7 @@
     "Settings": "{\"Icon\":\"\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}"
   },
   {
-    "Code": "DataGroup.Buttons.close.09c9b",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Đóng",
     "Name": "Close",
@@ -28,7 +28,7 @@
     "TableName": "T_DATA_BUSINESS_UNIT"
   },
   {
-    "Code": "DataGroup.Buttons.edit-personal.0hg0f",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Sửa",
     "Name": "Edit",
@@ -37,7 +37,7 @@
     "TableName": "T_DATA_BUSINESS_UNIT"
   },
   {
-    "Code": "DataGroup.Buttons.delete.0cd77",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Xóa",
     "Name": "Delete",
@@ -49,7 +49,7 @@
 
   /*T_DATA_CONTACT*/
   {
-    "Code": "DataGroup.Buttons.save-redirect.0655h",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Lưu",
     "Name": "Save",
@@ -58,7 +58,7 @@
     "TableName": "T_DATA_CONTACT"
   },
   {
-    "Code": "DataGroup.Buttons.save-popup.077f0",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Lưu",
     "Name": "Save",
@@ -67,7 +67,7 @@
     "TableName": "T_DATA_CONTACT"
   },
   {
-    "Code": "DataGroup.Buttons.close.0b87a",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Đóng",
     "Name": "Close",
@@ -76,7 +76,7 @@
     "TableName": "T_DATA_CONTACT"
   },
   {
-    "Code": "DataGroup.Buttons.edit.032dd",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Sửa",
     "Name": "Edit",
@@ -85,7 +85,7 @@
     "TableName": "T_DATA_CONTACT"
   },
   {
-    "Code": "DataGroup.Buttons.delete.0gd50",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Xóa",
     "Name": "Delete",
@@ -97,7 +97,7 @@
 
   /*T_DATA_CONTACT_LOGS*/
   {
-    "Code": "DataGroup.Buttons.save-redirect.08d5d",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Lưu",
     "Name": "Delete",
@@ -106,7 +106,7 @@
     "TableName": "T_DATA_CONTACT_LOGS"
   },
   {
-    "Code": "DataGroup.Buttons.save-popup.068d3",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Lưu",
     "Name": "Save",
@@ -115,7 +115,7 @@
     "TableName": "T_DATA_CONTACT_LOGS"
   },
   {
-    "Code": "DataGroup.Buttons.close.0cf8d",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Đóng",
     "Name": "Close",
@@ -124,7 +124,7 @@
     "TableName": "T_DATA_CONTACT_LOGS"
   },
   {
-    "Code": "DataGroup.Buttons.edit.08h9d",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Sửa",
     "Name": "Edit",
@@ -133,7 +133,7 @@
     "TableName": "T_DATA_CONTACT_LOGS"
   },
   {
-    "Code": "DataGroup.Buttons.delete.00992",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Xóa",
     "Name": "Delete",
@@ -145,7 +145,7 @@
 
   /*T_DATA_CONTRACT*/
   {
-    "Code": "DataGroup.Buttons.save-redirect.04hf5",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Lưu",
     "Name": "Save",
@@ -154,7 +154,7 @@
     "TableName": "T_DATA_CONTRACT"
   },
   {
-    "Code": "DataGroup.Buttons.delete.00992",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Xóa",
     "Name": "Save",
@@ -163,7 +163,7 @@
     "TableName": "T_DATA_CONTRACT"
   },
   {
-    "Code": "DataGroup.Buttons.close.0ach7",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Đóng",
     "Name": "Close",
@@ -172,7 +172,7 @@
     "TableName": "T_DATA_CONTRACT"
   },
   {
-    "Code": "DataGroup.Buttons.edit.004fa",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Sửa",
     "Name": "Edit",
@@ -181,7 +181,7 @@
     "TableName": "T_DATA_CONTRACT"
   },
   {
-    "Code": "DataGroup.Buttons.delete.071ff",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Xóa",
     "Name": "Delete",
@@ -190,7 +190,7 @@
     "TableName": "T_DATA_CONTRACT"
   },
   {
-    "Code": "DataGroup.Buttons.leader-approve.0g2cb",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Lưu",
     "Name": "Phê duyệt",
@@ -199,7 +199,7 @@
     "TableName": "T_DATA_CONTRACT"
   },
   {
-    "Code": "DataGroup.Buttons.control-approve.00a09",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Phê duyệt",
     "Name": "Control Approve",
@@ -211,7 +211,7 @@
 
   /*T_DATA_CONTRACT_PRODUCT*/
   {
-    "Code": "DataGroup.Buttons.save-redirect.063f3",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Lưu",
     "Name": "Save",
@@ -220,7 +220,7 @@
     "TableName": "T_DATA_CONTRACT_PRODUCT"
   },
   {
-    "Code": "DataGroup.Buttons.save-popup.0297g",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Lưu",
     "Name": "Save",
@@ -229,7 +229,7 @@
     "TableName": "T_DATA_CONTRACT_PRODUCT"
   },
   {
-    "Code": "DataGroup.Buttons.close.06cd0",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Đóng",
     "Name": "Close",
@@ -238,7 +238,7 @@
     "TableName": "T_DATA_CONTRACT_PRODUCT"
   },
   {
-    "Code": "DataGroup.Buttons.edit.0fa2c",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Sửa",
     "Name": "Edit",
@@ -247,7 +247,7 @@
     "TableName": "T_DATA_CONTRACT_PRODUCT"
   },
   {
-    "Code": "DataGroup.Buttons.delete.0146b",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Xóa",
     "Name": "Delete",
@@ -259,7 +259,7 @@
 
   /*T_DATA_INVOICE*/
   {
-    "Code": "DataGroup.Buttons.save-redirect.0a763",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Lưu",
     "Name": "Save",
@@ -268,7 +268,7 @@
     "TableName": "T_DATA_INVOICE"
   },
   {
-    "Code": "DataGroup.Buttons.save-popup.04312",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Lưu",
     "Name": "Save",
@@ -277,7 +277,7 @@
     "TableName": "T_DATA_INVOICE"
   },
   {
-    "Code": "DataGroup.Buttons.close.0ee83",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Đóng",
     "Name": "Close",
@@ -286,7 +286,7 @@
     "TableName": "T_DATA_INVOICE"
   },
   {
-    "Code": "DataGroup.Buttons.edit.0ga4g",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Sửa",
     "Name": "Edit",
@@ -295,7 +295,7 @@
     "TableName": "T_DATA_INVOICE"
   },
   {
-    "Code": "DataGroup.Buttons.delete.06h6f",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Xóa",
     "Name": "Delete",
@@ -307,7 +307,7 @@
 
   /*T_DATA_PRODUCT*/
   {
-    "Code": "DataGroup.Buttons.save-redirect.0a7cf",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Lưu",
     "Name": "Save",
@@ -316,7 +316,7 @@
     "TableName": "T_DATA_PRODUCT"
   },
   {
-    "Code": "DataGroup.Buttons.save-popup.0ba7d",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Lưu",
     "Name": "Save",
@@ -325,7 +325,7 @@
     "TableName": "T_DATA_PRODUCT"
   },
   {
-    "Code": "DataGroup.Buttons.close.09060",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Đóng",
     "Name": "Close",
@@ -334,7 +334,7 @@
     "TableName": "T_DATA_PRODUCT"
   },
   {
-    "Code": "DataGroup.Buttons.edit.0h28e",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Xửa",
     "Name": "Edit",
@@ -343,7 +343,7 @@
     "TableName": "T_DATA_PRODUCT"
   },
   {
-    "Code": "DataGroup.Buttons.delete.03dh1",
+    "Code": "TEMPLATE",
     "ContainerType": "FORM",
     "Description": "Xóa",
     "Name": "Delete",
