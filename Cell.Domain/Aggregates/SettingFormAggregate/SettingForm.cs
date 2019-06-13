@@ -36,5 +36,17 @@ namespace Cell.Domain.Aggregates.SettingFormAggregate
             TableId = tableId;
             TableName = tableName;
         }
+
+        public void Update(
+            string name,
+            string description,
+            Guid layoutId,
+            string settings)
+        {
+            Name = name;
+            Description = description;
+            LayoutId = layoutId;
+            Settings = settings;
+        }
     }
 }

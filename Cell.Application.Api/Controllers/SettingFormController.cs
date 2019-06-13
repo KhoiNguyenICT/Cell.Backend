@@ -54,6 +54,19 @@ namespace Cell.Application.Api.Controllers
             return Ok();
         }
 
+        [HttpPost("update")]
+        public async Task<IActionResult> Update([FromBody]SettingFormCommand command)
+        {
+            var settingForm = await _settingFormRepository.GetByIdAsync(command.Id);
+            settingForm.Update(
+                command.Name,
+                command.Description,
+                command.LayoutId,
+                JsonConvert.SerializeObject(command.Settings));
+            await _settingFormRepository.CommitAsync();
+            return Ok();
+        }
+
         [HttpPost("{id}")]
         public async Task<IActionResult> SettingForm(Guid id)
         {
