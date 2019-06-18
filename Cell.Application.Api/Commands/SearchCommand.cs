@@ -19,4 +19,9 @@ namespace Cell.Application.Api.Commands
     {
         public Guid TableId { get; set; }
     }
+
+    public class SearchSettingViewCommand : SearchCommand
+    {
+        public Guid TableId { get; set; }
+    }
 }

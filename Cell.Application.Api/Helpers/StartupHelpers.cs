@@ -7,6 +7,7 @@ using Cell.Domain.Aggregates.SettingActionAggregate;
 using Cell.Domain.Aggregates.SettingFieldAggregate;
 using Cell.Domain.Aggregates.SettingFormAggregate;
 using Cell.Domain.Aggregates.SettingTableAggregate;
+using Cell.Domain.Aggregates.SettingViewAggregate;
 using Cell.Infrastructure;
 using Cell.Infrastructure.Repositories;
 using MediatR;
@@ -16,6 +17,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
+using Cell.Domain.Aggregates.SettingActionInstanceAggregate;
+using Cell.Domain.Aggregates.SettingFieldInstanceAggregate;
 
 namespace Cell.Application.Api.Helpers
 {
@@ -73,6 +76,10 @@ namespace Cell.Application.Api.Helpers
             services.AddScoped<ISettingTableRepository, SettingTableRepository>();
             services.AddScoped<ISettingActionRepository, SettingActionRepository>();
             services.AddScoped<ISettingFormRepository, SettingFormRepository>();
+            services.AddScoped<ISettingViewRepository, SettingViewRepository>();
+            services.AddScoped<ISettingFieldRepository, SettingFieldRepository>();
+            services.AddScoped<ISettingFieldInstanceRepository, SettingFieldInstanceRepository>();
+            services.AddScoped<ISettingActionInstanceRepository, SettingActionInstanceRepository>();
             return services;
         }
     }

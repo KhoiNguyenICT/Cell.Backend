@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cell.Domain.Aggregates.SettingActionAggregate;
 using Cell.Domain.Aggregates.SettingFieldAggregate;
+using Cell.Domain.Aggregates.SettingViewAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -22,17 +23,20 @@ namespace Cell.Application.Api.Controllers
         private readonly IBasedTableRepository _basedTableRepository;
         private readonly ISettingFieldRepository _settingFieldRepository;
         private readonly ISettingActionRepository _settingActionRepository;
+        private readonly ISettingViewRepository _settingViewRepository;
 
         public SettingTableController(
             ISettingTableRepository settingTableRepository,
             IBasedTableRepository basedTableRepository, 
             ISettingFieldRepository settingFieldRepository, 
-            ISettingActionRepository settingActionRepository)
+            ISettingActionRepository settingActionRepository, 
+            ISettingViewRepository settingViewRepository)
         {
             _settingTableRepository = settingTableRepository;
             _basedTableRepository = basedTableRepository;
             _settingFieldRepository = settingFieldRepository;
             _settingActionRepository = settingActionRepository;
+            _settingViewRepository = settingViewRepository;
         }
 
         [HttpPost("search")]

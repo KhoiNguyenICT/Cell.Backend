@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
 using Cell.Application.Api.Commands;
 using Cell.Domain.Aggregates.SettingActionAggregate;
+using Cell.Domain.Aggregates.SettingFeatureAggregate;
 using Cell.Domain.Aggregates.SettingFieldAggregate;
 using Cell.Domain.Aggregates.SettingFormAggregate;
 using Cell.Domain.Aggregates.SettingTableAggregate;
+using Cell.Domain.Aggregates.SettingViewAggregate;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Cell.Domain.Aggregates.SettingFieldInstanceAggregate;
 
 namespace Cell.Application.Api.Mappers
 {
@@ -59,6 +62,34 @@ namespace Cell.Application.Api.Mappers
                 .ForMember(d => d.Settings, s => s.MapFrom(x => JsonConvert.SerializeObject(x.Settings)));
 
             #endregion SettingForm
+
+            #region SettingView
+
+            CreateMap<SettingView, SettingViewCommand>()
+                .ForMember(d => d.Settings, s => s.MapFrom(x => JsonConvert.DeserializeObject<SettingViewSettingsCommand>(x.Settings)));
+
+            CreateMap<SettingViewCommand, SettingView>()
+                .ForMember(d => d.Settings, s => s.MapFrom(x => JsonConvert.SerializeObject(x.Settings)));
+
+            #endregion SettingView
+
+            #region SettingFeature
+
+            CreateMap<SettingFeature, SettingFeatureCommand>();
+            CreateMap<SettingFeatureCommand, SettingFeature>();
+
+            #endregion SettingFeature
+
+            #region SettingFieldInstance
+
+            CreateMap<SettingFieldInstanceCommand, SettingFieldInstance>()
+                .ForMember(d => d.Settings, s => s.MapFrom(x => x.Settings));
+
+            CreateMap<SettingFieldInstance, SettingFieldInstanceCommand>()
+                .ForMember(d => d.Settings,
+                    s => s.MapFrom(x => JsonConvert.DeserializeObject<SettingFieldInstanceSettings>(x.Settings)));
+
+            #endregion
         }
     }
 }

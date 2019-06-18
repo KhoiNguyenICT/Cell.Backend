@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cell.Application.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190610062253_Initialize")]
+    [Migration("20190617040829_Initialize")]
     partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,6 +72,75 @@ namespace Cell.Application.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("T_SETTING_ACTION");
+                });
+
+            modelBuilder.Entity("Cell.Domain.Aggregates.SettingFeatureAggregate.SettingFeature", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID");
+
+                    b.Property<string>("Code")
+                        .HasColumnName("CODE");
+
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnName("CREATED");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
+
+                    b.Property<string>("Description")
+                        .HasColumnName("DESCRIPTION");
+
+                    b.Property<string>("Icon")
+                        .HasColumnName("ICON")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("IndexLeft")
+                        .HasColumnName("INDEX_LEFT");
+
+                    b.Property<int>("IndexRight")
+                        .HasColumnName("INDEX_RIGHT");
+
+                    b.Property<int>("IsLeaf")
+                        .HasColumnName("IS_LEAF");
+
+                    b.Property<DateTimeOffset>("Modified")
+                        .HasColumnName("MODIFIED");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("NAME");
+
+                    b.Property<int>("NodeLevel")
+                        .HasColumnName("NODE_LEVEL");
+
+                    b.Property<Guid>("Parent")
+                        .HasColumnName("PARENT");
+
+                    b.Property<string>("PathCode")
+                        .HasColumnName("PATH_CODE")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("PathId")
+                        .HasColumnName("PATH_ID")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("Settings")
+                        .HasColumnName("SETTINGS");
+
+                    b.Property<int>("Version")
+                        .HasColumnName("VERSION");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_SETTING_FEATURE");
                 });
 
             modelBuilder.Entity("Cell.Domain.Aggregates.SettingFieldAggregate.SettingField", b =>
@@ -148,6 +217,58 @@ namespace Cell.Application.Api.Migrations
                     b.ToTable("T_SETTING_FIELD");
                 });
 
+            modelBuilder.Entity("Cell.Domain.Aggregates.SettingFormAggregate.SettingForm", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID");
+
+                    b.Property<string>("Code")
+                        .HasColumnName("CODE");
+
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnName("CREATED");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
+
+                    b.Property<string>("Description")
+                        .HasColumnName("DESCRIPTION");
+
+                    b.Property<Guid>("LayoutId")
+                        .HasColumnName("LAYOUT_ID");
+
+                    b.Property<DateTimeOffset>("Modified")
+                        .HasColumnName("MODIFIED");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("NAME");
+
+                    b.Property<string>("Settings")
+                        .HasColumnName("SETTINGS");
+
+                    b.Property<Guid>("TableId")
+                        .HasColumnName("TABLE_ID");
+
+                    b.Property<string>("TableName")
+                        .HasColumnName("TABLE_NAME")
+                        .HasMaxLength(200);
+
+                    b.Property<int>("Version")
+                        .HasColumnName("VERSION");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_SETTING_FORM");
+                });
+
             modelBuilder.Entity("Cell.Domain.Aggregates.SettingTableAggregate.SettingTable", b =>
                 {
                     b.Property<Guid>("Id")
@@ -192,6 +313,55 @@ namespace Cell.Application.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("T_SETTING_TABLE");
+                });
+
+            modelBuilder.Entity("Cell.Domain.Aggregates.SettingViewAggregate.SettingView", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID");
+
+                    b.Property<string>("Code")
+                        .HasColumnName("CODE");
+
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnName("CREATED");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
+
+                    b.Property<string>("Description")
+                        .HasColumnName("DESCRIPTION");
+
+                    b.Property<DateTimeOffset>("Modified")
+                        .HasColumnName("MODIFIED");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("NAME");
+
+                    b.Property<string>("Settings")
+                        .HasColumnName("SETTINGS");
+
+                    b.Property<Guid>("TableId")
+                        .HasColumnName("TABLE_ID");
+
+                    b.Property<string>("TableName")
+                        .HasColumnName("TABLE_NAME")
+                        .HasMaxLength(200);
+
+                    b.Property<int>("Version")
+                        .HasColumnName("VERSION");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_SETTING_VIEW");
                 });
 #pragma warning restore 612, 618
         }

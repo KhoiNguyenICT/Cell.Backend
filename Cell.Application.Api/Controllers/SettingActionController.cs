@@ -52,17 +52,16 @@ namespace Cell.Application.Api.Controllers
                 throw new CellException("Setting action name must be unique");
             }
 
-            var settingAction = command.To<SettingAction>();
             _settingActionRepository.Add(new SettingAction(
-                settingAction.Code,
-                settingAction.Name,
-                settingAction.Description,
-                settingAction.ContainerType,
-                settingAction.Settings,
-                settingAction.TableId,
-                settingAction.TableName));
+                command.Code,
+                command.Name,
+                command.Description,
+                command.ContainerType,
+                JsonConvert.SerializeObject(command.Settings),
+                command.TableId,
+                command.TableName));
             await _settingActionRepository.CommitAsync();
-            return Ok(settingAction.To<SettingActionCommand>());
+            return Ok();
         }
 
         [HttpPost("update")]

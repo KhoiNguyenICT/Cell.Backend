@@ -5,11 +5,11 @@ using Cell.Core.Repositories;
 using Cell.Domain.Aggregates.SettingFieldAggregate;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -27,7 +27,8 @@ namespace Cell.Application.Api.Controllers
         {
             var spec = SettingFieldSpecs.SearchByQuery(command.Query).And(SettingFieldSpecs.SearchByTableId(command.TableId));
             var queryable = _settingFieldRepository.QueryAsync(spec, command.Sorts);
-            var items = await queryable.Skip(command.Skip).Take(command.Take).ToListAsync();
+            var items = await queryable.OrderBy(x => x.OrdinalPosition).ThenBy(x => x.Caption).ThenBy(x => x.Name)
+                .Skip(command.Skip).Take(command.Take).ToListAsync();
             return Ok(new QueryResult<SettingFieldCommand>
             {
                 Count = queryable.Count(),
@@ -39,7 +40,7 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> SettingTable(Guid id)
         {
             var settingField = await _settingFieldRepository.GetByIdAsync(id);
-            return Ok(settingField);
+            return Ok(settingField.To<SettingFieldCommand>());
         }
 
         [HttpPost("create")]
@@ -48,9 +49,7 @@ namespace Cell.Application.Api.Controllers
             var spec = SettingFieldSpecs.GetByNameSpec(command.Name);
             var isInvalid = await _settingFieldRepository.ExistsAsync(spec);
             if (isInvalid)
-            {
                 throw new CellException("Setting field name must be unique");
-            }
 
             var settingField = command.To<SettingField>();
             _settingFieldRepository.Add(new SettingField(
@@ -60,7 +59,7 @@ namespace Cell.Application.Api.Controllers
                 settingField.DataType,
                 settingField.OrdinalPosition,
                 settingField.PlaceHolder,
-                settingField.Settings,
+                JsonConvert.SerializeObject(command.Settings),
                 settingField.StorageType,
                 settingField.TableId,
                 settingField.TableName));
@@ -71,8 +70,9 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] SettingFieldCommand command)
         {
-            var settingField = await _settingFieldRepository.GetByIdAsync(command.Id);
-            settingField.Update(
+            var settingFieldResult = await _settingFieldRepository.GetByIdAsync(command.Id);
+            var settingField = command.To<SettingField>();
+            settingFieldResult.Update(
                 settingField.AllowFilter,
                 settingField.AllowSummary,
                 settingField.Caption,
