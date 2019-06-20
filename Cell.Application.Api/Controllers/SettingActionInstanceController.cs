@@ -21,7 +21,7 @@ namespace Cell.Application.Api.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] List<SettingActionInstance> command)
+        public async Task<IActionResult> Create([FromBody] List<SettingActionInstanceCommand> command)
         {
             foreach (var settingActionInstanceCommand in command)
             {
@@ -33,6 +33,7 @@ namespace Cell.Application.Api.Controllers
                     settingActionInstance.ActionId,
                     settingActionInstance.OrdinalPosition,
                     settingActionInstance.Parent,
+                    settingActionInstance.ParentText,
                     settingActionInstance.Settings,
                     settingActionInstance.TableId,
                     settingActionInstance.TableName));
@@ -57,9 +58,10 @@ namespace Cell.Application.Api.Controllers
         }
 
         [HttpPost("search")]
-        public async Task<IActionResult> Search(SearchCommand command)
+        public async Task<IActionResult> Search(SearchSettingActionInstanceCommand command)
         {
-            var spec = SettingActionInstanceSpecs.SearchByQuery(command.Query);
+            var spec = SettingActionInstanceSpecs.SearchByQuery(command.Query)
+                .And(SettingActionInstanceSpecs.GetManyByParentId(command.ParentId));
             var queryable = _settingActionInstanceRepository.QueryAsync(spec, command.Sorts);
             var items = await queryable.Skip(command.Skip).Take(command.Take).ToListAsync();
             return Ok(new QueryResult<SettingActionInstanceCommand>
@@ -74,6 +76,14 @@ namespace Cell.Application.Api.Controllers
         {
             var settingActionInstance = await _settingActionInstanceRepository.GetByIdAsync(id);
             return Ok(settingActionInstance.To<SettingActionInstanceCommand>());
+        }
+
+        [HttpPost("delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            _settingActionInstanceRepository.Delete(id);
+            await _settingActionInstanceRepository.CommitAsync();
+            return Ok();
         }
     }
 }

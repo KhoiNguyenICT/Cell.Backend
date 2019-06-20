@@ -8,6 +8,7 @@ using Cell.Domain.Aggregates.SettingTableAggregate;
 using Cell.Domain.Aggregates.SettingViewAggregate;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Cell.Domain.Aggregates.SettingActionInstanceAggregate;
 using Cell.Domain.Aggregates.SettingFieldInstanceAggregate;
 
 namespace Cell.Application.Api.Mappers
@@ -83,11 +84,19 @@ namespace Cell.Application.Api.Mappers
             #region SettingFieldInstance
 
             CreateMap<SettingFieldInstanceCommand, SettingFieldInstance>()
-                .ForMember(d => d.Settings, s => s.MapFrom(x => x.Settings));
+                .ForMember(d => d.Settings, s => s.MapFrom(x => JsonConvert.SerializeObject(x.Settings)));
 
             CreateMap<SettingFieldInstance, SettingFieldInstanceCommand>()
                 .ForMember(d => d.Settings,
                     s => s.MapFrom(x => JsonConvert.DeserializeObject<SettingFieldInstanceSettings>(x.Settings)));
+
+            #endregion
+
+            #region SettingActionInstance
+
+            CreateMap<SettingActionInstance, SettingActionInstanceCommand>();
+
+            CreateMap<SettingActionInstanceCommand, SettingActionInstance>();
 
             #endregion
         }

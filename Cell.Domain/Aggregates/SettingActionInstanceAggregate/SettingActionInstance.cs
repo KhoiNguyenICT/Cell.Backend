@@ -21,6 +21,9 @@ namespace Cell.Domain.Aggregates.SettingActionInstanceAggregate
         [Column("PARENT")]
         public Guid Parent { get; private set; }
 
+        [Column("PARENT_TEXT")]
+        public string ParentText { get; set; }
+
         [Column("SETTINGS")]
         public string Settings { get; private set; }
 
@@ -31,6 +34,8 @@ namespace Cell.Domain.Aggregates.SettingActionInstanceAggregate
         [StringLength(200)]
         public string TableName { get; private set; }
 
+        public SettingActionInstance() { }
+
         public SettingActionInstance(
             string name,
             string description,
@@ -38,6 +43,7 @@ namespace Cell.Domain.Aggregates.SettingActionInstanceAggregate
             Guid actionId,
             int ordinalPosition,
             Guid parent,
+            string parentText,
             string settings,
             Guid tableId,
             string tableName)
@@ -48,6 +54,7 @@ namespace Cell.Domain.Aggregates.SettingActionInstanceAggregate
             ActionId = actionId;
             OrdinalPosition = ordinalPosition;
             Parent = parent;
+            ParentText = parentText;
             Settings = settings;
             TableId = tableId;
             TableName = tableName;

@@ -17,6 +17,8 @@ namespace Cell.Application.Api.Commands
 
         public Guid Parent { get; set; }
 
+        public string ParentText { get; set; }
+
         public SettingFieldInstanceSettings Settings { get; set; }
 
         public string StorageType { get; set; }

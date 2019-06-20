@@ -24,4 +24,14 @@ namespace Cell.Application.Api.Commands
     {
         public Guid TableId { get; set; }
     }
+
+    public class SearchSettingFieldInstanceCommand : SearchCommand
+    {
+        public Guid ParentId { get; set; }
+    }
+
+    public class SearchSettingActionInstanceCommand : SearchCommand
+    {
+        public Guid ParentId { get; set; }
+    }
 }

@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cell.Application.Api.Commands.Others;
+using Cell.Domain.Aggregates.BasedTableAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -53,6 +55,9 @@ namespace Cell.Application.Api.Controllers
 
             var settingField = command.To<SettingField>();
             _settingFieldRepository.Add(new SettingField(
+                settingField.Name,
+                settingField.Description,
+                settingField.Code,
                 settingField.AllowFilter,
                 settingField.AllowSummary,
                 settingField.Caption,
@@ -64,7 +69,7 @@ namespace Cell.Application.Api.Controllers
                 settingField.TableId,
                 settingField.TableName));
             await _settingFieldRepository.CommitAsync();
-            return Ok(settingField.To<SettingFieldCommand>());
+            return Ok();
         }
 
         [HttpPost("update")]
@@ -73,16 +78,14 @@ namespace Cell.Application.Api.Controllers
             var settingFieldResult = await _settingFieldRepository.GetByIdAsync(command.Id);
             var settingField = command.To<SettingField>();
             settingFieldResult.Update(
+                settingField.Name,
+                settingField.Description,
                 settingField.AllowFilter,
                 settingField.AllowSummary,
                 settingField.Caption,
-                settingField.DataType,
                 settingField.OrdinalPosition,
                 settingField.PlaceHolder,
-                JsonConvert.SerializeObject(command.Settings),
-                settingField.StorageType,
-                settingField.TableId,
-                settingField.TableName);
+                JsonConvert.SerializeObject(command.Settings));
             await _settingFieldRepository.CommitAsync();
             return Ok();
         }
@@ -92,6 +95,13 @@ namespace Cell.Application.Api.Controllers
         {
             _settingFieldRepository.Delete(id);
             await _settingFieldRepository.CommitAsync();
+            return Ok();
+        }
+
+        [HttpPost("addColumnToBasedTable")]
+        public async Task<IActionResult> AddColumnToBasedTable(AddColumnToBasedTableCommand command)
+        {
+            await _settingFieldRepository.AddColumnToBasedTable(command);
             return Ok();
         }
     }

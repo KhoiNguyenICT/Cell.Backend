@@ -15,7 +15,5 @@ namespace Cell.Domain.Aggregates.BasedTableAggregate
         Task DropBasedTable(string table);
 
         Task<List<string>> SearchColumnFromBasedTable(string tableName);
-
-        Task AddColumnToBasedTable(AddColumnBasedTable model);
     }
 }

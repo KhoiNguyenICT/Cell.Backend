@@ -128,43 +128,5 @@ namespace Cell.Infrastructure.Repositories
                 return result.ToList();
             }
         }
-
-        public async Task AddColumnToBasedTable(AddColumnBasedTable model)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
-                string query;
-                switch (model.DataType)
-                {
-                    case DataType.String:
-                        var dataSize = model.DataSize != 0 ? model.DataSize.ToString() : "MAX";
-                        query = $"ALTER TABLE {model.Table} ADD {model.Name} nvarchar({dataSize});";
-                        await connection.ExecuteAsync(query);
-                        break;
-
-                    case DataType.Int:
-                        query = $"ALTER TABLE {model.Table} ADD {model.Name} int;";
-                        await connection.ExecuteAsync(query);
-                        break;
-
-                    case DataType.Guid:
-                        query = $"ALTER TABLE {model.Table} ADD {model.Name} uniqueidentifier;";
-                        await connection.ExecuteAsync(query);
-                        break;
-
-                    case DataType.DateTime:
-                        query = $"ALTER TABLE {model.Table} ADD {model.Name} datetimeoffset(7);";
-                        await connection.ExecuteAsync(query);
-                        break;
-
-                    case DataType.Double:
-                        query = $"ALTER TABLE {model.Table} ADD {model.Name} float;";
-                        await connection.ExecuteAsync(query);
-                        break;
-                }
-            }
-        }
     }
 }

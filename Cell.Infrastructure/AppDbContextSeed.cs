@@ -73,7 +73,7 @@ namespace Cell.Infrastructure
 
         private async Task InitSettingField()
         {
-            if (!await _context.SettingTables.AnyAsync())
+            if (!await _context.SettingFields.AnyAsync())
             {
                 var input = File.ReadAllText(CreatePath("setting-field-data.json"));
                 var settingField = JsonConvert.DeserializeObject<List<SettingField>>(input);
@@ -83,7 +83,7 @@ namespace Cell.Infrastructure
 
         private async Task InitSettingAction()
         {
-            if (!await _context.SettingTables.AnyAsync())
+            if (!await _context.SettingActions.AnyAsync())
             {
                 var input = File.ReadAllText(CreatePath("setting-action-data.json"));
                 var settingAction = JsonConvert.DeserializeObject<List<SettingAction>>(input);

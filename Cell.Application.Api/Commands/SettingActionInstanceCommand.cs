@@ -12,6 +12,8 @@ namespace Cell.Application.Api.Commands
 
         public Guid Parent { get; set; }
 
+        public string ParentText { get; set; }
+
         public string Settings { get; set; }
 
         public Guid TableId { get; set; }

@@ -4,14 +4,16 @@ using Cell.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cell.Application.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190619022400_AddParentTextForSettingFieldInstance")]
+    partial class AddParentTextForSettingFieldInstance
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,9 +117,6 @@ namespace Cell.Application.Api.Migrations
 
                     b.Property<Guid>("Parent")
                         .HasColumnName("PARENT");
-
-                    b.Property<string>("ParentText")
-                        .HasColumnName("PARENT_TEXT");
 
                     b.Property<string>("Settings")
                         .HasColumnName("SETTINGS");

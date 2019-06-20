@@ -36,6 +36,7 @@ namespace Cell.Application.Api.Controllers
                     settingFieldInstance.FieldId,
                     settingFieldInstance.OrdinalPosition,
                     settingFieldInstance.Parent,
+                    settingFieldInstance.ParentText,
                     JsonConvert.SerializeObject(settingFieldInstanceCommand.Settings),
                     settingFieldInstance.StorageType));
             }
@@ -49,26 +50,17 @@ namespace Cell.Application.Api.Controllers
             foreach (var settingFieldInstanceCommand in command)
             {
                 var settingFieldInstance = await _settingFieldInstanceRepository.GetByIdAsync(settingFieldInstanceCommand.Id);
-                settingFieldInstance.Update(
-                    settingFieldInstanceCommand.Name,
-                    settingFieldInstanceCommand.Description,
-                    settingFieldInstanceCommand.Caption,
-                    settingFieldInstanceCommand.ContainerType,
-                    settingFieldInstanceCommand.DataType,
-                    settingFieldInstanceCommand.FieldId,
-                    settingFieldInstanceCommand.OrdinalPosition,
-                    settingFieldInstanceCommand.Parent,
-                    JsonConvert.SerializeObject(settingFieldInstanceCommand.Settings),
-                    settingFieldInstanceCommand.StorageType);
+                settingFieldInstance.Update(JsonConvert.SerializeObject(settingFieldInstanceCommand.Settings));
             }
             await _settingFieldInstanceRepository.CommitAsync();
             return Ok();
         }
 
         [HttpPost("search")]
-        public async Task<IActionResult> Search(SearchCommand command)
+        public async Task<IActionResult> Search(SearchSettingFieldInstanceCommand command)
         {
-            var spec = SettingFieldInstanceSpecs.SearchByQuery(command.Query);
+            var spec = SettingFieldInstanceSpecs.SearchByQuery(command.Query)
+                .And(SettingFieldInstanceSpecs.GetManyByParentId(command.ParentId));
             var queryable = _settingFieldInstanceRepository.QueryAsync(spec, command.Sorts);
             var items = await queryable.Skip(command.Skip).Take(command.Take).ToListAsync();
             return Ok(new QueryResult<SettingFieldInstanceCommand>
@@ -78,11 +70,20 @@ namespace Cell.Application.Api.Controllers
             });
         }
 
-        [HttpPost("{id}")]
-        public async Task<IActionResult> SettingFieldInstance(Guid id)
+        [HttpPost("{fieldId}")]
+        public async Task<IActionResult> SettingFieldInstance(Guid fieldId)
         {
-            var settingField = await _settingFieldInstanceRepository.GetByIdAsync(id);
-            return Ok(settingField.To<SettingFieldInstanceCommand>());
+            var spec = SettingFieldInstanceSpecs.GetByFieldId(fieldId);
+            var settingFieldInstance = await _settingFieldInstanceRepository.GetSingleAsync(spec);
+            return Ok(settingFieldInstance.To<SettingFieldInstanceCommand>());
+        }
+
+        [HttpPost("delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            _settingFieldInstanceRepository.Delete(id);
+            await _settingFieldInstanceRepository.CommitAsync();
+            return Ok();
         }
     }
 }

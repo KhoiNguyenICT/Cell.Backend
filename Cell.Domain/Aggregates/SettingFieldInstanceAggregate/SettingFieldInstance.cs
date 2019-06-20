@@ -30,12 +30,17 @@ namespace Cell.Domain.Aggregates.SettingFieldInstanceAggregate
         [Column("PARENT")]
         public Guid Parent { get; private set; }
 
+        [Column("PARENT_TEXT")]
+        public string ParentText { get; set; }
+
         [Column("SETTINGS")]
         public string Settings { get; private set; }
 
         [Column("STORAGE_TYPE")]
         [StringLength(50)]
         public string StorageType { get; private set; }
+
+        public SettingFieldInstance() { }
 
         public SettingFieldInstance(
             string name,
@@ -46,6 +51,7 @@ namespace Cell.Domain.Aggregates.SettingFieldInstanceAggregate
             Guid fieldId,
             int ordinalPosition,
             Guid parent,
+            string parentText,
             string settings,
             string storageType)
         {
@@ -57,32 +63,15 @@ namespace Cell.Domain.Aggregates.SettingFieldInstanceAggregate
             FieldId = fieldId;
             OrdinalPosition = ordinalPosition;
             Parent = parent;
+            ParentText = parentText;
             Settings = settings;
             StorageType = storageType;
         }
 
         public void Update(
-            string name,
-            string description,
-            string caption,
-            string containerType,
-            string dataType,
-            Guid fieldId,
-            int ordinalPosition,
-            Guid parent,
-            string settings,
-            string storageType)
+            string settings)
         {
-            Name = name;
-            Description = description;
-            Caption = caption;
-            ContainerType = containerType;
-            DataType = dataType;
-            FieldId = fieldId;
-            OrdinalPosition = ordinalPosition;
-            Parent = parent;
             Settings = settings;
-            StorageType = storageType;
         }
     }
 }

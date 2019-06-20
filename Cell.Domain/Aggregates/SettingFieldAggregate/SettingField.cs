@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Cryptography;
 using Cell.Core.SeedWork;
 
 namespace Cell.Domain.Aggregates.SettingFieldAggregate
@@ -44,6 +45,9 @@ namespace Cell.Domain.Aggregates.SettingFieldAggregate
         public string TableName { get; private set; }
 
         public SettingField(
+            string name,
+            string description,
+            string code,
             int allowFilter, 
             int allowSummary, 
             string caption, 
@@ -55,6 +59,9 @@ namespace Cell.Domain.Aggregates.SettingFieldAggregate
             Guid tableId,
             string tableName)
         {
+            Name = name;
+            Description = description;
+            Code = code;
             AllowFilter = allowFilter;
             AllowSummary = allowSummary;
             Caption = caption;
@@ -68,27 +75,23 @@ namespace Cell.Domain.Aggregates.SettingFieldAggregate
         }
 
         public void Update(
+            string name,
+            string description,
             int allowFilter,
             int allowSummary,
             string caption,
-            string dataType,
             int ordinalPosition,
             string placeHolder,
-            string settings,
-            string storageType,
-            Guid tableId,
-            string tableName)
+            string settings)
         {
+            Name = name;
+            Description = description;
             AllowFilter = allowFilter;
             AllowSummary = allowSummary;
             Caption = caption;
-            DataType = dataType;
             OrdinalPosition = ordinalPosition;
             PlaceHolder = placeHolder;
             Settings = settings;
-            StorageType = storageType;
-            TableId = tableId;
-            TableName = tableName;
         }
     }
 }
