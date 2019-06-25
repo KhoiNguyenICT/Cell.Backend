@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -33,6 +34,14 @@ namespace Cell.Application.Api.Controllers
             });
         }
 
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody] SettingFeatureCommand command)
+        {
+            var settingFeature = command.To<SettingFeature>();
+            await _settingFeatureRepository.InsertNodeBeforeAnother(settingFeature, command.Parent);
+            return Ok();
+        }
+
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] SettingFeatureCommand command)
         {
@@ -40,7 +49,8 @@ namespace Cell.Application.Api.Controllers
             settingFeature.Update(
                 command.Name,
                 command.Description,
-                command.Icon);
+                command.Icon,
+                JsonConvert.SerializeObject(command.Settings));
             await _settingFeatureRepository.CommitAsync();
             return Ok();
         }
@@ -56,7 +66,7 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> GetTree()
         {
             var result = await _settingFeatureRepository.GetTreeAsync();
-            return Ok(result);
+            return Ok(result.To<List<SettingFeatureCommand>>());
         }
 
         [HttpPost("insertFirstRootNode")]

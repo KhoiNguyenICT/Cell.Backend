@@ -193,11 +193,16 @@ namespace Cell.Infrastructure.Repositories
         {
             return source.Where(item =>
                 (settingFeatureParentId == null && (item.Parent == Guid.Empty)) ||
-                (item.Parent == settingFeatureParentId)).Select(theme => new SettingFeature
+                (item.Parent == settingFeatureParentId)).Select(settingFeature => new SettingFeature
                 {
-                    Id = theme.Id,
-                    Name = theme.Name,
-                    Children = BuildTree(theme.Id, source).ToList(),
+                    Id = settingFeature.Id,
+                    Name = settingFeature.Name,
+                    Code = settingFeature.Code,
+                    Description = settingFeature.Description,
+                    Created = settingFeature.Created,
+                    Modified = settingFeature.Modified,
+                    Settings = settingFeature.Settings,
+                    Children = BuildTree(settingFeature.Id, source).ToList(),
                 }).ToList();
         }
     }

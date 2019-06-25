@@ -22,9 +22,23 @@ namespace Cell.Application.Api.Commands
 
         public string PathId { get; set; }
 
-        public string Settings { get; set; }
+        public SettingFeatureSettings Settings { get; set; }
 
-        [NotMapped]
         public List<SettingFeatureCommand> Children { get; set; }
+    }
+
+    public class SettingFeatureSettings
+    {
+        public string MenuType { get; set; }
+        public List<SettingFeatureSettingInitParam> InitParams { get; set; }
+    }
+
+    public class SettingFeatureSettingInitParam
+    {
+        public string Name { get; set; }
+        public string Param { get; set; }
+        public string Source { get; set; }
+        public string DataType { get; set; }
+        public string DefaultValue { get; set; }
     }
 }

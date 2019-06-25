@@ -11,30 +11,30 @@ namespace Cell.Domain.Aggregates.SettingFeatureAggregate
     {
         [Column("ICON")]
         [StringLength(50)]
-        public string Icon { get; set; }
+        public string Icon { get; private set; }
 
         [Column("INDEX_LEFT")]
-        public int IndexLeft { get; set; }
+        public int IndexLeft { get; private set; }
 
         [Column("INDEX_RIGHT")]
-        public int IndexRight { get; set; }
+        public int IndexRight { get; private set; }
 
         [Column("IS_LEAF")]
-        public int IsLeaf { get; set; }
+        public int IsLeaf { get; private set; }
 
         [Column("NODE_LEVEL")]
-        public int NodeLevel { get; set; }
+        public int NodeLevel { get; private set; }
 
         [Column("PARENT")]
         public Guid Parent { get; set; }
 
         [Column("PATH_CODE")]
         [StringLength(1000)]
-        public string PathCode { get; set; }
+        public string PathCode { get; private set; }
 
         [Column("PATH_ID")]
         [StringLength(1000)]
-        public string PathId { get; set; }
+        public string PathId { get; private set; }
 
         [Column("SETTINGS")]
         public string Settings { get; set; }
@@ -46,22 +46,26 @@ namespace Cell.Domain.Aggregates.SettingFeatureAggregate
 
         public SettingFeature(
             string name,
-            string description,
+            string settings,
+            Guid parent,
             string icon)
         {
             Name = name;
-            Description = description;
+            Settings = settings;
+            Parent = parent;
             Icon = icon;
         }
 
         public void Update(
             string name,
             string description,
-            string icon)
+            string icon,
+            string settings)
         {
             Name = name;
             Description = description;
             Icon = icon;
+            Settings = settings;
         }
 
         public void UpdateParent(

@@ -18,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
 using Cell.Domain.Aggregates.SettingActionInstanceAggregate;
+using Cell.Domain.Aggregates.SettingFeatureAggregate;
 using Cell.Domain.Aggregates.SettingFieldInstanceAggregate;
 
 namespace Cell.Application.Api.Helpers
@@ -80,6 +81,7 @@ namespace Cell.Application.Api.Helpers
             services.AddScoped<ISettingFieldRepository, SettingFieldRepository>();
             services.AddScoped<ISettingFieldInstanceRepository, SettingFieldInstanceRepository>();
             services.AddScoped<ISettingActionInstanceRepository, SettingActionInstanceRepository>();
+            services.AddScoped<ISettingFeatureRepository, SettingFeatureRepository>();
             return services;
         }
     }

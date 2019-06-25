@@ -1,15 +1,14 @@
-﻿using Cell.Domain.Aggregates.BasedTableAggregate;
+﻿using Cell.Core.Constants;
+using Cell.Domain.Aggregates.BasedTableAggregate;
 using Dapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using Cell.Core.Constants;
-using Cell.Core.Enums;
-using Microsoft.Extensions.Configuration;
 
 namespace Cell.Infrastructure.Repositories
 {

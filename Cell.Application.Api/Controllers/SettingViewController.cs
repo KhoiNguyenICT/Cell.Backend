@@ -6,6 +6,10 @@ using Cell.Application.Api.Commands;
 using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
+using Cell.Domain.Aggregates.SettingActionAggregate;
+using Cell.Domain.Aggregates.SettingActionInstanceAggregate;
+using Cell.Domain.Aggregates.SettingFieldAggregate;
+using Cell.Domain.Aggregates.SettingFieldInstanceAggregate;
 using Cell.Domain.Aggregates.SettingViewAggregate;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,10 +20,23 @@ namespace Cell.Application.Api.Controllers
     public class SettingViewController : CellController
     {
         private readonly ISettingViewRepository _settingViewRepository;
+        private readonly ISettingFieldInstanceRepository _settingFieldInstanceRepository;
+        private readonly ISettingActionInstanceRepository _settingActionInstanceRepository;
+        private readonly ISettingFieldRepository _settingFieldRepository;
+        private readonly ISettingActionRepository _settingActionRepository;
 
-        public SettingViewController(ISettingViewRepository settingViewRepository)
+        public SettingViewController(
+            ISettingViewRepository settingViewRepository, 
+            ISettingFieldInstanceRepository settingFieldInstanceRepository, 
+            ISettingActionInstanceRepository settingActionInstanceRepository, 
+            ISettingFieldRepository settingFieldRepository, 
+            ISettingActionRepository settingActionRepository)
         {
             _settingViewRepository = settingViewRepository;
+            _settingFieldInstanceRepository = settingFieldInstanceRepository;
+            _settingActionInstanceRepository = settingActionInstanceRepository;
+            _settingFieldRepository = settingFieldRepository;
+            _settingActionRepository = settingActionRepository;
         }
 
         [HttpPost("search")]
@@ -35,11 +52,20 @@ namespace Cell.Application.Api.Controllers
             });
         }
 
-        [HttpPost("{id}")]
+        [HttpPost("settingViewSettings/{id}")]
         public async Task<IActionResult> SettingView(Guid id)
         {
+            var settingFieldInstanceSpecs = SettingFieldInstanceSpecs.GetManyByParentId(id);
+            var settingActionInstanceSpecs = SettingActionInstanceSpecs.GetManyByParentId(id);
             var settingView = await _settingViewRepository.GetByIdAsync(id);
-            return Ok(settingView.To<SettingViewCommand>());
+            var settingFieldInstances = await _settingFieldInstanceRepository.GetManyAsync(settingFieldInstanceSpecs);
+            var settingActionInstances = await _settingActionInstanceRepository.GetManyAsync(settingActionInstanceSpecs);
+            return Ok(new
+            {
+                settingView = settingView.To<SettingViewCommand>(),
+                settingFieldInstances = settingFieldInstances.To<List<SettingFieldInstanceCommand>>(),
+                settingActionInstances = settingActionInstances.To<List<SettingActionInstanceCommand>>()
+            });
         }
 
         [HttpPost("create")]

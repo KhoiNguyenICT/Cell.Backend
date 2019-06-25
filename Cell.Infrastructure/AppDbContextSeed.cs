@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using Cell.Domain.Aggregates.SettingActionAggregate;
+using Cell.Domain.Aggregates.SettingFeatureAggregate;
 using Cell.Domain.Aggregates.SettingFieldAggregate;
 using Cell.Domain.Aggregates.SettingTableAggregate;
 using Newtonsoft.Json;
@@ -42,6 +43,7 @@ namespace Cell.Infrastructure
                     await InitSettingTable();
                     await InitSettingField();
                     await InitSettingAction();
+                    await InitSettingFeature();
 
                     await dbContext.SaveChangesAsync();
                 }
@@ -66,8 +68,8 @@ namespace Cell.Infrastructure
             if (!await _context.SettingTables.AnyAsync())
             {
                 var input = File.ReadAllText(CreatePath("setting-table-data.json"));
-                var settingTable = JsonConvert.DeserializeObject<List<SettingTable>>(input);
-                _context.SettingTables.AddRange(settingTable);
+                var settingTables = JsonConvert.DeserializeObject<List<SettingTable>>(input);
+                _context.SettingTables.AddRange(settingTables);
             }
         }
 
@@ -76,8 +78,8 @@ namespace Cell.Infrastructure
             if (!await _context.SettingFields.AnyAsync())
             {
                 var input = File.ReadAllText(CreatePath("setting-field-data.json"));
-                var settingField = JsonConvert.DeserializeObject<List<SettingField>>(input);
-                _context.SettingFields.AddRange(settingField);
+                var settingFields = JsonConvert.DeserializeObject<List<SettingField>>(input);
+                _context.SettingFields.AddRange(settingFields);
             }
         }
 
@@ -86,8 +88,18 @@ namespace Cell.Infrastructure
             if (!await _context.SettingActions.AnyAsync())
             {
                 var input = File.ReadAllText(CreatePath("setting-action-data.json"));
-                var settingAction = JsonConvert.DeserializeObject<List<SettingAction>>(input);
-                _context.SettingActions.AddRange(settingAction);
+                var settingActions = JsonConvert.DeserializeObject<List<SettingAction>>(input);
+                _context.SettingActions.AddRange(settingActions);
+            }
+        }
+
+        private async Task InitSettingFeature()
+        {
+            if (!await _context.SettingFeatures.AnyAsync())
+            {
+                var input = File.ReadAllText(CreatePath("setting-feature-data.json"));
+                var settingFeatures = JsonConvert.DeserializeObject<List<SettingFeature>>(input);
+                _context.SettingFeatures.AddRange(settingFeatures);
             }
         }
     }

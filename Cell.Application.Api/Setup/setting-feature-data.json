@@ -1,0 +1,470 @@
+﻿[
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "Name": "Danh sách trang",
+    "Code": "USER",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "Name": "Dashboard",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "Name": "CRM",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "Name": "Sản phẩm",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "Name": "Thêm sản phẩm",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "Name": "Danh sách sản phẩm",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "Name": "Khách hàng",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C07",
+    "Name": "Thêm doanh nghiệp",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C08",
+    "Name": "Thêm hộ kinh doanh cá thể",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C09",
+    "Name": "Danh sách doanh nghiệp",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C10",
+    "Name": "Danh sách hộ kinh doanh cá thể",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C11",
+    "Name": "Leads",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C67",
+    "Name": "Thêm leads",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C11",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C12",
+    "Name": "Thêm liên hệ",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C11",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C13",
+    "Name": "Lịch sử liên hệ",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C11",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C14",
+    "Name": "Danh sách leads",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C11",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C15",
+    "Name": "Hợp đồng",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C16",
+    "Name": "Thêm hợp đồng",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C15",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C17",
+    "Name": "Chi tiết hợp đồng",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C15",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C18",
+    "Name": "Thêm chi tiết hợp đồng",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C17",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C19",
+    "Name": "Phiếu thu",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C15",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C20",
+    "Name": "Thêm phiếu thu",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C19",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C21",
+    "Name": "Hóa đơn",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C15",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C22",
+    "Name": "Thêm hóa đơn",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C21",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C23",
+    "Name": "Hợp đồng chờ Leader duyệt",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C15",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C24",
+    "Name": "Hợp đồng chờ KSNB duyệt",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C15",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C25",
+    "Name": "Hợp đồng đã thu đủ tiền",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C15",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C26",
+    "Name": "Hợp đồng hủy",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C15",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C27",
+    "Name": "Danh mục",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C28",
+    "Name": "Chung",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C27",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C29",
+    "Name": "Tỉnh thành",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C28",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C30",
+    "Name": "Thêm tỉnh thành",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C29",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C32",
+    "Name": "Quận huyện",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C28",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C33",
+    "Name": "Thêm quận huyện",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C32",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C34",
+    "Name": "Quỹ",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C28",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C35",
+    "Name": "Hợp đồng",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C27",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C36",
+    "Name": "Hình thức ký",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C35",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C37",
+    "Name": "Hình thức thanh toán",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C35",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C38",
+    "Name": "Loại hợp đồng",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C35",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C39",
+    "Name": "Loại hóa đơn",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C35",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C40",
+    "Name": "Trạng thái hợp đồng",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C35",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C41",
+    "Name": "Trạng thái hóa đơn",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C35",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C42",
+    "Name": "Khách hàng",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C27",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C43",
+    "Name": "Giới tính",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C42",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C44",
+    "Name": "Hình thức liên hệ",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C42",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C45",
+    "Name": "Loại hình",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C42",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C46",
+    "Name": "Ngành nghề",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C42",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C47",
+    "Name": "Nguồn giới thiệu",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C42",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C48",
+    "Name": "Sản phẩm",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C27",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C49",
+    "Name": "Loại thanh toán",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C48",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C50",
+    "Name": "Đơn vị",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C48",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C51",
+    "Name": "Thống kê",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C52",
+    "Name": "Hợp đồng theo quận huyện",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C51",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C53",
+    "Name": "Hợp đồng theo bộ phận",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C51",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C54",
+    "Name": "Hợp đồng theo nhân viên",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C51",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C55",
+    "Name": "Hợp đồng theo khách hàng",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C51",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C56",
+    "Name": "Hợp đồng theo phân loại",
+    "Code": "USER",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C51",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C57",
+    "Name": "System",
+    "Code": "SYSTEM",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C58",
+    "Name": "Settings",
+    "Code": "SYSTEM",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C57",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C59",
+    "Name": "Tables",
+    "Code": "SYSTEM",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C57",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C60",
+    "Name": "Forms",
+    "Code": "SYSTEM",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C57",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C61",
+    "Name": "Views",
+    "Code": "SYSTEM",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C57",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C62",
+    "Name": "Features",
+    "Code": "SYSTEM",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C57",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C63",
+    "Name": "Reports",
+    "Code": "SYSTEM",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C57",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C64",
+    "Name": "Users",
+    "Code": "SYSTEM",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C57",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C65",
+    "Name": "Groups",
+    "Code": "SYSTEM",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C57",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  },
+  {
+    "Id": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C66",
+    "Name": "Notifications",
+    "Code": "SYSTEM",
+    "Parent": "8E55FF9F-7E64-4B04-10F9-08D6E8C68C57",
+    "Settings": "{\"MenuType\": \"CONTAINER\",\"InitParams\":[]}"
+  }
+]
