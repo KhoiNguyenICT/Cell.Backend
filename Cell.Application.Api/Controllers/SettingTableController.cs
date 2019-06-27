@@ -3,7 +3,10 @@ using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
 using Cell.Domain.Aggregates.BasedTableAggregate;
+using Cell.Domain.Aggregates.SettingActionAggregate;
+using Cell.Domain.Aggregates.SettingFieldAggregate;
 using Cell.Domain.Aggregates.SettingTableAggregate;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -11,32 +14,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cell.Domain.Aggregates.SettingActionAggregate;
-using Cell.Domain.Aggregates.SettingFieldAggregate;
-using Cell.Domain.Aggregates.SettingViewAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingTableController : CellController
+    public class SettingTableController : CellController<SettingTable>
     {
         private readonly ISettingTableRepository _settingTableRepository;
         private readonly IBasedTableRepository _basedTableRepository;
         private readonly ISettingFieldRepository _settingFieldRepository;
         private readonly ISettingActionRepository _settingActionRepository;
-        private readonly ISettingViewRepository _settingViewRepository;
 
         public SettingTableController(
+            IValidator<SettingTable> entityValidator,
             ISettingTableRepository settingTableRepository,
-            IBasedTableRepository basedTableRepository, 
-            ISettingFieldRepository settingFieldRepository, 
-            ISettingActionRepository settingActionRepository, 
-            ISettingViewRepository settingViewRepository)
+            IBasedTableRepository basedTableRepository,
+            ISettingFieldRepository settingFieldRepository,
+            ISettingActionRepository settingActionRepository) : base(entityValidator)
         {
             _settingTableRepository = settingTableRepository;
             _basedTableRepository = basedTableRepository;
             _settingFieldRepository = settingFieldRepository;
             _settingActionRepository = settingActionRepository;
-            _settingViewRepository = settingViewRepository;
         }
 
         [HttpPost("search")]
@@ -74,6 +72,9 @@ namespace Cell.Application.Api.Controllers
         {
             var spec = SettingTableSpecs.GetByNameSpec(command.Name);
             var isInvalid = await _settingTableRepository.ExistsAsync(spec);
+            var isValidator = await EntityValidator.ValidateAsync(command.To<SettingTable>());
+            if (!isValidator.IsValid)
+                throw new CellException(isValidator);
             if (isInvalid)
                 throw new CellException("Setting table name must be unique");
             _settingTableRepository.Add(new SettingTable(

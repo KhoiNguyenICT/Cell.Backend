@@ -6,6 +6,7 @@ namespace Cell.Core.Errors
     public class CellError
     {
         private readonly string _message;
+        private readonly List<string> _messages;
 
         public int StatusCode { get; set; }
 
@@ -15,25 +16,18 @@ namespace Cell.Core.Errors
         {
             get
             {
-                if (ValidationErrors != null && ValidationErrors.Any())
+                if (ValidationErrors == null || !ValidationErrors.Any())
+                    return !string.IsNullOrEmpty(_message) ? new List<string> { _message } :
+                        _messages.Count > 0 ? new List<string>(_messages) : new List<string>();
+                var listMessages = new List<string>();
+                foreach (var err in ValidationErrors)
                 {
-                    var listMessages = new List<string>();
-                    foreach (var err in ValidationErrors)
+                    if (err.Value != null && err.Value.Any())
                     {
-                        if (err.Value != null && err.Value.Any())
-                        {
-                            listMessages.AddRange(err.Value);
-                        }
+                        listMessages.AddRange(err.Value);
                     }
-                    return listMessages;
                 }
-
-                if (!string.IsNullOrEmpty(_message))
-                {
-                    return new List<string> { _message };
-                }
-
-                return new List<string>();
+                return listMessages;
             }
         }
 
@@ -46,6 +40,12 @@ namespace Cell.Core.Errors
         public CellError(string message, int statusCode = 400)
         {
             _message = message;
+            StatusCode = statusCode;
+        }
+
+        public CellError(List<string> messages, int statusCode = 400)
+        {
+            _messages = messages;
             StatusCode = statusCode;
         }
 

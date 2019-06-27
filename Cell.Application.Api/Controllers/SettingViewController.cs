@@ -11,32 +11,28 @@ using Cell.Domain.Aggregates.SettingActionInstanceAggregate;
 using Cell.Domain.Aggregates.SettingFieldAggregate;
 using Cell.Domain.Aggregates.SettingFieldInstanceAggregate;
 using Cell.Domain.Aggregates.SettingViewAggregate;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingViewController : CellController
+    public class SettingViewController : CellController<SettingView>
     {
         private readonly ISettingViewRepository _settingViewRepository;
         private readonly ISettingFieldInstanceRepository _settingFieldInstanceRepository;
         private readonly ISettingActionInstanceRepository _settingActionInstanceRepository;
-        private readonly ISettingFieldRepository _settingFieldRepository;
-        private readonly ISettingActionRepository _settingActionRepository;
 
         public SettingViewController(
+            IValidator<SettingView> entityValidator,
             ISettingViewRepository settingViewRepository, 
             ISettingFieldInstanceRepository settingFieldInstanceRepository, 
-            ISettingActionInstanceRepository settingActionInstanceRepository, 
-            ISettingFieldRepository settingFieldRepository, 
-            ISettingActionRepository settingActionRepository)
+            ISettingActionInstanceRepository settingActionInstanceRepository): base(entityValidator)
         {
             _settingViewRepository = settingViewRepository;
             _settingFieldInstanceRepository = settingFieldInstanceRepository;
             _settingActionInstanceRepository = settingActionInstanceRepository;
-            _settingFieldRepository = settingFieldRepository;
-            _settingActionRepository = settingActionRepository;
         }
 
         [HttpPost("search")]

@@ -1,8 +1,10 @@
 ﻿using Cell.Application.Api.Commands;
+using Cell.Application.Api.Commands.Others;
 using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
 using Cell.Domain.Aggregates.SettingFieldAggregate;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -10,16 +12,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cell.Application.Api.Commands.Others;
-using Cell.Domain.Aggregates.BasedTableAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingFieldController : CellController
+    public class SettingFieldController : CellController<SettingField>
     {
         private readonly ISettingFieldRepository _settingFieldRepository;
 
-        public SettingFieldController(ISettingFieldRepository settingFieldRepository)
+        public SettingFieldController(
+            IValidator<SettingField> entityValidator,
+            ISettingFieldRepository settingFieldRepository) : base(entityValidator)
         {
             _settingFieldRepository = settingFieldRepository;
         }

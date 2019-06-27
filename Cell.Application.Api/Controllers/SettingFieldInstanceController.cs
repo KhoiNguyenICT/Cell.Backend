@@ -2,6 +2,7 @@
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
 using Cell.Domain.Aggregates.SettingFieldInstanceAggregate;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -12,11 +13,13 @@ using System.Threading.Tasks;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingFieldInstanceController : CellController
+    public class SettingFieldInstanceController : CellController<SettingFieldInstance>
     {
         private readonly ISettingFieldInstanceRepository _settingFieldInstanceRepository;
 
-        public SettingFieldInstanceController(ISettingFieldInstanceRepository settingFieldInstanceRepository)
+        public SettingFieldInstanceController(
+            IValidator<SettingFieldInstance> entityValidator,
+            ISettingFieldInstanceRepository settingFieldInstanceRepository) : base(entityValidator)
         {
             _settingFieldInstanceRepository = settingFieldInstanceRepository;
         }

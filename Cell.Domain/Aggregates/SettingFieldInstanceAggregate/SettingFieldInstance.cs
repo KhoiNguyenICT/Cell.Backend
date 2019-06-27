@@ -31,7 +31,7 @@ namespace Cell.Domain.Aggregates.SettingFieldInstanceAggregate
         public Guid Parent { get; private set; }
 
         [Column("PARENT_TEXT")]
-        public string ParentText { get; set; }
+        public string ParentText { get; private set; }
 
         [Column("SETTINGS")]
         public string Settings { get; private set; }

@@ -7,25 +7,30 @@ using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
 using Cell.Domain.Aggregates.SettingFormAggregate;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingFormController : CellController
+    public class SettingFormController : CellController<SettingForm>
     {
         private readonly ISettingFormRepository _settingFormRepository;
 
-        public SettingFormController(ISettingFormRepository settingFormRepository)
+        public SettingFormController(
+            ISettingFormRepository settingFormRepository,
+            IValidator<SettingForm> entityValidator) : base(entityValidator)
         {
             _settingFormRepository = settingFormRepository;
         }
 
         [HttpPost("search")]
-        public async Task<IActionResult> Search(SearchCommand command)
+        public async Task<IActionResult> Search(SearchSettingFormCommand command)
         {
             var spec = SettingFormSpecs.SearchByQuery(command.Query);
+            if (command.TableId != Guid.Empty)
+                spec.And(SettingFormSpecs.SearchByTableId(command.TableId));
             var queryable = _settingFormRepository.QueryAsync(spec, command.Sorts);
             var items = await queryable.Skip(command.Skip).Take(command.Take).ToListAsync();
             return Ok(new QueryResult<SettingFormCommand>

@@ -31,6 +31,21 @@ namespace Cell.Application.Api.Commands
     {
         public string MenuType { get; set; }
         public List<SettingFeatureSettingInitParam> InitParams { get; set; }
+        public ContainerSettings ContainerSettings { get; set; }
+    }
+
+    public class ContainerSettings
+    {
+        public string Table { get; set; }
+        public string ComponentType { get; set; }
+        public ComponentItem ComponentItem { get; set; }
+    }
+
+    public class ComponentItem
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 
     public class SettingFeatureSettingInitParam

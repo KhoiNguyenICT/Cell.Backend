@@ -68,6 +68,11 @@ namespace Cell.Domain.Aggregates.SettingFeatureAggregate
             Settings = settings;
         }
 
+        public void Rename(string name)
+        {
+            Name = name;
+        }
+
         public void UpdateParent(
             Guid parent)
         {

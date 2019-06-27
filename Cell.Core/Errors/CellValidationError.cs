@@ -1,4 +1,7 @@
-﻿using Cell.Core.Extensions;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Cell.Core.Extensions;
+using FluentValidation.Results;
 
 namespace Cell.Core.Errors
 {
@@ -9,6 +12,8 @@ namespace Cell.Core.Errors
             Field = field?.ToCamelCasing();
             Message = message;
         }
+
+        public List<string> Errors { get; set; }
 
         public CellValidationError(string message)
         {

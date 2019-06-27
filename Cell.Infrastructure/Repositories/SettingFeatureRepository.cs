@@ -1,16 +1,16 @@
-﻿using Cell.Core.Extensions;
+﻿using Cell.Core.Constants;
+using Cell.Core.Extensions;
 using Cell.Core.SeedWork;
 using Cell.Domain.Aggregates.SettingFeatureAggregate;
+using Dapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using Cell.Core.Constants;
-using Dapper;
-using Microsoft.Extensions.Configuration;
 
 namespace Cell.Infrastructure.Repositories
 {
@@ -21,6 +21,11 @@ namespace Cell.Infrastructure.Repositories
         public SettingFeatureRepository(AppDbContext dbContext, IConfiguration configuration) : base(dbContext)
         {
             _connectionString = configuration.GetConnectionString(ConfigurationKeys.DefaultConnection);
+        }
+
+        public async Task<bool> AnyAsync()
+        {
+            return await _dbContext.SettingFeatures.AnyAsync();
         }
 
         public async Task<List<SettingFeature>> GetTreeAsync()
@@ -187,6 +192,11 @@ namespace Cell.Infrastructure.Repositories
                     "T_SETTING_FEATURE", referenceNodeId);
                 await connection.ExecuteAsync(query, new { ID = id });
             }
+        }
+
+        public void RemoveNode(Guid parent)
+        {
+            
         }
 
         private List<SettingFeature> BuildTree(Guid? settingFeatureParentId, List<SettingFeature> source)

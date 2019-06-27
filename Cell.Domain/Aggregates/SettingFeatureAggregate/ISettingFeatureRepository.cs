@@ -7,6 +7,7 @@ namespace Cell.Domain.Aggregates.SettingFeatureAggregate
 {
     public interface ISettingFeatureRepository : IRepository<SettingFeature>
     {
+        Task<bool> AnyAsync();
         Task<List<SettingFeature>> GetTreeAsync();
         Task InsertFirstRootNode(SettingFeature entity);
         Task InsertLastRootNode(SettingFeature entity);
@@ -16,5 +17,6 @@ namespace Cell.Domain.Aggregates.SettingFeatureAggregate
         Task InsertLastChildNode(SettingFeature entity, Guid referenceNodeId);
         Task InsertNodeBeforeAnother(SettingFeature entity, Guid referenceNodeId);
         Task InsertNodeAfterAnother(SettingFeature entity, Guid referenceNodeId);
+        void RemoveNode(Guid id);
     }
 }

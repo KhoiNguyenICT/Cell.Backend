@@ -40,10 +40,10 @@ namespace Cell.Infrastructure
                 {
                     dbContext.Database.Migrate();
 
-                    await InitSettingTable();
-                    await InitSettingField();
-                    await InitSettingAction();
-                    await InitSettingFeature();
+                    //await InitSettingTable();
+                    //await InitSettingField();
+                    //await InitSettingAction();
+                    //await InitSettingFeature();
 
                     await dbContext.SaveChangesAsync();
                 }

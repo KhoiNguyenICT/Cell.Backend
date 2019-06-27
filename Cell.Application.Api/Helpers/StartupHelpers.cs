@@ -20,6 +20,7 @@ using System.Reflection;
 using Cell.Domain.Aggregates.SettingActionInstanceAggregate;
 using Cell.Domain.Aggregates.SettingFeatureAggregate;
 using Cell.Domain.Aggregates.SettingFieldInstanceAggregate;
+using FluentValidation;
 
 namespace Cell.Application.Api.Helpers
 {
@@ -83,6 +84,20 @@ namespace Cell.Application.Api.Helpers
             services.AddScoped<ISettingActionInstanceRepository, SettingActionInstanceRepository>();
             services.AddScoped<ISettingFeatureRepository, SettingFeatureRepository>();
             return services;
+        }
+
+        public static IServiceCollection ConfigValidator(this IServiceCollection service)
+        {
+            service.AddTransient<IValidator<SettingAction>, SettingActionValidator>();
+            service.AddTransient<IValidator<SettingActionInstance>, SettingActionInstanceValidator>();
+            service.AddTransient<IValidator<SettingFeature>, SettingFeatureValidator>();
+            service.AddTransient<IValidator<SettingField>, SettingFieldValidator>();
+            service.AddTransient<IValidator<SettingFieldInstance>, SettingFieldInstanceValidator>();
+            service.AddTransient<IValidator<SettingForm>, SettingFormValidator>();
+            service.AddTransient<IValidator<SettingTable>, SettingTableValidator>();
+            service.AddTransient<IValidator<SettingView>, SettingViewValidator>();
+
+            return service;
         }
     }
 }

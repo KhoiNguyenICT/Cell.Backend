@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Cell.Application.Api.Helpers;
-using Cell.Core.Constants;
+﻿using Cell.Application.Api.Helpers;
 using Cell.Core.Errors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +27,7 @@ namespace Cell.Application.Api
                 .AddRouting(options => options.LowercaseUrls = true)
                 .AddMapper(Configuration)
                 .ConfigIoc()
+                .ConfigValidator()
                 .AddCors()
                 .ConfigSwagger()
                 .AddCors(options =>
@@ -65,7 +64,6 @@ namespace Cell.Application.Api
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
             app.UseHttpMethodOverride();
-            // app.UseCors(UriBuilder => UriBuilder.WithOrigins("http://localhost:4200"));
             app.UseCors("CorsPolicy");
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();

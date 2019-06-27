@@ -1,21 +1,24 @@
-﻿using System;
+﻿using Cell.Application.Api.Commands;
 using Cell.Core.Extensions;
+using Cell.Core.Repositories;
 using Cell.Domain.Aggregates.SettingActionInstanceAggregate;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cell.Application.Api.Commands;
-using Cell.Core.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingActionInstanceController : CellController
+    public class SettingActionInstanceController : CellController<SettingActionInstance>
     {
         private readonly ISettingActionInstanceRepository _settingActionInstanceRepository;
 
-        public SettingActionInstanceController(ISettingActionInstanceRepository settingActionInstanceRepository)
+        public SettingActionInstanceController(
+            IValidator<SettingActionInstance> entityValidator,
+            ISettingActionInstanceRepository settingActionInstanceRepository) : base(entityValidator)
         {
             _settingActionInstanceRepository = settingActionInstanceRepository;
         }

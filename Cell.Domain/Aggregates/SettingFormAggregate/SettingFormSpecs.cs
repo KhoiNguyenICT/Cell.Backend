@@ -1,4 +1,5 @@
-﻿using Cell.Core.Specifications;
+﻿using System;
+using Cell.Core.Specifications;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cell.Domain.Aggregates.SettingFormAggregate
@@ -10,5 +11,8 @@ namespace Cell.Domain.Aggregates.SettingFormAggregate
             EF.Functions.Like(t.Name, $"%{query}%"));
 
         public static ISpecification<SettingForm> GetByNameSpec(string name) => new Specification<SettingForm>(t => t.Name == name);
+
+        public static ISpecification<SettingForm> SearchByTableId(Guid? tableId) =>
+            new Specification<SettingForm>(t => t.TableId == tableId);
     }
 }

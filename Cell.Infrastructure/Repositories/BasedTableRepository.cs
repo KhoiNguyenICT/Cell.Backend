@@ -80,7 +80,15 @@ namespace Cell.Infrastructure.Repositories
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
                 var result = await conn.QueryAsync<SearchBasedTable>(query);
-                return result.ToList();
+                var searchBasedTables = result.ToList();
+                var dataSearchBasedTable = new List<SearchBasedTable>();
+                foreach (var searchBasedTable in searchBasedTables)
+                {
+                    var settingTable = await _context.SettingTables.FirstOrDefaultAsync(x => x.BasedTable == searchBasedTable.Name);
+                    searchBasedTable.Id = settingTable.Id;
+                    dataSearchBasedTable.Add(searchBasedTable);
+                }
+                return searchBasedTables.ToList();
             }
         }
 

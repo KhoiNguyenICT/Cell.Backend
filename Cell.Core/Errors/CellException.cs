@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FluentValidation.Results;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Cell.Core.Errors
 {
@@ -13,6 +15,11 @@ namespace Cell.Core.Errors
 
         public CellException()
         {
+        }
+
+        public CellException(ValidationResult result)
+        {
+            Error = new CellError(new List<string>(result.Errors.Select(x => x.ErrorMessage).ToList()));
         }
 
         public CellException(string field, string message)

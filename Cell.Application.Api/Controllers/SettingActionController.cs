@@ -3,6 +3,7 @@ using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
 using Cell.Domain.Aggregates.SettingActionAggregate;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -13,11 +14,13 @@ using System.Threading.Tasks;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingActionController : CellController
+    public class SettingActionController : CellController<SettingAction>
     {
         private readonly ISettingActionRepository _settingActionRepository;
 
-        public SettingActionController(ISettingActionRepository settingActionRepository)
+        public SettingActionController(
+            ISettingActionRepository settingActionRepository,
+            IValidator<SettingAction> entityValidator) : base(entityValidator)
         {
             _settingActionRepository = settingActionRepository;
         }

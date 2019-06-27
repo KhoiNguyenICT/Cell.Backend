@@ -34,4 +34,9 @@ namespace Cell.Application.Api.Commands
     {
         public Guid ParentId { get; set; }
     }
+
+    public class SearchSettingFormCommand : SearchCommand
+    {
+        public Guid? TableId { get; set; }
+    }
 }

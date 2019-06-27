@@ -2,21 +2,24 @@
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
 using Cell.Domain.Aggregates.SettingFeatureAggregate;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingFeatureController : CellController
+    public class SettingFeatureController : CellController<SettingFeature>
     {
         private readonly ISettingFeatureRepository _settingFeatureRepository;
 
-        public SettingFeatureController(ISettingFeatureRepository settingFeatureRepository)
+        public SettingFeatureController(
+            IValidator<SettingFeature> entityValidator,
+            ISettingFeatureRepository settingFeatureRepository) : base(entityValidator)
         {
             _settingFeatureRepository = settingFeatureRepository;
         }
@@ -38,7 +41,25 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> Create([FromBody] SettingFeatureCommand command)
         {
             var settingFeature = command.To<SettingFeature>();
-            await _settingFeatureRepository.InsertNodeBeforeAnother(settingFeature, command.Parent);
+            var any = await _settingFeatureRepository.AnyAsync();
+            if (any)
+            {
+                await _settingFeatureRepository.InsertNodeBeforeAnother(settingFeature, command.Parent);
+            }
+            else
+            {
+                await _settingFeatureRepository.InsertFirstRootNode(settingFeature);
+            }
+
+            return Ok();
+        }
+
+        [HttpPost("rename")]
+        public async Task<IActionResult> Rename([FromBody] SettingFeatureCommand command)
+        {
+            var settingFeature = await _settingFeatureRepository.GetByIdAsync(command.Id);
+            settingFeature.Rename(command.Name);
+            await _settingFeatureRepository.CommitAsync();
             return Ok();
         }
 
@@ -52,6 +73,13 @@ namespace Cell.Application.Api.Controllers
                 command.Icon,
                 JsonConvert.SerializeObject(command.Settings));
             await _settingFeatureRepository.CommitAsync();
+            return Ok();
+        }
+
+        [HttpPost("delete/{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            _settingFeatureRepository.RemoveNode(id);
             return Ok();
         }
 
