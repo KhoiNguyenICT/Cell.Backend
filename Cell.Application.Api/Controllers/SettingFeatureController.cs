@@ -1,40 +1,28 @@
 ﻿using Cell.Application.Api.Commands;
 using Cell.Core.Extensions;
-using Cell.Core.Repositories;
 using Cell.Domain.Aggregates.SettingFeatureAggregate;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Cell.Infrastructure.Repositories;
 
 namespace Cell.Application.Api.Controllers
 {
     public class SettingFeatureController : CellController<SettingFeature>
     {
         private readonly ISettingFeatureRepository _settingFeatureRepository;
+        private readonly ISettingTreeRepository<SettingFeature> _treeRepository;
 
         public SettingFeatureController(
             IValidator<SettingFeature> entityValidator,
-            ISettingFeatureRepository settingFeatureRepository) : base(entityValidator)
+            ISettingFeatureRepository settingFeatureRepository, 
+            ISettingTreeRepository<SettingFeature> treeRepository) : base(entityValidator)
         {
             _settingFeatureRepository = settingFeatureRepository;
-        }
-
-        [HttpPost("search")]
-        public async Task<IActionResult> Search(SearchCommand command)
-        {
-            var spec = SettingFeatureSpecs.SearchByQuery(command.Query);
-            var queryable = _settingFeatureRepository.QueryAsync(spec, command.Sorts);
-            var items = await queryable.Skip(command.Skip).Take(command.Take).ToListAsync();
-            return Ok(new QueryResult<SettingFeatureCommand>
-            {
-                Count = queryable.Count(),
-                Items = items.To<List<SettingFeatureCommand>>()
-            });
+            _treeRepository = treeRepository;
         }
 
         [HttpPost("create")]
@@ -44,11 +32,11 @@ namespace Cell.Application.Api.Controllers
             var any = await _settingFeatureRepository.AnyAsync();
             if (any)
             {
-                await _settingFeatureRepository.InsertNodeBeforeAnother(settingFeature, command.Parent);
+                await _treeRepository.InsertNodeBeforeAnother(settingFeature, command.Parent);
             }
             else
             {
-                await _settingFeatureRepository.InsertFirstRootNode(settingFeature);
+                await _treeRepository.InsertFirstRootNode(settingFeature);
             }
 
             return Ok();
@@ -79,7 +67,7 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("delete/{id}")]
         public IActionResult Delete(Guid id)
         {
-            _settingFeatureRepository.RemoveNode(id);
+            _treeRepository.RemoveNode(id);
             return Ok();
         }
 
@@ -100,56 +88,56 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("insertFirstRootNode")]
         public async Task<IActionResult> InsertFirstRootNode(SettingFeatureCommand command)
         {
-            await _settingFeatureRepository.InsertFirstRootNode(command.To<SettingFeature>());
+            await _treeRepository.InsertFirstRootNode(command.To<SettingFeature>());
             return Ok();
         }
 
         [HttpPost("insertLastRootNode")]
         public async Task<IActionResult> InsertLastRootNode(SettingFeatureCommand command)
         {
-            await _settingFeatureRepository.InsertLastRootNode(command.To<SettingFeature>());
+            await _treeRepository.InsertLastRootNode(command.To<SettingFeature>());
             return Ok();
         }
 
         [HttpPost("insertRootNodeBeforeAnother/{refNodeId}")]
         public async Task<IActionResult> InsertRootNodeBeforeAnother(SettingFeatureCommand command, Guid refNodeId)
         {
-            await _settingFeatureRepository.InsertRootNodeBeforeAnother(command.To<SettingFeature>(), refNodeId);
+            await _treeRepository.InsertRootNodeBeforeAnother(command.To<SettingFeature>(), refNodeId);
             return Ok();
         }
 
         [HttpPost("insertRootNodeAfterAnother/{refNodeId}")]
         public async Task<IActionResult> InsertRootNodeAfterAnother(SettingFeatureCommand command, Guid refNodeId)
         {
-            await _settingFeatureRepository.InsertRootNodeAfterAnother(command.To<SettingFeature>(), refNodeId);
+            await _treeRepository.InsertRootNodeAfterAnother(command.To<SettingFeature>(), refNodeId);
             return Ok();
         }
 
         [HttpPost("insertFirstChildNode/{refNodeId}")]
         public async Task<IActionResult> InsertFirstChildNode(SettingFeatureCommand command, Guid refNodeId)
         {
-            await _settingFeatureRepository.InsertFirstChildNode(command.To<SettingFeature>(), refNodeId);
+            await _treeRepository.InsertFirstChildNode(command.To<SettingFeature>(), refNodeId);
             return Ok();
         }
 
         [HttpPost("insertLastChildNode/{refNodeId}")]
         public async Task<IActionResult> InsertLastChildNode(SettingFeatureCommand command, Guid refNodeId)
         {
-            await _settingFeatureRepository.InsertLastChildNode(command.To<SettingFeature>(), refNodeId);
+            await _treeRepository.InsertLastChildNode(command.To<SettingFeature>(), refNodeId);
             return Ok();
         }
 
         [HttpPost("insertNodeBeforeAnother/{refNodeId}")]
         public async Task<IActionResult> InsertNodeBeforeAnother(SettingFeatureCommand command, Guid refNodeId)
         {
-            await _settingFeatureRepository.InsertNodeBeforeAnother(command.To<SettingFeature>(), refNodeId);
+            await _treeRepository.InsertNodeBeforeAnother(command.To<SettingFeature>(), refNodeId);
             return Ok();
         }
 
         [HttpPost("insertNodeAfterAnother/{refNodeId}")]
         public async Task<IActionResult> InsertNodeAfterAnother(SettingFeatureCommand command, Guid refNodeId)
         {
-            await _settingFeatureRepository.InsertNodeAfterAnother(command.To<SettingFeature>(), refNodeId);
+            await _treeRepository.InsertNodeAfterAnother(command.To<SettingFeature>(), refNodeId);
             return Ok();
         }
     }

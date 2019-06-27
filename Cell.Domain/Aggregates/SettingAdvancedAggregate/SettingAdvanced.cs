@@ -1,18 +1,14 @@
-﻿using System;
+﻿using Cell.Core.SeedWork;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Cell.Core.SeedWork;
 
-namespace Cell.Domain.Aggregates.SettingFeatureAggregate
+namespace Cell.Domain.Aggregates.SettingAdvancedAggregate
 {
-    [Table("T_SETTING_FEATURE")]
-    public class SettingFeature : Entity, IAggregateRoot
+    [Table("T_SETTING_ADVANCED")]
+    public class SettingAdvanced : Entity, IAggregateRoot
     {
-        [Column("ICON")]
-        [StringLength(50)]
-        public string Icon { get; private set; }
-
         [Column("INDEX_LEFT")]
         public int IndexLeft { get; private set; }
 
@@ -26,7 +22,7 @@ namespace Cell.Domain.Aggregates.SettingFeatureAggregate
         public int NodeLevel { get; private set; }
 
         [Column("PARENT")]
-        public Guid? Parent { get; set; }
+        public Guid? Parent { get; private set; }
 
         [Column("PATH_CODE")]
         [StringLength(1000)]
@@ -36,36 +32,28 @@ namespace Cell.Domain.Aggregates.SettingFeatureAggregate
         [StringLength(1000)]
         public string PathId { get; private set; }
 
-        [Column("SETTINGS")]
-        public string Settings { get; set; }
+        [Column("SETTING_VALUE")]
+        public string SettingValue { get; private set; }
 
         [NotMapped]
-        public List<SettingFeature> Children { get; set; }
+        public List<SettingAdvanced> Children { get; set; }
 
-        public SettingFeature() { }
+        public SettingAdvanced() { }
 
-        public SettingFeature(
+        public SettingAdvanced(
             string name,
-            string settings,
-            Guid parent,
-            string icon)
+            Guid parent)
         {
             Name = name;
-            Settings = settings;
             Parent = parent;
-            Icon = icon;
         }
 
         public void Update(
             string name,
-            string description,
-            string icon,
-            string settings)
+            string description)
         {
             Name = name;
             Description = description;
-            Icon = icon;
-            Settings = settings;
         }
 
         public void Rename(string name)

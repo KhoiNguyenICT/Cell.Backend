@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cell.Application.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190619022400_AddParentTextForSettingFieldInstance")]
-    partial class AddParentTextForSettingFieldInstance
+    [Migration("20190627043421_Initialize")]
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -118,6 +118,9 @@ namespace Cell.Application.Api.Migrations
                     b.Property<Guid>("Parent")
                         .HasColumnName("PARENT");
 
+                    b.Property<string>("ParentText")
+                        .HasColumnName("PARENT_TEXT");
+
                     b.Property<string>("Settings")
                         .HasColumnName("SETTINGS");
 
@@ -134,6 +137,71 @@ namespace Cell.Application.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("T_SETTING_ACTION_INSTANCE");
+                });
+
+            modelBuilder.Entity("Cell.Domain.Aggregates.SettingAdvancedAggregate.SettingAdvanced", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID");
+
+                    b.Property<string>("Code")
+                        .HasColumnName("CODE");
+
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnName("CREATED");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
+
+                    b.Property<string>("Description")
+                        .HasColumnName("DESCRIPTION");
+
+                    b.Property<int>("IndexLeft")
+                        .HasColumnName("INDEX_LEFT");
+
+                    b.Property<int>("IndexRight")
+                        .HasColumnName("INDEX_RIGHT");
+
+                    b.Property<int>("IsLeaf")
+                        .HasColumnName("IS_LEAF");
+
+                    b.Property<DateTimeOffset>("Modified")
+                        .HasColumnName("MODIFIED");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("NAME");
+
+                    b.Property<int>("NodeLevel")
+                        .HasColumnName("NODE_LEVEL");
+
+                    b.Property<Guid?>("Parent")
+                        .HasColumnName("PARENT");
+
+                    b.Property<string>("PathCode")
+                        .HasColumnName("PATH_CODE")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("PathId")
+                        .HasColumnName("PATH_ID")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("SettingValue")
+                        .HasColumnName("SETTING_VALUE");
+
+                    b.Property<int>("Version")
+                        .HasColumnName("VERSION");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_SETTING_ADVANCED");
                 });
 
             modelBuilder.Entity("Cell.Domain.Aggregates.SettingFeatureAggregate.SettingFeature", b =>
@@ -183,7 +251,7 @@ namespace Cell.Application.Api.Migrations
                     b.Property<int>("NodeLevel")
                         .HasColumnName("NODE_LEVEL");
 
-                    b.Property<Guid>("Parent")
+                    b.Property<Guid?>("Parent")
                         .HasColumnName("PARENT");
 
                     b.Property<string>("PathCode")

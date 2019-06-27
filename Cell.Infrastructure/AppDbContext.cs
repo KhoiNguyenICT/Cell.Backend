@@ -2,6 +2,7 @@
 using Cell.Core.SeedWork;
 using Cell.Domain.Aggregates.SettingActionAggregate;
 using Cell.Domain.Aggregates.SettingActionInstanceAggregate;
+using Cell.Domain.Aggregates.SettingAdvancedAggregate;
 using Cell.Domain.Aggregates.SettingFeatureAggregate;
 using Cell.Domain.Aggregates.SettingFieldAggregate;
 using Cell.Domain.Aggregates.SettingFieldInstanceAggregate;
@@ -28,6 +29,7 @@ namespace Cell.Infrastructure
         public DbSet<SettingFeature> SettingFeatures { get; set; }
         public DbSet<SettingFieldInstance> SettingFieldInstances { get; set; }
         public DbSet<SettingActionInstance> SettingActionInstances { get; set; }
+        public DbSet<SettingAdvanced> SettingAdvanceds { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

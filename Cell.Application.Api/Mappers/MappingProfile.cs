@@ -10,6 +10,7 @@ using Cell.Domain.Aggregates.SettingTableAggregate;
 using Cell.Domain.Aggregates.SettingViewAggregate;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Cell.Domain.Aggregates.SettingAdvancedAggregate;
 
 namespace Cell.Application.Api.Mappers
 {
@@ -103,6 +104,13 @@ namespace Cell.Application.Api.Mappers
             CreateMap<SettingActionInstanceCommand, SettingActionInstance>();
 
             #endregion SettingActionInstance
+
+            #region SettingAdvanced
+
+            CreateMap<SettingAdvanced, SettingAdvancedCommand>();
+            CreateMap<SettingAdvancedCommand, SettingAdvanced>();
+
+            #endregion
         }
     }
 }
