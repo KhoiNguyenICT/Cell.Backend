@@ -9,7 +9,9 @@ using Cell.Domain.Aggregates.SettingAdvancedAggregate;
 using Cell.Domain.Aggregates.SettingFeatureAggregate;
 using Cell.Domain.Aggregates.SettingFieldAggregate;
 using Cell.Domain.Aggregates.SettingFieldInstanceAggregate;
+using Cell.Domain.Aggregates.SettingFilterAggregate;
 using Cell.Domain.Aggregates.SettingFormAggregate;
+using Cell.Domain.Aggregates.SettingReportAggregate;
 using Cell.Domain.Aggregates.SettingTableAggregate;
 using Cell.Domain.Aggregates.SettingViewAggregate;
 using Cell.Infrastructure;
@@ -22,7 +24,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
-using Cell.Core.SeedWork;
 
 namespace Cell.Application.Api.Helpers
 {
@@ -88,6 +89,8 @@ namespace Cell.Application.Api.Helpers
             services.AddScoped<ISettingAdvancedRepository, SettingAdvancedRepository>();
             services.AddScoped<ISettingTreeRepository<SettingFeature>, SettingTreeRepository<SettingFeature>>();
             services.AddScoped<ISettingTreeRepository<SettingAdvanced>, SettingTreeRepository<SettingAdvanced>>();
+            services.AddScoped<ISettingFilterRepository, SettingFilterRepository>();
+            services.AddScoped<ISettingReportRepository, SettingReportRepository>();
             return services;
         }
 
@@ -102,6 +105,8 @@ namespace Cell.Application.Api.Helpers
             service.AddTransient<IValidator<SettingTable>, SettingTableValidator>();
             service.AddTransient<IValidator<SettingView>, SettingViewValidator>();
             service.AddTransient<IValidator<SettingAdvanced>, SettingAdvancedValidator>();
+            service.AddTransient<IValidator<SettingFilter>, SettingFilterValidator>();
+            service.AddTransient<IValidator<SettingReport>, SettingReportValidator>();
             return service;
         }
     }

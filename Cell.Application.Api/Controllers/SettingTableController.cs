@@ -90,6 +90,10 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] SettingTableCommand command)
         {
+            var spec = SettingTableSpecs.GetByNameSpec(command.Name);
+            var isInvalid = await _settingTableRepository.ExistsAsync(spec);
+            if (isInvalid)
+                throw new CellException("Setting table name must be unique");
             var settingTable = await _settingTableRepository.GetByIdAsync(command.Id);
             settingTable.Update(
                 command.Name,

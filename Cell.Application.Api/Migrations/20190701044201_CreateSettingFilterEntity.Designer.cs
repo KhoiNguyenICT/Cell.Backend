@@ -4,14 +4,16 @@ using Cell.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cell.Application.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190701044201_CreateSettingFilterEntity")]
+    partial class CreateSettingFilterEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -517,58 +519,6 @@ namespace Cell.Application.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("T_SETTING_FORM");
-                });
-
-            modelBuilder.Entity("Cell.Domain.Aggregates.SettingReportAggregate.SettingReport", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("ID");
-
-                    b.Property<string>("Code")
-                        .HasColumnName("CODE");
-
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnName("CREATED");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnName("CREATED_BY");
-
-                    b.Property<string>("Data")
-                        .HasColumnName("DATA")
-                        .HasColumnType("xml");
-
-                    b.Property<string>("Description")
-                        .HasColumnName("DESCRIPTION");
-
-                    b.Property<DateTimeOffset>("Modified")
-                        .HasColumnName("MODIFIED");
-
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnName("MODIFIED_BY");
-
-                    b.Property<string>("Name")
-                        .HasColumnName("NAME");
-
-                    b.Property<string>("Settings")
-                        .HasColumnName("SETTINGS");
-
-                    b.Property<Guid>("TableId")
-                        .HasColumnName("TABLE_ID");
-
-                    b.Property<string>("TableIdText")
-                        .HasColumnName("TABLE_ID_TEXT");
-
-                    b.Property<string>("TableName")
-                        .HasColumnName("TABLE_NAME")
-                        .HasMaxLength(200);
-
-                    b.Property<int>("Version")
-                        .HasColumnName("VERSION");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SettingReports");
                 });
 
             modelBuilder.Entity("Cell.Domain.Aggregates.SettingTableAggregate.SettingTable", b =>

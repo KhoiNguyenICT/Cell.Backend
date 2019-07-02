@@ -51,9 +51,7 @@ namespace Cell.Application.Api.Controllers
             var spec = SettingActionSpecs.GetByNameSpec(command.Name);
             var isInvalid = await _settingActionRepository.ExistsAsync(spec);
             if (isInvalid)
-            {
                 throw new CellException("Setting action name must be unique");
-            }
 
             _settingActionRepository.Add(new SettingAction(
                 command.Code,
@@ -70,6 +68,10 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] SettingActionCommand command)
         {
+            var spec = SettingActionSpecs.GetByNameSpec(command.Name);
+            var isInvalid = await _settingActionRepository.ExistsAsync(spec);
+            if (isInvalid)
+                throw new CellException("Setting action name must be unique");
             var settingAction = await _settingActionRepository.GetByIdAsync(command.Id);
             settingAction.Update(
                 command.Code,

@@ -6,7 +6,9 @@ using Cell.Domain.Aggregates.SettingAdvancedAggregate;
 using Cell.Domain.Aggregates.SettingFeatureAggregate;
 using Cell.Domain.Aggregates.SettingFieldAggregate;
 using Cell.Domain.Aggregates.SettingFieldInstanceAggregate;
+using Cell.Domain.Aggregates.SettingFilterAggregate;
 using Cell.Domain.Aggregates.SettingFormAggregate;
+using Cell.Domain.Aggregates.SettingReportAggregate;
 using Cell.Domain.Aggregates.SettingTableAggregate;
 using Cell.Domain.Aggregates.SettingViewAggregate;
 using MediatR;
@@ -30,6 +32,8 @@ namespace Cell.Infrastructure
         public DbSet<SettingFieldInstance> SettingFieldInstances { get; set; }
         public DbSet<SettingActionInstance> SettingActionInstances { get; set; }
         public DbSet<SettingAdvanced> SettingAdvanceds { get; set; }
+        public DbSet<SettingFilter> SettingFilters { get; set; }
+        public DbSet<SettingReport> SettingReports { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

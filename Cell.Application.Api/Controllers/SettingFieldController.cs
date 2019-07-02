@@ -77,6 +77,10 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] SettingFieldCommand command)
         {
+            var spec = SettingFieldSpecs.GetByNameSpec(command.Name);
+            var isInvalid = await _settingFieldRepository.ExistsAsync(spec);
+            if (isInvalid)
+                throw new CellException("Setting field name must be unique");
             var settingFieldResult = await _settingFieldRepository.GetByIdAsync(command.Id);
             var settingField = command.To<SettingField>();
             settingFieldResult.Update(

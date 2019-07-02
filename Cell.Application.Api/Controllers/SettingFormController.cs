@@ -46,7 +46,7 @@ namespace Cell.Application.Api.Controllers
             var spec = SettingFormSpecs.GetByNameSpec(command.Name);
             var isInvalid = await _settingFormRepository.ExistsAsync(spec);
             if (isInvalid)
-                throw new CellException("Setting form name mus be unique");
+                throw new CellException("Setting form name must be unique");
             var settingForm = command.To<SettingForm>();
             _settingFormRepository.Add(new SettingForm(
                 settingForm.Name, 
@@ -62,6 +62,10 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody]SettingFormCommand command)
         {
+            var spec = SettingFormSpecs.GetByNameSpec(command.Name);
+            var isInvalid = await _settingFormRepository.ExistsAsync(spec);
+            if (isInvalid)
+                throw new CellException("Setting form name must be unique");
             var settingForm = await _settingFormRepository.GetByIdAsync(command.Id);
             settingForm.Update(
                 command.Name,

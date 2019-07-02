@@ -39,4 +39,14 @@ namespace Cell.Application.Api.Commands
     {
         public Guid? TableId { get; set; }
     }
+
+    public class SearchSettingFilterCommand : SearchCommand
+    {
+        public Guid? TableId { get; set; }
+    }
+
+    public class SearchSettingReportCommand : SearchCommand
+    {
+        public Guid? TableId { get; set; }
+    }
 }
