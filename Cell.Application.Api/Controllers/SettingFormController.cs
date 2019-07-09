@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Cell.Application.Api.Commands;
+﻿using Cell.Application.Api.Commands;
 using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
@@ -11,10 +7,14 @@ using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingFormController : CellController<SettingForm>
+    public class SettingFormController : CellController<SettingForm, SettingFormCommand>
     {
         private readonly ISettingFormRepository _settingFormRepository;
 
@@ -43,17 +43,18 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody]SettingFormCommand command)
         {
+            await ValidateModel(command);
             var spec = SettingFormSpecs.GetByNameSpec(command.Name);
             var isInvalid = await _settingFormRepository.ExistsAsync(spec);
             if (isInvalid)
                 throw new CellException("Setting form name must be unique");
             var settingForm = command.To<SettingForm>();
             _settingFormRepository.Add(new SettingForm(
-                settingForm.Name, 
-                settingForm.Description, 
-                settingForm.LayoutId, 
+                settingForm.Name,
+                settingForm.Description,
+                settingForm.LayoutId,
                 JsonConvert.SerializeObject(command.Settings),
-                settingForm.TableId, 
+                settingForm.TableId,
                 settingForm.TableName));
             await _settingFormRepository.CommitAsync();
             return Ok();

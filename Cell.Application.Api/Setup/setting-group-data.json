@@ -1,0 +1,26 @@
+﻿[
+  {
+    "Name": "Deleted",
+    "Description": "Deleted",
+    "Code": "SYSTEM.DELETED",
+    "IndexLeft": 1,
+    "IndexRight": 2,
+    "Parent": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Name": "Department",
+    "Description": "Department",
+    "Code": "SYSTEM.DEPARTMENT",
+    "IndexLeft": 3,
+    "IndexRight": 4,
+    "Parent": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Name": "Role",
+    "Description": "Role",
+    "Code": "SYSTEM.ROLE",
+    "IndexLeft": 5,
+    "IndexRight": 6,
+    "Parent": "00000000-0000-0000-0000-000000000000"
+  }
+]

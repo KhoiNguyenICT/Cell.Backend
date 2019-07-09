@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
 using Cell.Domain.Aggregates.SettingActionAggregate;
 using Cell.Domain.Aggregates.SettingFeatureAggregate;
 using Cell.Domain.Aggregates.SettingFieldAggregate;
@@ -25,7 +26,7 @@ namespace Cell.Infrastructure
             _context = context;
         }
 
-        private string CreatePath(string jsonFile)
+        private static string CreatePath(string jsonFile)
         {
             return "Setup/" + jsonFile;
         }
@@ -39,7 +40,7 @@ namespace Cell.Infrastructure
                 using (dbContext)
                 {
                     dbContext.Database.Migrate();
-
+                    await InitSettingGroup();
                     //await InitSettingTable();
                     //await InitSettingField();
                     //await InitSettingAction();
@@ -100,6 +101,16 @@ namespace Cell.Infrastructure
                 var input = File.ReadAllText(CreatePath("setting-feature-data.json"));
                 var settingFeatures = JsonConvert.DeserializeObject<List<SettingFeature>>(input);
                 _context.SettingFeatures.AddRange(settingFeatures);
+            }
+        }
+
+        private async Task InitSettingGroup()
+        {
+            if (!await _context.SecurityGroups.AnyAsync())
+            {
+                var input = File.ReadAllText(CreatePath("setting-group-data.json"));
+                var settingGroups = JsonConvert.DeserializeObject<List<SecurityGroup>>(input);
+                _context.SecurityGroups.AddRange(settingGroups);
             }
         }
     }

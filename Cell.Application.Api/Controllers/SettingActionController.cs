@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingActionController : CellController<SettingAction>
+    public class SettingActionController : CellController<SettingAction, SettingActionCommand>
     {
         private readonly ISettingActionRepository _settingActionRepository;
 
@@ -48,11 +48,7 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody]SettingActionCommand command)
         {
-            var spec = SettingActionSpecs.GetByNameSpec(command.Name);
-            var isInvalid = await _settingActionRepository.ExistsAsync(spec);
-            if (isInvalid)
-                throw new CellException("Setting action name must be unique");
-
+            await ValidateModel(command);
             _settingActionRepository.Add(new SettingAction(
                 command.Code,
                 command.Name,
@@ -68,6 +64,7 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] SettingActionCommand command)
         {
+            await ValidateModel(command);
             var spec = SettingActionSpecs.GetByNameSpec(command.Name);
             var isInvalid = await _settingActionRepository.ExistsAsync(spec);
             if (isInvalid)

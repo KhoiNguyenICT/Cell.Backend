@@ -10,6 +10,8 @@ using Cell.Domain.Aggregates.SettingTableAggregate;
 using Cell.Domain.Aggregates.SettingViewAggregate;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
+using Cell.Domain.Aggregates.SecurityUserAggregate;
 using Cell.Domain.Aggregates.SettingAdvancedAggregate;
 
 namespace Cell.Application.Api.Mappers
@@ -109,6 +111,22 @@ namespace Cell.Application.Api.Mappers
 
             CreateMap<SettingAdvanced, SettingAdvancedCommand>();
             CreateMap<SettingAdvancedCommand, SettingAdvanced>();
+
+            #endregion
+
+            #region SecurityGroup
+
+            CreateMap<SecurityGroup, SettingGroupCommand>();
+            CreateMap<SettingGroupCommand, SecurityGroup>();
+
+            #endregion
+
+            #region SecurityUser
+
+            CreateMap<SecurityUser, SettingUserCommand>()
+                .ForMember(d => d.Settings, s => s.MapFrom(x => JsonConvert.DeserializeObject<SettingUserSettingsCommand>(x.Settings))); ;
+            CreateMap<SettingUserCommand, SecurityUser>()
+                .ForMember(d => d.Settings, s => s.MapFrom(x => JsonConvert.SerializeObject(x.Settings)));
 
             #endregion
         }

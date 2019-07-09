@@ -1,10 +1,9 @@
-﻿using System;
+﻿using MediatR;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Linq;
-using MediatR;
-using Newtonsoft.Json;
 
 namespace Cell.Core.SeedWork
 {
@@ -73,5 +72,31 @@ namespace Cell.Core.SeedWork
         {
             _domainEvents?.Clear();
         }
+    }
+
+    public abstract class TreeEntity : Entity
+    {
+        [Column("INDEX_LEFT")]
+        public int IndexLeft { get; set; }
+
+        [Column("INDEX_RIGHT")]
+        public int IndexRight { get; set; }
+
+        [Column("IS_LEAF")]
+        public int IsLeaf { get; set; }
+
+        [Column("NODE_LEVEL")]
+        public int NodeLevel { get; set; }
+
+        [Column("PARENT")]
+        public Guid? Parent { get; set; }
+
+        [Column("PATH_CODE")]
+        [StringLength(1000)]
+        public string PathCode { get; set; }
+
+        [Column("PATH_ID")]
+        [StringLength(1000)]
+        public string PathId { get; set; }
     }
 }

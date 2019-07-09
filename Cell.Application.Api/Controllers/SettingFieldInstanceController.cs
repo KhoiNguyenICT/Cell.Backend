@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingFieldInstanceController : CellController<SettingFieldInstance>
+    public class SettingFieldInstanceController : CellController<SettingFieldInstance, SettingFieldInstanceCommand>
     {
         private readonly ISettingFieldInstanceRepository _settingFieldInstanceRepository;
 
@@ -27,6 +27,7 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] List<SettingFieldInstanceCommand> command)
         {
+            await ValidateModels(command);
             foreach (var settingFieldInstanceCommand in command)
             {
                 var settingFieldInstance = settingFieldInstanceCommand.To<SettingFieldInstance>();
@@ -50,6 +51,7 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] List<SettingFieldInstanceCommand> command)
         {
+            await ValidateModels(command);
             foreach (var settingFieldInstanceCommand in command)
             {
                 var settingFieldInstance = await _settingFieldInstanceRepository.GetByIdAsync(settingFieldInstanceCommand.Id);

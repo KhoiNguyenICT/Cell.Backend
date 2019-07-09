@@ -31,12 +31,10 @@ namespace Cell.Domain.Aggregates.SettingTableAggregate
         public void Update(
             string name,
             string description,
-            string code,
             string settings)
         {
             Name = name;
             Description = description;
-            Code = code;
             Settings = settings;
         }
     }

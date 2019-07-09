@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingActionInstanceController : CellController<SettingActionInstance>
+    public class SettingActionInstanceController : CellController<SettingActionInstance, SettingActionInstanceCommand>
     {
         private readonly ISettingActionInstanceRepository _settingActionInstanceRepository;
 
@@ -28,6 +28,7 @@ namespace Cell.Application.Api.Controllers
         {
             foreach (var settingActionInstanceCommand in command)
             {
+                await ValidateModel(settingActionInstanceCommand);
                 var settingActionInstance = settingActionInstanceCommand.To<SettingActionInstance>();
                 _settingActionInstanceRepository.Add(new SettingActionInstance(
                     settingActionInstance.Name,
@@ -48,6 +49,7 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] List<SettingActionInstanceCommand> command)
         {
+            await ValidateModels(command);
             foreach (var settingActionInstanceCommand in command)
             {
                 var settingActionInstance = await _settingActionInstanceRepository.GetByIdAsync(settingActionInstanceCommand.Id);

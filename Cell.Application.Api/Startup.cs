@@ -1,5 +1,8 @@
-﻿using Cell.Application.Api.Helpers;
+﻿using System.Collections.Generic;
+using Cell.Application.Api.Helpers;
+using Cell.Core.Constants;
 using Cell.Core.Errors;
+using Cell.Core.RestClient;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -30,6 +33,7 @@ namespace Cell.Application.Api
                 .ConfigValidator()
                 .AddCors()
                 .ConfigSwagger()
+                .AddRestClient()
                 .AddCors(options =>
                 {
                     options.AddPolicy("CorsPolicy",
@@ -37,7 +41,7 @@ namespace Cell.Application.Api
                             .AllowAnyOrigin()
                             .AllowAnyMethod()
                             .AllowAnyHeader()
-                            .AllowCredentials());
+                            .AllowCredentials().WithOrigins(Configuration.GetSection(ConfigurationKeys.WebClient).Get<string[]>()));
                 });
             services.AddMvc(options => { options.Filters.Add<CellExceptionFilter>(); })
                 .AddJsonOptions(options =>

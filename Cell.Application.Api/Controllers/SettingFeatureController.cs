@@ -1,24 +1,25 @@
 ﻿using Cell.Application.Api.Commands;
 using Cell.Core.Extensions;
 using Cell.Domain.Aggregates.SettingFeatureAggregate;
+using Cell.Infrastructure.Repositories;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Cell.Infrastructure.Repositories;
+using Cell.Core.Constants;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingFeatureController : CellController<SettingFeature>
+    public class SettingFeatureController : CellController<SettingFeature, SettingFeatureCommand>
     {
         private readonly ISettingFeatureRepository _settingFeatureRepository;
         private readonly ISettingTreeRepository<SettingFeature> _treeRepository;
 
         public SettingFeatureController(
             IValidator<SettingFeature> entityValidator,
-            ISettingFeatureRepository settingFeatureRepository, 
+            ISettingFeatureRepository settingFeatureRepository,
             ISettingTreeRepository<SettingFeature> treeRepository) : base(entityValidator)
         {
             _settingFeatureRepository = settingFeatureRepository;
@@ -28,15 +29,16 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] SettingFeatureCommand command)
         {
+            await ValidateModel(command);
             var settingFeature = command.To<SettingFeature>();
             var any = await _settingFeatureRepository.AnyAsync();
             if (any)
             {
-                await _treeRepository.InsertNodeBeforeAnother(settingFeature, command.Parent);
+                await _treeRepository.InsertNodeBeforeAnother(settingFeature, command.Parent, ConfigurationKeys.SettingFeatureTable);
             }
             else
             {
-                await _treeRepository.InsertFirstRootNode(settingFeature);
+                await _treeRepository.InsertFirstRootNode(settingFeature, ConfigurationKeys.SettingFeatureTable);
             }
 
             return Ok();
@@ -83,62 +85,6 @@ namespace Cell.Application.Api.Controllers
         {
             var result = await _settingFeatureRepository.GetTreeAsync();
             return Ok(result.To<List<SettingFeatureCommand>>());
-        }
-
-        [HttpPost("insertFirstRootNode")]
-        public async Task<IActionResult> InsertFirstRootNode(SettingFeatureCommand command)
-        {
-            await _treeRepository.InsertFirstRootNode(command.To<SettingFeature>());
-            return Ok();
-        }
-
-        [HttpPost("insertLastRootNode")]
-        public async Task<IActionResult> InsertLastRootNode(SettingFeatureCommand command)
-        {
-            await _treeRepository.InsertLastRootNode(command.To<SettingFeature>());
-            return Ok();
-        }
-
-        [HttpPost("insertRootNodeBeforeAnother/{refNodeId}")]
-        public async Task<IActionResult> InsertRootNodeBeforeAnother(SettingFeatureCommand command, Guid refNodeId)
-        {
-            await _treeRepository.InsertRootNodeBeforeAnother(command.To<SettingFeature>(), refNodeId);
-            return Ok();
-        }
-
-        [HttpPost("insertRootNodeAfterAnother/{refNodeId}")]
-        public async Task<IActionResult> InsertRootNodeAfterAnother(SettingFeatureCommand command, Guid refNodeId)
-        {
-            await _treeRepository.InsertRootNodeAfterAnother(command.To<SettingFeature>(), refNodeId);
-            return Ok();
-        }
-
-        [HttpPost("insertFirstChildNode/{refNodeId}")]
-        public async Task<IActionResult> InsertFirstChildNode(SettingFeatureCommand command, Guid refNodeId)
-        {
-            await _treeRepository.InsertFirstChildNode(command.To<SettingFeature>(), refNodeId);
-            return Ok();
-        }
-
-        [HttpPost("insertLastChildNode/{refNodeId}")]
-        public async Task<IActionResult> InsertLastChildNode(SettingFeatureCommand command, Guid refNodeId)
-        {
-            await _treeRepository.InsertLastChildNode(command.To<SettingFeature>(), refNodeId);
-            return Ok();
-        }
-
-        [HttpPost("insertNodeBeforeAnother/{refNodeId}")]
-        public async Task<IActionResult> InsertNodeBeforeAnother(SettingFeatureCommand command, Guid refNodeId)
-        {
-            await _treeRepository.InsertNodeBeforeAnother(command.To<SettingFeature>(), refNodeId);
-            return Ok();
-        }
-
-        [HttpPost("insertNodeAfterAnother/{refNodeId}")]
-        public async Task<IActionResult> InsertNodeAfterAnother(SettingFeatureCommand command, Guid refNodeId)
-        {
-            await _treeRepository.InsertNodeAfterAnother(command.To<SettingFeature>(), refNodeId);
-            return Ok();
         }
     }
 }

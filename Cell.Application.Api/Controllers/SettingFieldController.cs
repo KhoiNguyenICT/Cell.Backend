@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingFieldController : CellController<SettingField>
+    public class SettingFieldController : CellController<SettingField, SettingFieldCommand>
     {
         private readonly ISettingFieldRepository _settingFieldRepository;
 
@@ -50,6 +50,7 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody]SettingFieldCommand command)
         {
+            await ValidateModel(command);
             var spec = SettingFieldSpecs.GetByNameSpec(command.Name);
             var isInvalid = await _settingFieldRepository.ExistsAsync(spec);
             if (isInvalid)

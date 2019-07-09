@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using Cell.Core.Utils;
@@ -303,6 +304,16 @@ namespace Cell.Core.Extensions
                 return string.Empty;
             }
             return char.ToUpper(s[0]) + s.Substring(1);
+        }
+
+        public static string ToSha256(this string input)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+                var hash = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+                return hash;
+            }
         }
     }
 }

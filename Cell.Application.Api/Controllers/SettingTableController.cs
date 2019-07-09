@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingTableController : CellController<SettingTable>
+    public class SettingTableController : CellController<SettingTable, SettingTableCommand>
     {
         private readonly ISettingTableRepository _settingTableRepository;
         private readonly IBasedTableRepository _basedTableRepository;
@@ -64,17 +64,15 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> SettingTable(Guid id)
         {
             var settingTable = await _settingTableRepository.GetByIdAsync(id);
-            return Ok(settingTable);
+            return Ok(settingTable.To<SettingTableCommand>());
         }
 
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody]SettingTableCommand command)
         {
+            await ValidateModel(command);
             var spec = SettingTableSpecs.GetByNameSpec(command.Name);
             var isInvalid = await _settingTableRepository.ExistsAsync(spec);
-            var isValidator = await EntityValidator.ValidateAsync(command.To<SettingTable>());
-            if (!isValidator.IsValid)
-                throw new CellException(isValidator);
             if (isInvalid)
                 throw new CellException("Setting table name must be unique");
             _settingTableRepository.Add(new SettingTable(
@@ -90,15 +88,11 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] SettingTableCommand command)
         {
-            var spec = SettingTableSpecs.GetByNameSpec(command.Name);
-            var isInvalid = await _settingTableRepository.ExistsAsync(spec);
-            if (isInvalid)
-                throw new CellException("Setting table name must be unique");
+            await ValidateModel(command);
             var settingTable = await _settingTableRepository.GetByIdAsync(command.Id);
             settingTable.Update(
                 command.Name,
                 command.Description,
-                command.Code,
                 JsonConvert.SerializeObject(command.Settings));
             await _settingTableRepository.CommitAsync();
             return Ok();

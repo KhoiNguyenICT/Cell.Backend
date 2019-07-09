@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingFilterController : CellController<SettingFilter>
+    public class SettingFilterController : CellController<SettingFilter, SettingFilterCommand>
     {
         private readonly ISettingFilterRepository _settingFilterRepository;
 
@@ -43,6 +43,7 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] SettingFilterCommand command)
         {
+            await ValidateModel(command);
             var spec = SettingFilterSpecs.GetByNameSpec(command.Name);
             var isInvalid = await _settingFilterRepository.ExistsAsync(spec);
             if (isInvalid)

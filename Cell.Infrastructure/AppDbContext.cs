@@ -1,5 +1,9 @@
 ﻿using Cell.Core.Repositories;
 using Cell.Core.SeedWork;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
+using Cell.Domain.Aggregates.SecuritySessionAggregate;
+using Cell.Domain.Aggregates.SecurityUserAggregate;
 using Cell.Domain.Aggregates.SettingActionAggregate;
 using Cell.Domain.Aggregates.SettingActionInstanceAggregate;
 using Cell.Domain.Aggregates.SettingAdvancedAggregate;
@@ -13,6 +17,11 @@ using Cell.Domain.Aggregates.SettingTableAggregate;
 using Cell.Domain.Aggregates.SettingViewAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Cell.Infrastructure
 {
@@ -34,10 +43,33 @@ namespace Cell.Infrastructure
         public DbSet<SettingAdvanced> SettingAdvanceds { get; set; }
         public DbSet<SettingFilter> SettingFilters { get; set; }
         public DbSet<SettingReport> SettingReports { get; set; }
+        public DbSet<SecurityGroup> SecurityGroups { get; set; }
+        public DbSet<SecurityUser> SecurityUsers { get; set; }
+        public DbSet<SecurityPermission> SecurityPermissions { get; set; }
+        public DbSet<SecuritySession> SecuritySessions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+            var modified = ChangeTracker.Entries().Where(e => e.State == EntityState.Modified || e.State == EntityState.Added);
+            foreach (EntityEntry item in modified)
+            {
+                if (item.Entity is IEntity changedOrAddedItem)
+                {
+                    if (item.State == EntityState.Added)
+                    {
+                        changedOrAddedItem.Created = DateTime.Now;
+                    }
+
+                    changedOrAddedItem.Modified = DateTime.Now;
+                    changedOrAddedItem.Version = changedOrAddedItem.Version + 1;
+                }
+            }
+            return base.SaveChangesAsync(cancellationToken);
         }
     }
 }

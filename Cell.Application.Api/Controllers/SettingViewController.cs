@@ -18,7 +18,7 @@ using Newtonsoft.Json;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingViewController : CellController<SettingView>
+    public class SettingViewController : CellController<SettingView, SettingViewCommand>
     {
         private readonly ISettingViewRepository _settingViewRepository;
         private readonly ISettingFieldInstanceRepository _settingFieldInstanceRepository;

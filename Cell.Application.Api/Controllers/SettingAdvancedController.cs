@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Cell.Core.Constants;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingAdvancedController : CellController<SettingAdvanced>
+    public class SettingAdvancedController : CellController<SettingAdvanced, SettingAdvancedCommand>
     {
         private readonly ISettingAdvancedRepository _settingAdvancedRepository;
         private readonly ISettingTreeRepository<SettingAdvanced> _treeRepository;
@@ -34,15 +35,16 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] SettingAdvancedCommand command)
         {
+            await ValidateModel(command);
             var settingAdvanced = command.To<SettingAdvanced>();
             var any = await _settingAdvancedRepository.AnyAsync();
             if (any)
             {
-                await _treeRepository.InsertNodeBeforeAnother(settingAdvanced, command.Parent);
+                await _treeRepository.InsertNodeBeforeAnother(settingAdvanced, command.Parent, ConfigurationKeys.SettingAdvancedTable);
             }
             else
             {
-                await _treeRepository.InsertFirstRootNode(settingAdvanced);
+                await _treeRepository.InsertFirstRootNode(settingAdvanced, ConfigurationKeys.SettingAdvancedTable);
             }
 
             return Ok();
@@ -60,6 +62,7 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] SettingAdvancedCommand command)
         {
+            await ValidateModel(command);
             var settingFeature = await _settingAdvancedRepository.GetByIdAsync(command.Id);
             settingFeature.Update(
                 command.Name,
@@ -85,56 +88,56 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("insertFirstRootNode")]
         public async Task<IActionResult> InsertFirstRootNode(SettingAdvancedCommand command)
         {
-            await _treeRepository.InsertFirstRootNode(command.To<SettingAdvanced>());
+            await _treeRepository.InsertFirstRootNode(command.To<SettingAdvanced>(), ConfigurationKeys.SettingAdvancedTable);
             return Ok();
         }
 
         [HttpPost("insertLastRootNode")]
         public async Task<IActionResult> InsertLastRootNode(SettingAdvancedCommand command)
         {
-            await _treeRepository.InsertLastRootNode(command.To<SettingAdvanced>());
+            await _treeRepository.InsertLastRootNode(command.To<SettingAdvanced>(), ConfigurationKeys.SettingAdvancedTable);
             return Ok();
         }
 
         [HttpPost("insertRootNodeBeforeAnother/{refNodeId}")]
         public async Task<IActionResult> InsertRootNodeBeforeAnother(SettingAdvancedCommand command, Guid refNodeId)
         {
-            await _treeRepository.InsertRootNodeBeforeAnother(command.To<SettingAdvanced>(), refNodeId);
+            await _treeRepository.InsertRootNodeBeforeAnother(command.To<SettingAdvanced>(), refNodeId, ConfigurationKeys.SettingAdvancedTable);
             return Ok();
         }
 
         [HttpPost("insertRootNodeAfterAnother/{refNodeId}")]
         public async Task<IActionResult> InsertRootNodeAfterAnother(SettingAdvancedCommand command, Guid refNodeId)
         {
-            await _treeRepository.InsertRootNodeAfterAnother(command.To<SettingAdvanced>(), refNodeId);
+            await _treeRepository.InsertRootNodeAfterAnother(command.To<SettingAdvanced>(), refNodeId, ConfigurationKeys.SettingAdvancedTable);
             return Ok();
         }
 
         [HttpPost("insertFirstChildNode/{refNodeId}")]
         public async Task<IActionResult> InsertFirstChildNode(SettingAdvancedCommand command, Guid refNodeId)
         {
-            await _treeRepository.InsertFirstChildNode(command.To<SettingAdvanced>(), refNodeId);
+            await _treeRepository.InsertFirstChildNode(command.To<SettingAdvanced>(), refNodeId, ConfigurationKeys.SettingAdvancedTable);
             return Ok();
         }
 
         [HttpPost("insertLastChildNode/{refNodeId}")]
         public async Task<IActionResult> InsertLastChildNode(SettingAdvancedCommand command, Guid refNodeId)
         {
-            await _treeRepository.InsertLastChildNode(command.To<SettingAdvanced>(), refNodeId);
+            await _treeRepository.InsertLastChildNode(command.To<SettingAdvanced>(), refNodeId, ConfigurationKeys.SettingAdvancedTable);
             return Ok();
         }
 
         [HttpPost("insertNodeBeforeAnother/{refNodeId}")]
         public async Task<IActionResult> InsertNodeBeforeAnother(SettingAdvancedCommand command, Guid refNodeId)
         {
-            await _treeRepository.InsertNodeBeforeAnother(command.To<SettingAdvanced>(), refNodeId);
+            await _treeRepository.InsertNodeBeforeAnother(command.To<SettingAdvanced>(), refNodeId, ConfigurationKeys.SettingAdvancedTable);
             return Ok();
         }
 
         [HttpPost("insertNodeAfterAnother/{refNodeId}")]
         public async Task<IActionResult> InsertNodeAfterAnother(SettingAdvancedCommand command, Guid refNodeId)
         {
-            await _treeRepository.InsertNodeAfterAnother(command.To<SettingAdvanced>(), refNodeId);
+            await _treeRepository.InsertNodeAfterAnother(command.To<SettingAdvanced>(), refNodeId, ConfigurationKeys.SettingAdvancedTable);
             return Ok();
         }
     }

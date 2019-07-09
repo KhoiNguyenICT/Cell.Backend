@@ -24,6 +24,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
+using Cell.Domain.Aggregates.SecurityUserAggregate;
 
 namespace Cell.Application.Api.Helpers
 {
@@ -89,8 +91,11 @@ namespace Cell.Application.Api.Helpers
             services.AddScoped<ISettingAdvancedRepository, SettingAdvancedRepository>();
             services.AddScoped<ISettingTreeRepository<SettingFeature>, SettingTreeRepository<SettingFeature>>();
             services.AddScoped<ISettingTreeRepository<SettingAdvanced>, SettingTreeRepository<SettingAdvanced>>();
+            services.AddScoped<ISettingTreeRepository<SecurityGroup>, SettingTreeRepository<SecurityGroup>>();
             services.AddScoped<ISettingFilterRepository, SettingFilterRepository>();
             services.AddScoped<ISettingReportRepository, SettingReportRepository>();
+            services.AddScoped<ISecurityGroupRepository, SecurityGroupRepository>();
+            services.AddScoped<ISecurityUserRepository, SecurityUserRepository>();
             return services;
         }
 
@@ -107,6 +112,8 @@ namespace Cell.Application.Api.Helpers
             service.AddTransient<IValidator<SettingAdvanced>, SettingAdvancedValidator>();
             service.AddTransient<IValidator<SettingFilter>, SettingFilterValidator>();
             service.AddTransient<IValidator<SettingReport>, SettingReportValidator>();
+            service.AddTransient<IValidator<SecurityGroup>, SecurityGroupValidator>();
+            service.AddTransient<IValidator<SecurityUser>, SecurityUserValidator>();
             return service;
         }
     }
