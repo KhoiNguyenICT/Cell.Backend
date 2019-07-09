@@ -1,4 +1,5 @@
 ﻿using Cell.Core.Constants;
+using Cell.Core.Errors;
 using Cell.Core.SeedWork;
 using Dapper;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using Cell.Core.Errors;
 
 namespace Cell.Infrastructure.Repositories
 {

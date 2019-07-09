@@ -38,7 +38,7 @@ namespace Cell.Application.Api.Helpers
             var connectionString = configuration.GetConnectionString(ConfigurationKeys.DefaultConnection);
             services.AddDbContext<AppDbContext>(options =>
                 options.UseLazyLoadingProxies()
-                    .UseSqlServer(connectionString, b =>
+                    .UseNpgsql(connectionString, b =>
                     {
                         b.MigrationsAssembly(AssemblyName);
                         b.MigrationsHistoryTable("__EFMigrationsHistory");

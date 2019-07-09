@@ -56,18 +56,16 @@ namespace Cell.Infrastructure
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             var modified = ChangeTracker.Entries().Where(e => e.State == EntityState.Modified || e.State == EntityState.Added);
-            foreach (EntityEntry item in modified)
+            foreach (var item in modified)
             {
-                if (item.Entity is IEntity changedOrAddedItem)
+                if (!(item.Entity is IEntity changedOrAddedItem)) continue;
+                if (item.State == EntityState.Added)
                 {
-                    if (item.State == EntityState.Added)
-                    {
-                        changedOrAddedItem.Created = DateTime.Now;
-                    }
-
-                    changedOrAddedItem.Modified = DateTime.Now;
-                    changedOrAddedItem.Version = changedOrAddedItem.Version + 1;
+                    changedOrAddedItem.Created = DateTime.Now;
                 }
+
+                changedOrAddedItem.Modified = DateTime.Now;
+                changedOrAddedItem.Version += 1;
             }
             return base.SaveChangesAsync(cancellationToken);
         }
