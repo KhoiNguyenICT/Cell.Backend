@@ -68,6 +68,16 @@ namespace Cell.Domain.Aggregates.SecurityUserAggregate
             Settings = settings;
         }
 
+        public void UpdateGroup(
+            Guid defaultRole,
+            Guid defaultDepartment,
+            string settings)
+        {
+            DefaultRole = defaultRole;
+            DefaultDepartment = defaultDepartment;
+            Settings = settings;
+        }
+
         public void ChangeStatus(Guid status)
         {
             Status = status;

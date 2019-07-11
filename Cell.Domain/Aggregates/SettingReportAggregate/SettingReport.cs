@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cell.Domain.Aggregates.SettingReportAggregate
 {
+    [Table("T_SETTING_REPORT")]
     public class SettingReport : Entity, IAggregateRoot
     {
         [Column("SETTINGS")]

@@ -11,6 +11,7 @@ using Cell.Domain.Aggregates.SettingViewAggregate;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Cell.Domain.Aggregates.SecurityGroupAggregate;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using Cell.Domain.Aggregates.SecurityUserAggregate;
 using Cell.Domain.Aggregates.SettingAdvancedAggregate;
 
@@ -126,6 +127,16 @@ namespace Cell.Application.Api.Mappers
             CreateMap<SecurityUser, SettingUserCommand>()
                 .ForMember(d => d.Settings, s => s.MapFrom(x => JsonConvert.DeserializeObject<SettingUserSettingsCommand>(x.Settings))); ;
             CreateMap<SettingUserCommand, SecurityUser>()
+                .ForMember(d => d.Settings, s => s.MapFrom(x => JsonConvert.SerializeObject(x.Settings)));
+
+            #endregion
+
+            #region SecurityPermission
+
+            CreateMap<SecurityPermission, SettingPermissionCommand>()
+                .ForMember(d => d.Settings, s => s.MapFrom(x => JsonConvert.DeserializeObject(x.Settings)));
+
+            CreateMap<SettingPermissionCommand, SecurityPermission>()
                 .ForMember(d => d.Settings, s => s.MapFrom(x => JsonConvert.SerializeObject(x.Settings)));
 
             #endregion

@@ -19,6 +19,74 @@ namespace Cell.Application.Api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Cell.Domain.Aggregates.SecurityGroupAggregate.SecurityGroup", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID");
+
+                    b.Property<string>("Code")
+                        .HasColumnName("CODE");
+
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnName("CREATED");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
+
+                    b.Property<string>("Description")
+                        .HasColumnName("DESCRIPTION");
+
+                    b.Property<int>("IndexLeft")
+                        .HasColumnName("INDEX_LEFT");
+
+                    b.Property<int>("IndexRight")
+                        .HasColumnName("INDEX_RIGHT");
+
+                    b.Property<int>("IsLeaf")
+                        .HasColumnName("IS_LEAF");
+
+                    b.Property<DateTimeOffset>("Modified")
+                        .HasColumnName("MODIFIED");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("NAME");
+
+                    b.Property<int>("NodeLevel")
+                        .HasColumnName("NODE_LEVEL");
+
+                    b.Property<Guid?>("Parent")
+                        .HasColumnName("PARENT");
+
+                    b.Property<string>("PathCode")
+                        .HasColumnName("PATH_CODE")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("PathId")
+                        .HasColumnName("PATH_ID")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("Settings")
+                        .HasColumnName("SETTINGS");
+
+                    b.Property<Guid>("Status")
+                        .HasColumnName("STATUS");
+
+                    b.Property<int>("Version")
+                        .HasColumnName("VERSION");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_SECURITY_GROUP");
+                });
+
             modelBuilder.Entity("Cell.Domain.Aggregates.SecurityPermissionAggregate.SecurityPermission", b =>
                 {
                     b.Property<Guid>("Id")
@@ -101,7 +169,7 @@ namespace Cell.Application.Api.Migrations
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION");
 
-                    b.Property<int>("ExpiredTime")
+                    b.Property<DateTimeOffset>("ExpiredTime")
                         .HasColumnName("EXPIRED_TIME");
 
                     b.Property<DateTimeOffset>("Modified")
@@ -382,6 +450,29 @@ namespace Cell.Application.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("T_SETTING_ADVANCED");
+                });
+
+            modelBuilder.Entity("Cell.Domain.Aggregates.SettingElasticSearch.SettingElasticSearch", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA");
+
+                    b.Property<Guid>("ObjectId")
+                        .HasColumnName("OBJECT_ID");
+
+                    b.Property<Guid>("TableId")
+                        .HasColumnName("TABLE_ID");
+
+                    b.Property<string>("TableName")
+                        .HasColumnName("TABLE_NAME");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_SETTING_ELASTIC_SEARCH");
                 });
 
             modelBuilder.Entity("Cell.Domain.Aggregates.SettingFeatureAggregate.SettingFeature", b =>
@@ -701,74 +792,6 @@ namespace Cell.Application.Api.Migrations
                     b.ToTable("T_SETTING_FORM");
                 });
 
-            modelBuilder.Entity("Cell.Domain.Aggregates.SettingGroupAggregate.SecurityGroup", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("ID");
-
-                    b.Property<string>("Code")
-                        .HasColumnName("CODE");
-
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnName("CREATED");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnName("CREATED_BY");
-
-                    b.Property<string>("Data")
-                        .HasColumnName("DATA")
-                        .HasColumnType("xml");
-
-                    b.Property<string>("Description")
-                        .HasColumnName("DESCRIPTION");
-
-                    b.Property<int>("IndexLeft")
-                        .HasColumnName("INDEX_LEFT");
-
-                    b.Property<int>("IndexRight")
-                        .HasColumnName("INDEX_RIGHT");
-
-                    b.Property<int>("IsLeaf")
-                        .HasColumnName("IS_LEAF");
-
-                    b.Property<DateTimeOffset>("Modified")
-                        .HasColumnName("MODIFIED");
-
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnName("MODIFIED_BY");
-
-                    b.Property<string>("Name")
-                        .HasColumnName("NAME");
-
-                    b.Property<int>("NodeLevel")
-                        .HasColumnName("NODE_LEVEL");
-
-                    b.Property<Guid>("Parent")
-                        .HasColumnName("PARENT");
-
-                    b.Property<string>("PathCode")
-                        .HasColumnName("PATH_CODE")
-                        .HasMaxLength(1000);
-
-                    b.Property<string>("PathId")
-                        .HasColumnName("PATH_ID")
-                        .HasMaxLength(1000);
-
-                    b.Property<string>("Settings")
-                        .HasColumnName("SETTINGS");
-
-                    b.Property<Guid>("Status")
-                        .HasColumnName("STATUS");
-
-                    b.Property<int>("Version")
-                        .HasColumnName("VERSION");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("T_SECURITY_GROUP");
-                });
-
             modelBuilder.Entity("Cell.Domain.Aggregates.SettingReportAggregate.SettingReport", b =>
                 {
                     b.Property<Guid>("Id")
@@ -818,7 +841,7 @@ namespace Cell.Application.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SettingReports");
+                    b.ToTable("T_SETTING_REPORT");
                 });
 
             modelBuilder.Entity("Cell.Domain.Aggregates.SettingTableAggregate.SettingTable", b =>

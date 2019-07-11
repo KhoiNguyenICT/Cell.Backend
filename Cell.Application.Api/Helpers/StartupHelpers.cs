@@ -25,6 +25,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
 using Cell.Domain.Aggregates.SecurityGroupAggregate;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
+using Cell.Domain.Aggregates.SecuritySessionAggregate;
 using Cell.Domain.Aggregates.SecurityUserAggregate;
 
 namespace Cell.Application.Api.Helpers
@@ -38,7 +40,7 @@ namespace Cell.Application.Api.Helpers
             var connectionString = configuration.GetConnectionString(ConfigurationKeys.DefaultConnection);
             services.AddDbContext<AppDbContext>(options =>
                 options.UseLazyLoadingProxies()
-                    .UseNpgsql(connectionString, b =>
+                    .UseSqlServer(connectionString, b =>
                     {
                         b.MigrationsAssembly(AssemblyName);
                         b.MigrationsHistoryTable("__EFMigrationsHistory");
@@ -96,6 +98,8 @@ namespace Cell.Application.Api.Helpers
             services.AddScoped<ISettingReportRepository, SettingReportRepository>();
             services.AddScoped<ISecurityGroupRepository, SecurityGroupRepository>();
             services.AddScoped<ISecurityUserRepository, SecurityUserRepository>();
+            services.AddScoped<ISecuritySessionRepository, SecuritySessionRepository>();
+            services.AddScoped<ISecurityPermissionRepository, SecurityPermissionRepository>();
             return services;
         }
 
@@ -114,6 +118,7 @@ namespace Cell.Application.Api.Helpers
             service.AddTransient<IValidator<SettingReport>, SettingReportValidator>();
             service.AddTransient<IValidator<SecurityGroup>, SecurityGroupValidator>();
             service.AddTransient<IValidator<SecurityUser>, SecurityUserValidator>();
+            service.AddTransient<IValidator<SecurityPermission>, SecurityPermissionValidator>();
             return service;
         }
     }

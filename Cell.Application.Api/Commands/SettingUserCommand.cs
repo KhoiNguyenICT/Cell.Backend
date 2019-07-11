@@ -26,7 +26,9 @@ namespace Cell.Application.Api.Commands
     {
         public SettingUserSettingsInfoCommand Information { get; set; }
         public List<SettingUserSettingGroupItemCommand> Departments { get; set; }
+        public SettingUserSettingGroupItemCommand DefaultDepartmentData { get; set; }
         public List<SettingUserSettingGroupItemCommand> Roles { get; set; }
+        public SettingUserSettingGroupItemCommand DefaultRoleData { get; set; }
     }
 
     public class SettingUserSettingsInfoCommand

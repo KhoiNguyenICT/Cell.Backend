@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cell.Application.Api.Commands;
+using Cell.Application.Api.Commands.Others;
 using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
@@ -67,6 +68,23 @@ namespace Cell.Application.Api.Controllers
                 command.Email,
                 command.Phone,
                 JsonConvert.SerializeObject(command.Settings));
+            await _securityUserRepository.CommitAsync();
+            return Ok();
+        }
+
+        [HttpPost("updateGroup")]
+        public async Task<IActionResult> UpdateGroup(UpdateGroupForUserCommand command)
+        {
+            var settingUser = await _securityUserRepository.GetByIdAsync(command.UserId);
+            var settingUserCommand = settingUser.To<SettingUserCommand>();
+            settingUserCommand.Settings.Departments = command.Departments;
+            settingUserCommand.Settings.Roles = command.Roles;
+            settingUserCommand.Settings.DefaultDepartmentData = command.DefaultDepartmentData;
+            settingUserCommand.Settings.DefaultRoleData = command.DefaultRoleData;
+            settingUser.UpdateGroup(
+                command.DefaultRole,
+                command.DefaultDepartment,
+                JsonConvert.SerializeObject(settingUserCommand.Settings));
             await _securityUserRepository.CommitAsync();
             return Ok();
         }
