@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Cell.Application.Api.Commands;
+using Cell.Core.Constants;
 using Cell.Core.Errors;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
 using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +16,11 @@ namespace Cell.Application.Api.Controllers
 
         public SettingPermissionController(
             IValidator<SecurityPermission> entityValidator, 
-            ISecurityPermissionRepository securityPermissionRepository) : base(entityValidator)
+            ISecurityPermissionRepository securityPermissionRepository,
+            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
         {
             _securityPermissionRepository = securityPermissionRepository;
+            AuthorizedType = ConfigurationKeys.SecurityPermission;
         }
 
         [HttpPost("create")]

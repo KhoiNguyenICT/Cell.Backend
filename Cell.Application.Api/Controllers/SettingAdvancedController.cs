@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cell.Core.Constants;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -19,10 +21,13 @@ namespace Cell.Application.Api.Controllers
         public SettingAdvancedController(
             IValidator<SettingAdvanced> entityValidator,
             ISettingAdvancedRepository settingAdvancedRepository,
-            ISettingTreeRepository<SettingAdvanced> treeRepository) : base(entityValidator)
+            ISettingTreeRepository<SettingAdvanced> treeRepository,
+            ISecurityPermissionRepository securityPermissionRepository,
+            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
         {
             _settingAdvancedRepository = settingAdvancedRepository;
             _treeRepository = treeRepository;
+            AuthorizedType = ConfigurationKeys.SettingAdvanced;
         }
 
         [HttpPost("getTree")]
@@ -47,6 +52,8 @@ namespace Cell.Application.Api.Controllers
                 await _treeRepository.InsertFirstRootNode(settingAdvanced, ConfigurationKeys.SettingAdvanced);
             }
 
+            await AssignPermission(settingAdvanced.Id, settingAdvanced.Name);
+            await _settingAdvancedRepository.CommitAsync();
             return Ok();
         }
 
@@ -72,9 +79,11 @@ namespace Cell.Application.Api.Controllers
         }
 
         [HttpPost("delete/{id}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            _treeRepository.RemoveNode(id);
+            await _treeRepository.RemoveNode(id);
+            await RemovePermission(id);
+            await _settingAdvancedRepository.CommitAsync();
             return Ok();
         }
 

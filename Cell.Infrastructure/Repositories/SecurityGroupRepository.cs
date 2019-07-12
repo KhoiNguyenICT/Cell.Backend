@@ -22,8 +22,9 @@ namespace Cell.Infrastructure.Repositories
 
         public async Task<List<SecurityGroup>> GetTreeAsync(string code)
         {
-            var settingGroupRoot = await _dbContext.SecurityGroups.FirstOrDefaultAsync(x => x.Code == code);
-            var settingGroupResults = new List<SecurityGroup> { settingGroupRoot };
+            var settingGroupRoot = await _dbContext.SecurityGroups.Where(x => x.Code == code).ToListAsync();
+            var settingGroupResults = new List<SecurityGroup>();
+            settingGroupResults.AddRange(settingGroupRoot);
             switch (code)
             {
                 case ConfigurationKeys.SystemRole:

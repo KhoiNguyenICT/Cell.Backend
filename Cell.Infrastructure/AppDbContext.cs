@@ -21,7 +21,6 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Cell.Domain.Aggregates.SettingElasticSearch;
 
 namespace Cell.Infrastructure
 {
@@ -47,8 +46,6 @@ namespace Cell.Infrastructure
         public DbSet<SecurityUser> SecurityUsers { get; set; }
         public DbSet<SecurityPermission> SecurityPermissions { get; set; }
         public DbSet<SecuritySession> SecuritySessions { get; set; }
-        public DbSet<SettingElasticSearch> SettingElasticSearches { get; set; }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

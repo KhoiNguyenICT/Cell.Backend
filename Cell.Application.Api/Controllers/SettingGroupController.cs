@@ -8,6 +8,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Cell.Core.Constants;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using Newtonsoft.Json;
 
 namespace Cell.Application.Api.Controllers
@@ -20,10 +21,12 @@ namespace Cell.Application.Api.Controllers
         public SettingGroupController(
             IValidator<SecurityGroup> entityValidator,
             ISecurityGroupRepository securityGroupRepository,
-            ISettingTreeRepository<SecurityGroup> treeRepository) : base(entityValidator)
+            ISettingTreeRepository<SecurityGroup> treeRepository,
+            ISecurityPermissionRepository securityPermissionRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
         {
             _securityGroupRepository = securityGroupRepository;
             _treeRepository = treeRepository;
+            AuthorizedType = ConfigurationKeys.SecurityGroup;
         }
 
         [HttpPost("create")]
@@ -40,7 +43,8 @@ namespace Cell.Application.Api.Controllers
             {
                 await _treeRepository.InsertFirstRootNode(settingGroup, ConfigurationKeys.SecurityGroup);
             }
-
+            await AssignPermission(settingGroup.Id, settingGroup.Name);
+            await _securityGroupRepository.CommitAsync();
             return Ok();
         }
 
@@ -69,6 +73,7 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             await _treeRepository.RemoveNode(id);
+            await RemovePermission(id);
             await _securityGroupRepository.CommitAsync();
             return Ok();
         }

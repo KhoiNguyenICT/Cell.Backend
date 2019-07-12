@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
+using Cell.Core.Extensions;
+using Cell.Domain.Aggregates.SecurityUserAggregate;
 
 namespace Cell.Infrastructure
 {
@@ -37,6 +39,7 @@ namespace Cell.Infrastructure
                 {
                     dbContext.Database.Migrate();
                     await InitSettingGroup();
+                    await InitSecurityUser();
                     await dbContext.SaveChangesAsync();
                 }
             });
@@ -62,6 +65,16 @@ namespace Cell.Infrastructure
                 var input = File.ReadAllText(CreatePath("setting-group-data.json"));
                 var settingGroups = JsonConvert.DeserializeObject<List<SecurityGroup>>(input);
                 _context.SecurityGroups.AddRange(settingGroups);
+            }
+        }
+
+        private async Task InitSecurityUser()
+        {
+            if (!await _context.SecurityUsers.AnyAsync())
+            {
+                var input = File.ReadAllText(CreatePath("setting-user-data.json"));
+                var settingUserModel = JsonConvert.DeserializeObject<SecurityUserModel>(input);
+                _context.SecurityUsers.Add(settingUserModel.To<SecurityUser>());
             }
         }
     }

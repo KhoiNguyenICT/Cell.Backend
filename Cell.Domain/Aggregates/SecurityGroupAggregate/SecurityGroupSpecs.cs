@@ -1,5 +1,4 @@
-﻿using System;
-using Cell.Core.Specifications;
+﻿using Cell.Core.Specifications;
 
 namespace Cell.Domain.Aggregates.SecurityGroupAggregate
 {

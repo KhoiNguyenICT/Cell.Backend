@@ -1,5 +1,7 @@
 ﻿using Cell.Application.Api.Commands;
+using Cell.Core.Constants;
 using Cell.Core.Extensions;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using Cell.Domain.Aggregates.SettingFeatureAggregate;
 using Cell.Infrastructure.Repositories;
 using FluentValidation;
@@ -8,7 +10,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Cell.Core.Constants;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -20,10 +22,13 @@ namespace Cell.Application.Api.Controllers
         public SettingFeatureController(
             IValidator<SettingFeature> entityValidator,
             ISettingFeatureRepository settingFeatureRepository,
-            ISettingTreeRepository<SettingFeature> treeRepository) : base(entityValidator)
+            ISettingTreeRepository<SettingFeature> treeRepository,
+            ISecurityPermissionRepository securityPermissionRepository,
+            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
         {
             _settingFeatureRepository = settingFeatureRepository;
             _treeRepository = treeRepository;
+            AuthorizedType = ConfigurationKeys.SettingFeature;
         }
 
         [HttpPost("create")]
@@ -41,6 +46,8 @@ namespace Cell.Application.Api.Controllers
                 await _treeRepository.InsertFirstRootNode(settingFeature, ConfigurationKeys.SettingFeature);
             }
 
+            await AssignPermission(settingFeature.Id, settingFeature.Name);
+            await _settingFeatureRepository.CommitAsync();
             return Ok();
         }
 
@@ -67,9 +74,11 @@ namespace Cell.Application.Api.Controllers
         }
 
         [HttpPost("delete/{id}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            _treeRepository.RemoveNode(id);
+            await _treeRepository.RemoveNode(id);
+            await RemovePermission(id);
+            await _settingFeatureRepository.CommitAsync();
             return Ok();
         }
 

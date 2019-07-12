@@ -128,6 +128,7 @@ namespace Cell.Application.Api.Mappers
                 .ForMember(d => d.Settings, s => s.MapFrom(x => JsonConvert.DeserializeObject<SettingUserSettingsCommand>(x.Settings))); ;
             CreateMap<SettingUserCommand, SecurityUser>()
                 .ForMember(d => d.Settings, s => s.MapFrom(x => JsonConvert.SerializeObject(x.Settings)));
+            CreateMap<SecurityUserModel, SecurityUser>();
 
             #endregion
 

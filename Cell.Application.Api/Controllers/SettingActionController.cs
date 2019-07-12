@@ -2,6 +2,7 @@
 using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using Cell.Domain.Aggregates.SettingActionAggregate;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cell.Core.Constants;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -20,9 +23,12 @@ namespace Cell.Application.Api.Controllers
 
         public SettingActionController(
             ISettingActionRepository settingActionRepository,
-            IValidator<SettingAction> entityValidator) : base(entityValidator)
+            IValidator<SettingAction> entityValidator,
+            ISecurityPermissionRepository securityPermissionRepository,
+            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
         {
             _settingActionRepository = settingActionRepository;
+            AuthorizedType = ConfigurationKeys.SettingAction;
         }
 
         [HttpPost("search")]
@@ -49,7 +55,7 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> Create([FromBody]SettingActionCommand command)
         {
             await ValidateModel(command);
-            _settingActionRepository.Add(new SettingAction(
+            var result = _settingActionRepository.Add(new SettingAction(
                 command.Code,
                 command.Name,
                 command.Description,
@@ -57,6 +63,7 @@ namespace Cell.Application.Api.Controllers
                 JsonConvert.SerializeObject(command.Settings),
                 command.TableId,
                 command.TableName));
+            await AssignPermission(result.Id, result.Name);
             await _settingActionRepository.CommitAsync();
             return Ok();
         }
@@ -84,6 +91,7 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             _settingActionRepository.Delete(id);
+            await RemovePermission(id);
             await _settingActionRepository.CommitAsync();
             return Ok();
         }

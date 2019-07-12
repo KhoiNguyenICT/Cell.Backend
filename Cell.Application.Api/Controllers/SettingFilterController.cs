@@ -2,6 +2,7 @@
 using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using Cell.Domain.Aggregates.SettingFilterAggregate;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cell.Core.Constants;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -20,9 +23,12 @@ namespace Cell.Application.Api.Controllers
 
         public SettingFilterController(
             IValidator<SettingFilter> entityValidator,
-            ISettingFilterRepository settingFilterRepository) : base(entityValidator)
+            ISettingFilterRepository settingFilterRepository,
+            ISecurityPermissionRepository securityPermissionRepository,
+            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
         {
             _settingFilterRepository = settingFilterRepository;
+            AuthorizedType = ConfigurationKeys.SettingFilter;
         }
 
         [HttpPost("search")]
@@ -55,6 +61,7 @@ namespace Cell.Application.Api.Controllers
                 JsonConvert.SerializeObject(command.Settings),
                 settingFilter.TableId,
                 settingFilter.TableName));
+            await AssignPermission(settingFilter.Id, settingFilter.Name);
             await _settingFilterRepository.CommitAsync();
             return Ok();
         }
@@ -80,6 +87,15 @@ namespace Cell.Application.Api.Controllers
         {
             var settingFilter = await _settingFilterRepository.GetByIdAsync(id);
             return Ok(settingFilter.To<SettingFilterCommand>());
+        }
+
+        [HttpPost("delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            _settingFilterRepository.Delete(id);
+            await RemovePermission(id);
+            await _settingFilterRepository.CommitAsync();
+            return Ok();
         }
     }
 }

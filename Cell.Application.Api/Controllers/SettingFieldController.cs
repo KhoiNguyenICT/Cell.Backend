@@ -3,6 +3,7 @@ using Cell.Application.Api.Commands.Others;
 using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using Cell.Domain.Aggregates.SettingFieldAggregate;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cell.Core.Constants;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -21,9 +24,12 @@ namespace Cell.Application.Api.Controllers
 
         public SettingFieldController(
             IValidator<SettingField> entityValidator,
-            ISettingFieldRepository settingFieldRepository) : base(entityValidator)
+            ISettingFieldRepository settingFieldRepository,
+            ISecurityPermissionRepository securityPermissionRepository,
+            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
         {
             _settingFieldRepository = settingFieldRepository;
+            AuthorizedType = ConfigurationKeys.SettingField;
         }
 
         [HttpPost("search")]
@@ -41,7 +47,7 @@ namespace Cell.Application.Api.Controllers
         }
 
         [HttpPost("{id}")]
-        public async Task<IActionResult> SettingTable(Guid id)
+        public async Task<IActionResult> SettingField(Guid id)
         {
             var settingField = await _settingFieldRepository.GetByIdAsync(id);
             return Ok(settingField.To<SettingFieldCommand>());
@@ -57,7 +63,7 @@ namespace Cell.Application.Api.Controllers
                 throw new CellException("Setting field name must be unique");
 
             var settingField = command.To<SettingField>();
-            _settingFieldRepository.Add(new SettingField(
+            var result = _settingFieldRepository.Add(new SettingField(
                 settingField.Name,
                 settingField.Description,
                 settingField.Code,
@@ -71,6 +77,7 @@ namespace Cell.Application.Api.Controllers
                 settingField.StorageType,
                 settingField.TableId,
                 settingField.TableName));
+            await AssignPermission(result.Id, result.Name);
             await _settingFieldRepository.CommitAsync();
             return Ok();
         }
@@ -101,6 +108,7 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             _settingFieldRepository.Delete(id);
+            await RemovePermission(id);
             await _settingFieldRepository.CommitAsync();
             return Ok();
         }

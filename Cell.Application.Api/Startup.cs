@@ -2,7 +2,6 @@
 using Cell.Core.Constants;
 using Cell.Core.Errors;
 using Cell.Core.RestClient;
-using Cell.Domain.Aggregates.SettingElasticSearch;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;

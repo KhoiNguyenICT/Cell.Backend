@@ -14,6 +14,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cell.Core.Constants;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -29,12 +32,15 @@ namespace Cell.Application.Api.Controllers
             ISettingTableRepository settingTableRepository,
             IBasedTableRepository basedTableRepository,
             ISettingFieldRepository settingFieldRepository,
-            ISettingActionRepository settingActionRepository) : base(entityValidator)
+            ISettingActionRepository settingActionRepository,
+            ISecurityPermissionRepository securityPermissionRepository,
+            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
         {
             _settingTableRepository = settingTableRepository;
             _basedTableRepository = basedTableRepository;
             _settingFieldRepository = settingFieldRepository;
             _settingActionRepository = settingActionRepository;
+            AuthorizedType = ConfigurationKeys.SettingTable;
         }
 
         [HttpPost("search")]
@@ -75,12 +81,13 @@ namespace Cell.Application.Api.Controllers
             var isInvalid = await _settingTableRepository.ExistsAsync(spec);
             if (isInvalid)
                 throw new CellException("Setting table name must be unique");
-            _settingTableRepository.Add(new SettingTable(
+            var result = _settingTableRepository.Add(new SettingTable(
                 command.Name,
                 command.Description,
                 command.Code,
                 command.BasedTable,
                 JsonConvert.SerializeObject(command.Settings)));
+            await AssignPermission(result.Id, result.Name);
             await _settingTableRepository.CommitAsync();
             return Ok();
         }

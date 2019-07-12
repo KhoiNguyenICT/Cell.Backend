@@ -2,6 +2,7 @@
 using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using Cell.Domain.Aggregates.SettingFormAggregate;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cell.Core.Constants;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -20,9 +23,12 @@ namespace Cell.Application.Api.Controllers
 
         public SettingFormController(
             ISettingFormRepository settingFormRepository,
-            IValidator<SettingForm> entityValidator) : base(entityValidator)
+            IValidator<SettingForm> entityValidator,
+            ISecurityPermissionRepository securityPermissionRepository,
+            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
         {
             _settingFormRepository = settingFormRepository;
+            AuthorizedType = ConfigurationKeys.SettingForm;
         }
 
         [HttpPost("search")]
@@ -49,13 +55,14 @@ namespace Cell.Application.Api.Controllers
             if (isInvalid)
                 throw new CellException("Setting form name must be unique");
             var settingForm = command.To<SettingForm>();
-            _settingFormRepository.Add(new SettingForm(
+            var result = _settingFormRepository.Add(new SettingForm(
                 settingForm.Name,
                 settingForm.Description,
                 settingForm.LayoutId,
                 JsonConvert.SerializeObject(command.Settings),
                 settingForm.TableId,
                 settingForm.TableName));
+            await AssignPermission(result.Id, result.Name);
             await _settingFormRepository.CommitAsync();
             return Ok();
         }
@@ -82,6 +89,15 @@ namespace Cell.Application.Api.Controllers
         {
             var settingForm = await _settingFormRepository.GetByIdAsync(id);
             return Ok(settingForm.To<SettingFormCommand>());
+        }
+
+        [HttpPost("delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            _settingFormRepository.Delete(id);
+            await RemovePermission(id);
+            await _settingFormRepository.CommitAsync();
+            return Ok();
         }
     }
 }

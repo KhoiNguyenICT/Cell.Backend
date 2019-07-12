@@ -1,6 +1,7 @@
 ﻿using Cell.Application.Api.Commands;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using Cell.Domain.Aggregates.SettingFieldInstanceAggregate;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cell.Core.Constants;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -19,9 +22,12 @@ namespace Cell.Application.Api.Controllers
 
         public SettingFieldInstanceController(
             IValidator<SettingFieldInstance> entityValidator,
-            ISettingFieldInstanceRepository settingFieldInstanceRepository) : base(entityValidator)
+            ISettingFieldInstanceRepository settingFieldInstanceRepository,
+            ISecurityPermissionRepository securityPermissionRepository,
+            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
         {
             _settingFieldInstanceRepository = settingFieldInstanceRepository;
+            AuthorizedType = ConfigurationKeys.SettingFieldInstance;
         }
 
         [HttpPost("create")]
@@ -43,6 +49,7 @@ namespace Cell.Application.Api.Controllers
                     settingFieldInstance.ParentText,
                     JsonConvert.SerializeObject(settingFieldInstanceCommand.Settings),
                     settingFieldInstance.StorageType));
+                await AssignPermission(settingFieldInstance.Id, settingFieldInstance.Name);
             }
             await _settingFieldInstanceRepository.CommitAsync();
             return Ok();
@@ -87,6 +94,7 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             _settingFieldInstanceRepository.Delete(id);
+            await RemovePermission(id);
             await _settingFieldInstanceRepository.CommitAsync();
             return Ok();
         }

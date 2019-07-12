@@ -1,6 +1,7 @@
 ﻿using Cell.Application.Api.Commands;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using Cell.Domain.Aggregates.SettingActionInstanceAggregate;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cell.Core.Constants;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -18,9 +21,12 @@ namespace Cell.Application.Api.Controllers
 
         public SettingActionInstanceController(
             IValidator<SettingActionInstance> entityValidator,
-            ISettingActionInstanceRepository settingActionInstanceRepository) : base(entityValidator)
+            ISettingActionInstanceRepository settingActionInstanceRepository,
+            ISecurityPermissionRepository securityPermissionRepository,
+            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
         {
             _settingActionInstanceRepository = settingActionInstanceRepository;
+            AuthorizedType = ConfigurationKeys.SettingActionInstance;
         }
 
         [HttpPost("create")]
@@ -30,7 +36,7 @@ namespace Cell.Application.Api.Controllers
             {
                 await ValidateModel(settingActionInstanceCommand);
                 var settingActionInstance = settingActionInstanceCommand.To<SettingActionInstance>();
-                _settingActionInstanceRepository.Add(new SettingActionInstance(
+                var result = _settingActionInstanceRepository.Add(new SettingActionInstance(
                     settingActionInstance.Name,
                     settingActionInstance.Description,
                     settingActionInstance.ContainerType,
@@ -41,6 +47,7 @@ namespace Cell.Application.Api.Controllers
                     settingActionInstance.Settings,
                     settingActionInstance.TableId,
                     settingActionInstance.TableName));
+                await AssignPermission(result.Id, result.Name);
             }
             await _settingActionInstanceRepository.CommitAsync();
             return Ok();
@@ -87,6 +94,7 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             _settingActionInstanceRepository.Delete(id);
+            await RemovePermission(id);
             await _settingActionInstanceRepository.CommitAsync();
             return Ok();
         }

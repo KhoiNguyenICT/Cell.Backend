@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Cell.Application.Api.Commands;
+﻿using Cell.Application.Api.Commands;
 using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
-using Cell.Domain.Aggregates.SettingActionAggregate;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using Cell.Domain.Aggregates.SettingActionInstanceAggregate;
-using Cell.Domain.Aggregates.SettingFieldAggregate;
 using Cell.Domain.Aggregates.SettingFieldInstanceAggregate;
 using Cell.Domain.Aggregates.SettingViewAggregate;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Cell.Core.Constants;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -26,13 +27,16 @@ namespace Cell.Application.Api.Controllers
 
         public SettingViewController(
             IValidator<SettingView> entityValidator,
-            ISettingViewRepository settingViewRepository, 
-            ISettingFieldInstanceRepository settingFieldInstanceRepository, 
-            ISettingActionInstanceRepository settingActionInstanceRepository): base(entityValidator)
+            ISecurityPermissionRepository securityPermissionRepository,
+            ISecurityGroupRepository securityGroupRepository,
+            ISettingViewRepository settingViewRepository,
+            ISettingFieldInstanceRepository settingFieldInstanceRepository,
+            ISettingActionInstanceRepository settingActionInstanceRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
         {
             _settingViewRepository = settingViewRepository;
             _settingFieldInstanceRepository = settingFieldInstanceRepository;
             _settingActionInstanceRepository = settingActionInstanceRepository;
+            AuthorizedType = ConfigurationKeys.SettingView;
         }
 
         [HttpPost("search")]
@@ -78,6 +82,7 @@ namespace Cell.Application.Api.Controllers
                 command.TableId,
                 command.TableName,
                 JsonConvert.SerializeObject(command.Settings)));
+            await AssignPermission(result.Id, result.Name);
             await _settingViewRepository.CommitAsync();
             return Ok(result.To<SettingViewCommand>());
         }
@@ -98,6 +103,7 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             _settingViewRepository.Delete(id);
+            await RemovePermission(id);
             await _settingViewRepository.CommitAsync();
             return Ok();
         }

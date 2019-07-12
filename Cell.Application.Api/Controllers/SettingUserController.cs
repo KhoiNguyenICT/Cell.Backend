@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Cell.Application.Api.Commands;
+﻿using Cell.Application.Api.Commands;
 using Cell.Application.Api.Commands.Others;
 using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using Cell.Domain.Aggregates.SecurityUserAggregate;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Cell.Core.Constants;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -19,9 +22,14 @@ namespace Cell.Application.Api.Controllers
     {
         private readonly ISecurityUserRepository _securityUserRepository;
 
-        public SettingUserController(IValidator<SecurityUser> entityValidator, ISecurityUserRepository securityUserRepository) : base(entityValidator)
+        public SettingUserController(
+            IValidator<SecurityUser> entityValidator,
+            ISecurityPermissionRepository securityPermissionRepository,
+            ISecurityGroupRepository securityGroupRepository,
+            ISecurityUserRepository securityUserRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
         {
             _securityUserRepository = securityUserRepository;
+            AuthorizedType = ConfigurationKeys.SecurityUser;
         }
 
         [HttpPost("search")]
@@ -46,7 +54,7 @@ namespace Cell.Application.Api.Controllers
             var isInvalid = await _securityUserRepository.ExistsAsync(spec);
             if (isInvalid)
                 throw new CellException("User name or account must be unique");
-            _securityUserRepository.Add(new SecurityUser(
+            var result = _securityUserRepository.Add(new SecurityUser(
                 command.Code,
                 command.Description,
                 command.Account,
@@ -54,6 +62,7 @@ namespace Cell.Application.Api.Controllers
                 command.Password.ToSha256(),
                 command.Phone,
                 JsonConvert.SerializeObject(command.Settings)));
+            await AssignPermission(result.Id, result.Account);
             await _securityUserRepository.CommitAsync();
             return Ok();
         }
