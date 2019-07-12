@@ -34,11 +34,11 @@ namespace Cell.Application.Api.Controllers
             var any = await _securityGroupRepository.AnyAsync();
             if (any)
             {
-                await _treeRepository.InsertLastChildNode(settingGroup, command.Parent, ConfigurationKeys.SettingGroupTable);
+                await _treeRepository.InsertLastChildNode(settingGroup, command.Parent, ConfigurationKeys.SecurityGroup);
             }
             else
             {
-                await _treeRepository.InsertFirstRootNode(settingGroup, ConfigurationKeys.SettingGroupTable);
+                await _treeRepository.InsertFirstRootNode(settingGroup, ConfigurationKeys.SecurityGroup);
             }
 
             return Ok();

@@ -34,11 +34,11 @@ namespace Cell.Application.Api.Controllers
             var any = await _settingFeatureRepository.AnyAsync();
             if (any)
             {
-                await _treeRepository.InsertNodeBeforeAnother(settingFeature, command.Parent, ConfigurationKeys.SettingFeatureTable);
+                await _treeRepository.InsertNodeBeforeAnother(settingFeature, command.Parent, ConfigurationKeys.SettingFeature);
             }
             else
             {
-                await _treeRepository.InsertFirstRootNode(settingFeature, ConfigurationKeys.SettingFeatureTable);
+                await _treeRepository.InsertFirstRootNode(settingFeature, ConfigurationKeys.SettingFeature);
             }
 
             return Ok();

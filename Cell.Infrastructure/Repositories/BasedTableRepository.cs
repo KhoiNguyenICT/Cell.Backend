@@ -86,6 +86,7 @@ namespace Cell.Infrastructure.Repositories
                 {
                     var settingTable = await _context.SettingTables.FirstOrDefaultAsync(x => x.BasedTable == searchBasedTable.Name);
                     searchBasedTable.Id = settingTable.Id;
+                    searchBasedTable.Code = settingTable.Code;
                     dataSearchBasedTable.Add(searchBasedTable);
                 }
                 return searchBasedTables.ToList();

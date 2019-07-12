@@ -16,11 +16,20 @@
     "Parent": "00000000-0000-0000-0000-000000000000"
   },
   {
+    "Id": "70886CC0-5566-4B48-8B2A-E9818CFCB5D7",
     "Name": "Role",
     "Description": "Role",
     "Code": "SYSTEM.ROLE",
     "IndexLeft": 5,
-    "IndexRight": 6,
+    "IndexRight": 8,
     "Parent": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Name": "System",
+    "Description": "System",
+    "Code": "ROLE",
+    "IndexLeft": 6,
+    "IndexRight": 7,
+    "Parent": "70886CC0-5566-4B48-8B2A-E9818CFCB5D7"
   }
 ]

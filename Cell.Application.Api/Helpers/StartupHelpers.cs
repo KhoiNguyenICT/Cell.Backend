@@ -3,6 +3,10 @@ using Cell.Application.Api.Mappers;
 using Cell.Core.Constants;
 using Cell.Core.Extensions;
 using Cell.Domain.Aggregates.BasedTableAggregate;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
+using Cell.Domain.Aggregates.SecuritySessionAggregate;
+using Cell.Domain.Aggregates.SecurityUserAggregate;
 using Cell.Domain.Aggregates.SettingActionAggregate;
 using Cell.Domain.Aggregates.SettingActionInstanceAggregate;
 using Cell.Domain.Aggregates.SettingAdvancedAggregate;
@@ -24,10 +28,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
-using Cell.Domain.Aggregates.SecurityGroupAggregate;
-using Cell.Domain.Aggregates.SecurityPermissionAggregate;
-using Cell.Domain.Aggregates.SecuritySessionAggregate;
-using Cell.Domain.Aggregates.SecurityUserAggregate;
 
 namespace Cell.Application.Api.Helpers
 {
@@ -48,7 +48,7 @@ namespace Cell.Application.Api.Helpers
             return services;
         }
 
-        public static IServiceCollection AddMapper(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddMapper(this IServiceCollection services)
         {
             var mapperConfig = new MapperConfiguration(cfg =>
             {

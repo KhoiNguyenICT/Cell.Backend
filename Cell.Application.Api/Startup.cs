@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Cell.Application.Api.Helpers;
+﻿using Cell.Application.Api.Helpers;
 using Cell.Core.Constants;
 using Cell.Core.Errors;
 using Cell.Core.RestClient;
+using Cell.Domain.Aggregates.SettingElasticSearch;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -16,7 +16,8 @@ namespace Cell.Application.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(
+            IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -28,7 +29,7 @@ namespace Cell.Application.Api
             services
                 .AddCustomDbContext(Configuration)
                 .AddRouting(options => options.LowercaseUrls = true)
-                .AddMapper(Configuration)
+                .AddMapper()
                 .ConfigIoc()
                 .ConfigValidator()
                 .AddCors()

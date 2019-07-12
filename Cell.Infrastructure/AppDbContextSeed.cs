@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.IO;
+﻿using Cell.Domain.Aggregates.SecurityGroupAggregate;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
-using Cell.Domain.Aggregates.SecurityGroupAggregate;
-using Cell.Domain.Aggregates.SettingActionAggregate;
-using Cell.Domain.Aggregates.SettingFeatureAggregate;
-using Cell.Domain.Aggregates.SettingFieldAggregate;
-using Cell.Domain.Aggregates.SettingTableAggregate;
 using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Cell.Infrastructure
 {
@@ -21,7 +17,8 @@ namespace Cell.Infrastructure
     {
         private readonly AppDbContext _context;
 
-        public AppDbContextSeed(AppDbContext context)
+        public AppDbContextSeed(
+            AppDbContext context)
         {
             _context = context;
         }
@@ -30,7 +27,6 @@ namespace Cell.Infrastructure
         {
             return "Setup/" + jsonFile;
         }
-
 
         public async Task SeedAsync(AppDbContext dbContext, IHostingEnvironment env, ILogger<AppDbContextSeed> logger)
         {
@@ -41,11 +37,6 @@ namespace Cell.Infrastructure
                 {
                     dbContext.Database.Migrate();
                     await InitSettingGroup();
-                    //await InitSettingTable();
-                    //await InitSettingField();
-                    //await InitSettingAction();
-                    //await InitSettingFeature();
-
                     await dbContext.SaveChangesAsync();
                 }
             });
@@ -62,46 +53,6 @@ namespace Cell.Infrastructure
                         logger.LogTrace($"[{prefix}] Exception {exception.GetType().Name} with message ${exception.Message} detected on attempt {retry} of {retries}");
                     }
                 );
-        }
-
-        private async Task InitSettingTable()
-        {
-            if (!await _context.SettingTables.AnyAsync())
-            {
-                var input = File.ReadAllText(CreatePath("setting-table-data.json"));
-                var settingTables = JsonConvert.DeserializeObject<List<SettingTable>>(input);
-                _context.SettingTables.AddRange(settingTables);
-            }
-        }
-
-        private async Task InitSettingField()
-        {
-            if (!await _context.SettingFields.AnyAsync())
-            {
-                var input = File.ReadAllText(CreatePath("setting-field-data.json"));
-                var settingFields = JsonConvert.DeserializeObject<List<SettingField>>(input);
-                _context.SettingFields.AddRange(settingFields);
-            }
-        }
-
-        private async Task InitSettingAction()
-        {
-            if (!await _context.SettingActions.AnyAsync())
-            {
-                var input = File.ReadAllText(CreatePath("setting-action-data.json"));
-                var settingActions = JsonConvert.DeserializeObject<List<SettingAction>>(input);
-                _context.SettingActions.AddRange(settingActions);
-            }
-        }
-
-        private async Task InitSettingFeature()
-        {
-            if (!await _context.SettingFeatures.AnyAsync())
-            {
-                var input = File.ReadAllText(CreatePath("setting-feature-data.json"));
-                var settingFeatures = JsonConvert.DeserializeObject<List<SettingFeature>>(input);
-                _context.SettingFeatures.AddRange(settingFeatures);
-            }
         }
 
         private async Task InitSettingGroup()
