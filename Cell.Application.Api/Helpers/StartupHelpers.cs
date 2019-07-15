@@ -28,6 +28,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
+using Newtonsoft.Json;
 
 namespace Cell.Application.Api.Helpers
 {
@@ -75,6 +76,19 @@ namespace Cell.Application.Api.Helpers
                 c.SwaggerEndpoint("/swagger/v5/swagger.json", "CELL APPLICATION");
             });
             return app;
+        }
+
+        public static IServiceCollection ConfigSignalR(this IServiceCollection service, IConfiguration configuration)
+        {
+            service.AddSignalR()
+                .AddJsonProtocol(options =>
+                {
+                    options.PayloadSerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                    options.PayloadSerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    options.PayloadSerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+                    options.PayloadSerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+                });
+            return service;
         }
 
         public static IServiceCollection ConfigIoc(this IServiceCollection services)

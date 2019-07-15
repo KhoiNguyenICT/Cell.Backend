@@ -1,6 +1,7 @@
 ﻿using Cell.Application.Api.Commands;
 using Cell.Application.Api.Commands.Others;
 using Cell.Core.Extensions;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using Cell.Domain.Aggregates.SecuritySessionAggregate;
 using Cell.Domain.Aggregates.SecurityUserAggregate;
 using Microsoft.AspNetCore.Authorization;
@@ -10,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,14 +24,17 @@ namespace Cell.Application.Api.Controllers
         private readonly ISecurityUserRepository _securityUserRepository;
         private readonly ISecuritySessionRepository _securitySessionRepository;
         private readonly IConfiguration _config;
+        private readonly ISecurityPermissionRepository _securityPermissionRepository;
 
         public AuthenticationController(
             ISecurityUserRepository securityUserRepository,
-            IConfiguration config, ISecuritySessionRepository securitySessionRepository)
+            IConfiguration config, ISecuritySessionRepository securitySessionRepository,
+            ISecurityPermissionRepository securityPermissionRepository)
         {
             _securityUserRepository = securityUserRepository;
             _config = config;
             _securitySessionRepository = securitySessionRepository;
+            _securityPermissionRepository = securityPermissionRepository;
         }
 
         [HttpPost("login")]
@@ -44,15 +49,21 @@ namespace Cell.Application.Api.Controllers
             var result = user.EncryptedPassword == command.Password.ToSha256();
             if (!result) return new BadRequestObjectResult("Login failed");
             var userCommand = user.To<SettingUserCommand>();
+            var roles = userCommand.Settings.Roles;
+            var roleIds = roles.Select(x => x.Id).ToList();
+            var permission = _securityPermissionRepository
+                .QueryAsync()
+                .Where(x => roleIds.Contains(x.AuthorizedId))
+                .Select(x => x.ObjectId);
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.UniqueName, userCommand.Account),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim("fullName", userCommand.Settings.Information.FullName),
-                new Claim("roles", string.Join(";", JsonConvert.SerializeObject(userCommand.Settings.Roles))),
+                new Claim("roles", string.Join(";", JsonConvert.SerializeObject(roles))),
                 new Claim("departments", string.Join(";", JsonConvert.SerializeObject(userCommand.Settings.Departments))),
-                new Claim("permissions", ""),
+                new Claim("permissions", string.Join(";", permission)),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));

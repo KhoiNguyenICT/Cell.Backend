@@ -2,6 +2,7 @@
 using Cell.Core.Constants;
 using Cell.Core.Errors;
 using Cell.Core.RestClient;
+using Cell.Core.SignalR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -34,6 +35,7 @@ namespace Cell.Application.Api
                 .AddCors()
                 .ConfigSwagger()
                 .AddRestClient()
+                .ConfigSignalR(Configuration)
                 .AddCors(options =>
                 {
                     options.AddPolicy("CorsPolicy",
@@ -69,6 +71,10 @@ namespace Cell.Application.Api
             });
             app.UseHttpMethodOverride();
             app.UseCors("CorsPolicy");
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<MainHub>("/cell");
+            });
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
             app.Swagger();
