@@ -57,13 +57,16 @@ namespace Cell.Application.Api.Controllers
                 .Select(x => x.ObjectId);
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.UniqueName, userCommand.Account),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim("email", user.Email),
+                new Claim("account", userCommand.Account),
+                new Claim("id", user.Id.ToString()),
                 new Claim("fullName", userCommand.Settings.Information.FullName),
                 new Claim("roles", string.Join(";", JsonConvert.SerializeObject(roles))),
                 new Claim("departments", string.Join(";", JsonConvert.SerializeObject(userCommand.Settings.Departments))),
                 new Claim("permissions", string.Join(";", permission)),
+                new Claim("session", userCommand.Id.ToString()), 
+                new Claim("defaultDepartment", JsonConvert.SerializeObject(userCommand.Settings.DefaultDepartmentData)),
+                new Claim("defaultRole", JsonConvert.SerializeObject(userCommand.Settings.DefaultRoleData)),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
@@ -94,7 +97,7 @@ namespace Cell.Application.Api.Controllers
                     OsVersion = command.OsVersion
                 })));
             await _securitySessionRepository.CommitAsync();
-            return Ok(session.Id);
+            return Ok(new {token = token});
         }
     }
 }

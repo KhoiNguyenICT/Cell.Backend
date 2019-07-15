@@ -11,7 +11,7 @@ namespace Cell.Core.SignalR
     {
         private readonly ILogger<MainHub> _logger;
 
-        public MainHub(ILogger<MainHub> logger)
+        protected MainHub(ILogger<MainHub> logger)
         {
             _logger = logger;
         }
