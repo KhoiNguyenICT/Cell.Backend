@@ -1,17 +1,20 @@
 ﻿using Cell.Application.Api.Commands;
+using Cell.Core.Constants;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
 using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using Cell.Domain.Aggregates.SettingActionInstanceAggregate;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cell.Core.Constants;
-using Cell.Domain.Aggregates.SecurityGroupAggregate;
+using Cell.Domain.Aggregates.SecurityUserAggregate;
+using Microsoft.AspNetCore.Http;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -23,7 +26,14 @@ namespace Cell.Application.Api.Controllers
             IValidator<SettingActionInstance> entityValidator,
             ISettingActionInstanceRepository settingActionInstanceRepository,
             ISecurityPermissionRepository securityPermissionRepository,
-            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
+            ISecurityGroupRepository securityGroupRepository,
+            IHttpContextAccessor httpContextAccessor,
+            ISecurityUserRepository securityUserRepository) : base(
+            entityValidator,
+            securityPermissionRepository,
+            securityGroupRepository,
+            httpContextAccessor,
+            securityUserRepository)
         {
             _settingActionInstanceRepository = settingActionInstanceRepository;
             AuthorizedType = ConfigurationKeys.SettingActionInstance;

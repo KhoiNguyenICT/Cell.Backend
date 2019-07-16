@@ -1,7 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using Cell.Core.SeedWork;
+﻿using Cell.Core.SeedWork;
 using Cell.Domain.Aggregates.SecurityPermissionAggregate;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Cell.Infrastructure.Repositories
 {
@@ -11,12 +13,12 @@ namespace Cell.Infrastructure.Repositories
         {
         }
 
-        public async Task<bool> VerifyPermission(Guid authorizedId, Guid objectId)
+        public async Task<List<Guid>> QueryByTable(string tableName, Guid groupId)
         {
-            var spec = SecurityPermissionSpecs.GetByAuthorizedIdSpec(authorizedId)
-                .And(SecurityPermissionSpecs.GetByObjectIdSpec(objectId));
-            var result = await GetSingleAsync(spec);
-            return result != null;
+            var spec = SecurityPermissionSpecs.GetByTableTargetSpec(tableName)
+                .And(SecurityPermissionSpecs.GetByGroupIdSpec(groupId));
+            var result = await GetManyAsync(spec);
+            return result.Select(x => x.ObjectId).ToList();
         }
     }
 }

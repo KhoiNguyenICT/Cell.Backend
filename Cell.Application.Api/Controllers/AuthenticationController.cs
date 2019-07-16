@@ -4,7 +4,6 @@ using Cell.Core.Extensions;
 using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using Cell.Domain.Aggregates.SecuritySessionAggregate;
 using Cell.Domain.Aggregates.SecurityUserAggregate;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -38,7 +37,6 @@ namespace Cell.Application.Api.Controllers
         }
 
         [HttpPost("login")]
-        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginCommand command)
         {
             if (!ModelState.IsValid) return new BadRequestObjectResult(command);
@@ -64,7 +62,6 @@ namespace Cell.Application.Api.Controllers
                 new Claim("roles", string.Join(";", JsonConvert.SerializeObject(roles))),
                 new Claim("departments", string.Join(";", JsonConvert.SerializeObject(userCommand.Settings.Departments))),
                 new Claim("permissions", string.Join(";", permission)),
-                new Claim("session", userCommand.Id.ToString()), 
                 new Claim("defaultDepartment", JsonConvert.SerializeObject(userCommand.Settings.DefaultDepartmentData)),
                 new Claim("defaultRole", JsonConvert.SerializeObject(userCommand.Settings.DefaultRoleData)),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
@@ -78,9 +75,10 @@ namespace Cell.Application.Api.Controllers
                 expires: DateTime.UtcNow.AddHours(int.Parse(_config["ExpiredTime"])),
                 signingCredentials: credentials);
             var token = new JwtSecurityTokenHandler().WriteToken(tokenNotEncrypt);
+            var tmp = DateTimeOffset.Now + TimeSpan.FromHours(int.Parse(_config["ExpiredTime"]));
             var session = _securitySessionRepository.Add(new SecuritySession(
-                DateTime.UtcNow.AddHours(int.Parse(_config["ExpiredTime"])),
-                DateTimeOffset.Now,
+                DateTimeOffset.Now + TimeSpan.FromHours(int.Parse(_config["ExpiredTime"])),
+                DateTimeOffset.Now, 
                 user.Id,
                 user.Account,
                 JsonConvert.SerializeObject(new SettingSessionSettingCommand
@@ -97,7 +95,14 @@ namespace Cell.Application.Api.Controllers
                     OsVersion = command.OsVersion
                 })));
             await _securitySessionRepository.CommitAsync();
-            return Ok(new {token = token});
+            return Ok(new {token = token, session = session.Id});
+        }
+
+        [HttpPost("verifySession/{sessionId}")]
+        public async Task<IActionResult> VerifySession(Guid sessionId)
+        {
+            var result = await _securitySessionRepository.VerifySession(sessionId);
+            return Ok(result);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Cell.Application.Api.Commands;
 using Cell.Application.Api.Commands.Others;
+using Cell.Core.Constants;
 using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
@@ -7,6 +8,7 @@ using Cell.Domain.Aggregates.SecurityGroupAggregate;
 using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using Cell.Domain.Aggregates.SecurityUserAggregate;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -14,7 +16,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cell.Core.Constants;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -26,7 +27,13 @@ namespace Cell.Application.Api.Controllers
             IValidator<SecurityUser> entityValidator,
             ISecurityPermissionRepository securityPermissionRepository,
             ISecurityGroupRepository securityGroupRepository,
-            ISecurityUserRepository securityUserRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
+            IHttpContextAccessor httpContextAccessor,
+            ISecurityUserRepository securityUserRepository) : base(
+            entityValidator,
+            securityPermissionRepository,
+            securityGroupRepository,
+            httpContextAccessor,
+            securityUserRepository)
         {
             _securityUserRepository = securityUserRepository;
             AuthorizedType = ConfigurationKeys.SecurityUser;
@@ -36,7 +43,9 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> Search(SearchCommand command)
         {
             var spec = SecurityUserSpecs.SearchByQuery(command.Query);
-            var queryable = _securityUserRepository.QueryAsync(spec, command.Sorts);
+            var objectIds = await ObjectIds(AuthorizedType);
+            var queryable = _securityUserRepository.QueryAsync(spec, command.Sorts)
+                .Where(x => objectIds.Contains(x.Id));
             var items = await queryable.Skip(command.Skip).Take(command.Take).ToListAsync();
             return Ok(new QueryResult<SettingUserCommand>
             {

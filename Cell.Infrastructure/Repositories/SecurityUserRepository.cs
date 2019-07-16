@@ -1,4 +1,8 @@
-﻿using Cell.Core.SeedWork;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Cell.Core.Extensions;
+using Cell.Core.SeedWork;
 using Cell.Domain.Aggregates.SecurityUserAggregate;
 
 namespace Cell.Infrastructure.Repositories

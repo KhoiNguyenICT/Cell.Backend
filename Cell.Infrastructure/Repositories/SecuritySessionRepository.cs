@@ -15,7 +15,7 @@ namespace Cell.Infrastructure.Repositories
         {
             var spec = SecuritySessionSpecs.GetBySessionIdSpec(id);
             var result = await GetSingleAsync(spec);
-            var timeExists = (result.ExpiredTime - DateTimeOffset.Now).Seconds;
+            var timeExists = (result.ExpiredTime - result.SigninTime).Seconds;
             return timeExists > 0;
         }
     }

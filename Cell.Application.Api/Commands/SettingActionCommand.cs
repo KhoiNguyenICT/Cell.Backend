@@ -14,7 +14,6 @@ namespace Cell.Application.Api.Commands
 
         public Guid TableId { get; set; }
 
-        [StringLength(200)]
         public string TableName { get; set; }
     }
 
@@ -30,7 +29,7 @@ namespace Cell.Application.Api.Commands
     {
         public string StepType { get; set; }
         public string Description { get; set; }
-        public SettingActionSettingStepParameterConfigurationCommand Parameters { get; set; }
+        public List<SettingActionSettingStepParameterConfigurationCommand> Parameters { get; set; }
     }
 
     public class SettingActionSettingStepParameterConfigurationCommand

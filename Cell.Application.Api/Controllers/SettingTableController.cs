@@ -1,12 +1,17 @@
 ﻿using Cell.Application.Api.Commands;
+using Cell.Core.Constants;
 using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
 using Cell.Domain.Aggregates.BasedTableAggregate;
+using Cell.Domain.Aggregates.SecurityGroupAggregate;
+using Cell.Domain.Aggregates.SecurityPermissionAggregate;
+using Cell.Domain.Aggregates.SecurityUserAggregate;
 using Cell.Domain.Aggregates.SettingActionAggregate;
 using Cell.Domain.Aggregates.SettingFieldAggregate;
 using Cell.Domain.Aggregates.SettingTableAggregate;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -14,9 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cell.Core.Constants;
-using Cell.Domain.Aggregates.SecurityGroupAggregate;
-using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -34,7 +36,14 @@ namespace Cell.Application.Api.Controllers
             ISettingFieldRepository settingFieldRepository,
             ISettingActionRepository settingActionRepository,
             ISecurityPermissionRepository securityPermissionRepository,
-            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
+            ISecurityGroupRepository securityGroupRepository,
+            IHttpContextAccessor httpContextAccessor,
+            ISecurityUserRepository securityUserRepository) : base(
+            entityValidator,
+            securityPermissionRepository,
+            securityGroupRepository,
+            httpContextAccessor,
+            securityUserRepository)
         {
             _settingTableRepository = settingTableRepository;
             _basedTableRepository = basedTableRepository;
@@ -48,7 +57,9 @@ namespace Cell.Application.Api.Controllers
         {
             var settingTableItems = new List<SettingTableCommand>();
             var spec = SettingTableSpecs.SearchByQuery(command.Query);
-            var queryable = _settingTableRepository.QueryAsync(spec, command.Sorts);
+            var objectIds = await ObjectIds(AuthorizedType);
+            var queryable = _settingTableRepository.QueryAsync(spec, command.Sorts)
+                .Where(x => objectIds.Contains(x.Id));
             var items = await queryable.Skip(command.Skip).Take(command.Take).ToListAsync();
             foreach (var settingTable in items)
             {

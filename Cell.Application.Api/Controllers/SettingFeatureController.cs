@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cell.Domain.Aggregates.SecurityGroupAggregate;
+using Cell.Domain.Aggregates.SecurityUserAggregate;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -24,7 +27,14 @@ namespace Cell.Application.Api.Controllers
             ISettingFeatureRepository settingFeatureRepository,
             ISettingTreeRepository<SettingFeature> treeRepository,
             ISecurityPermissionRepository securityPermissionRepository,
-            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
+            ISecurityGroupRepository securityGroupRepository,
+            IHttpContextAccessor httpContextAccessor,
+            ISecurityUserRepository securityUserRepository) : base(
+            entityValidator,
+            securityPermissionRepository,
+            securityGroupRepository,
+            httpContextAccessor,
+            securityUserRepository)
         {
             _settingFeatureRepository = settingFeatureRepository;
             _treeRepository = treeRepository;

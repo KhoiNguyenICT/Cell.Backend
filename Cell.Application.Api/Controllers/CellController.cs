@@ -7,12 +7,15 @@ using Cell.Core.Specifications;
 using Cell.Domain.Aggregates.SecurityGroupAggregate;
 using Cell.Domain.Aggregates.SecurityPermissionAggregate;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cell.Domain.Aggregates.SecurityUserAggregate;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -26,14 +29,22 @@ namespace Cell.Application.Api.Controllers
         private readonly ISecurityPermissionRepository _securityPermissionRepository;
         private readonly ISecurityGroupRepository _securityGroupRepository;
         protected string AuthorizedType;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ISecurityUserRepository _securityUserRepository;
+        private Guid CurrentAccountId => Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Account"]);
+        public Guid CurrentSessionId => Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Session"]);
 
         public CellController(IValidator<TEntity> entityValidator,
             ISecurityPermissionRepository securityPermissionRepository,
-            ISecurityGroupRepository securityGroupRepository)
+            ISecurityGroupRepository securityGroupRepository,
+            IHttpContextAccessor httpContextAccessor, 
+            ISecurityUserRepository securityUserRepository)
         {
             _entityValidator = entityValidator;
             _securityPermissionRepository = securityPermissionRepository;
             _securityGroupRepository = securityGroupRepository;
+            _httpContextAccessor = httpContextAccessor;
+            _securityUserRepository = securityUserRepository;
         }
 
         public override BadRequestObjectResult BadRequest(ModelStateDictionary modelState)
@@ -79,6 +90,13 @@ namespace Cell.Application.Api.Controllers
                 objectName,
                 null,
                 ConfigurationKeys.SecurityGroup));
+            _securityPermissionRepository.Add(new SecurityPermission(
+                CurrentAccountId,
+                AuthorizedType,
+                objectId,
+                objectName,
+                null,
+                ConfigurationKeys.SecurityUser));
         }
 
         protected async Task RemovePermission(Guid objectId)
@@ -87,6 +105,17 @@ namespace Cell.Application.Api.Controllers
             var permission = await _securityPermissionRepository.GetSingleAsync(permissionSpec);
             _securityPermissionRepository.Delete(permission.Id);
             await _securityPermissionRepository.CommitAsync();
+        }
+
+        public async Task<List<Guid>> ObjectIds(string tableName)
+        {
+            var user = await _securityUserRepository.GetByIdAsync(CurrentAccountId);
+            var userCommand = user.To<SettingUserCommand>();
+            var authorizedIds = userCommand.Settings.Roles.Select(x => x.Id).ToList();
+            authorizedIds.Add(CurrentAccountId);
+            var permissions = await _securityPermissionRepository.QueryAsync()
+                .Where(x => authorizedIds.Contains(x.AuthorizedId)).ToListAsync();
+            return permissions.Select(x=>x.ObjectId).Distinct().ToList();
         }
     }
 }

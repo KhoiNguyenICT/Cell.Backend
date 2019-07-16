@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Cell.Core.Constants;
 using Cell.Domain.Aggregates.SecurityPermissionAggregate;
+using Cell.Domain.Aggregates.SecurityUserAggregate;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
 
 namespace Cell.Application.Api.Controllers
@@ -22,7 +25,14 @@ namespace Cell.Application.Api.Controllers
             IValidator<SecurityGroup> entityValidator,
             ISecurityGroupRepository securityGroupRepository,
             ISettingTreeRepository<SecurityGroup> treeRepository,
-            ISecurityPermissionRepository securityPermissionRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
+            ISecurityPermissionRepository securityPermissionRepository,
+            IHttpContextAccessor httpContextAccessor,
+            ISecurityUserRepository securityUserRepository) : base(
+            entityValidator,
+            securityPermissionRepository,
+            securityGroupRepository,
+            httpContextAccessor,
+            securityUserRepository)
         {
             _securityGroupRepository = securityGroupRepository;
             _treeRepository = treeRepository;

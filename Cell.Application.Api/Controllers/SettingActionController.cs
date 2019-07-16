@@ -14,6 +14,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cell.Core.Constants;
 using Cell.Domain.Aggregates.SecurityGroupAggregate;
+using Cell.Domain.Aggregates.SecurityUserAggregate;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -25,7 +28,14 @@ namespace Cell.Application.Api.Controllers
             ISettingActionRepository settingActionRepository,
             IValidator<SettingAction> entityValidator,
             ISecurityPermissionRepository securityPermissionRepository,
-            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
+            ISecurityGroupRepository securityGroupRepository,
+            IHttpContextAccessor httpContextAccessor,
+            ISecurityUserRepository securityUserRepository) : base(
+            entityValidator, 
+            securityPermissionRepository, 
+            securityGroupRepository, 
+            httpContextAccessor,
+            securityUserRepository)
         {
             _settingActionRepository = settingActionRepository;
             AuthorizedType = ConfigurationKeys.SettingAction;
@@ -34,8 +44,11 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("search")]
         public async Task<IActionResult> Search(SearchSettingActionCommand command)
         {
-            var spec = SettingActionSpecs.SearchByQuery(command.Query).And(SettingActionSpecs.SearchByTableId(command.TableId));
-            var queryable = _settingActionRepository.QueryAsync(spec, command.Sorts);
+            var spec = SettingActionSpecs.SearchByQuery(command.Query)
+                .And(SettingActionSpecs.SearchByTableId(command.TableId));
+            var objectIds = await ObjectIds(AuthorizedType);
+            var queryable = _settingActionRepository.QueryAsync(spec, command.Sorts)
+                .Where(x => objectIds.Contains(x.Id));
             var items = await queryable.Skip(command.Skip).Take(command.Take).ToListAsync();
             return Ok(new QueryResult<SettingActionCommand>
             {

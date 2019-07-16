@@ -1,4 +1,5 @@
 ﻿using Cell.Application.Api.Commands;
+using Cell.Core.Constants;
 using Cell.Core.Errors;
 using Cell.Core.Extensions;
 using Cell.Core.Repositories;
@@ -8,6 +9,7 @@ using Cell.Domain.Aggregates.SettingActionInstanceAggregate;
 using Cell.Domain.Aggregates.SettingFieldInstanceAggregate;
 using Cell.Domain.Aggregates.SettingViewAggregate;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -15,7 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cell.Core.Constants;
+using Cell.Domain.Aggregates.SecurityUserAggregate;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -31,7 +33,14 @@ namespace Cell.Application.Api.Controllers
             ISecurityGroupRepository securityGroupRepository,
             ISettingViewRepository settingViewRepository,
             ISettingFieldInstanceRepository settingFieldInstanceRepository,
-            ISettingActionInstanceRepository settingActionInstanceRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
+            ISettingActionInstanceRepository settingActionInstanceRepository,
+            IHttpContextAccessor httpContextAccessor,
+            ISecurityUserRepository securityUserRepository) : base(
+            entityValidator,
+            securityPermissionRepository,
+            securityGroupRepository,
+            httpContextAccessor,
+            securityUserRepository)
         {
             _settingViewRepository = settingViewRepository;
             _settingFieldInstanceRepository = settingFieldInstanceRepository;

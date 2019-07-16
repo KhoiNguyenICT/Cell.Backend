@@ -28,6 +28,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Newtonsoft.Json;
 
 namespace Cell.Application.Api.Helpers
@@ -114,6 +117,7 @@ namespace Cell.Application.Api.Helpers
             services.AddScoped<ISecurityUserRepository, SecurityUserRepository>();
             services.AddScoped<ISecuritySessionRepository, SecuritySessionRepository>();
             services.AddScoped<ISecurityPermissionRepository, SecurityPermissionRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             return services;
         }
 

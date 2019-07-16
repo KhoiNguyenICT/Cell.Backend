@@ -17,7 +17,7 @@
         public const string SecurityPermission = "T_SECURITY_PERMISSION";
         public const string SecuritySession = "T_SECURITY_SESSION";
         public const string SecurityUser = "T_SECURITY_USER";
-        public const string SettingAction = "T_SETTING_Action";
+        public const string SettingAction = "T_SETTING_ACTION";
         public const string SettingActionInstance = "T_SETTING_ACTION_INSTANCE";
         public const string SettingAdvanced = "T_SETTING_ADVANCED";
         public const string SettingFeature = "T_SETTING_FEATURE";

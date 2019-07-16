@@ -1,12 +1,14 @@
-﻿using System.Threading.Tasks;
-using Cell.Application.Api.Commands;
+﻿using Cell.Application.Api.Commands;
 using Cell.Core.Constants;
 using Cell.Core.Errors;
 using Cell.Domain.Aggregates.SecurityGroupAggregate;
 using Cell.Domain.Aggregates.SecurityPermissionAggregate;
+using Cell.Domain.Aggregates.SecurityUserAggregate;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -15,9 +17,16 @@ namespace Cell.Application.Api.Controllers
         private readonly ISecurityPermissionRepository _securityPermissionRepository;
 
         public SettingPermissionController(
-            IValidator<SecurityPermission> entityValidator, 
+            IValidator<SecurityPermission> entityValidator,
             ISecurityPermissionRepository securityPermissionRepository,
-            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
+            ISecurityGroupRepository securityGroupRepository,
+            IHttpContextAccessor httpContextAccessor,
+            ISecurityUserRepository securityUserRepository) : base(
+            entityValidator,
+            securityPermissionRepository,
+            securityGroupRepository,
+            httpContextAccessor,
+            securityUserRepository)
         {
             _securityPermissionRepository = securityPermissionRepository;
             AuthorizedType = ConfigurationKeys.SecurityPermission;

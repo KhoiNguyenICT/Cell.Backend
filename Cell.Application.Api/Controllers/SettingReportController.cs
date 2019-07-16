@@ -14,6 +14,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cell.Core.Constants;
 using Cell.Domain.Aggregates.SecurityGroupAggregate;
+using Cell.Domain.Aggregates.SecurityUserAggregate;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -25,7 +28,14 @@ namespace Cell.Application.Api.Controllers
             IValidator<SettingReport> entityValidator,
             ISettingReportRepository settingReportRepository,
             ISecurityPermissionRepository securityPermissionRepository,
-            ISecurityGroupRepository securityGroupRepository) : base(entityValidator, securityPermissionRepository, securityGroupRepository)
+            ISecurityGroupRepository securityGroupRepository,
+            IHttpContextAccessor httpContextAccessor,
+            ISecurityUserRepository securityUserRepository) : base(
+            entityValidator,
+            securityPermissionRepository,
+            securityGroupRepository,
+            httpContextAccessor,
+            securityUserRepository)
         {
             _settingReportRepository = settingReportRepository;
             AuthorizedType = ConfigurationKeys.SettingReport;
