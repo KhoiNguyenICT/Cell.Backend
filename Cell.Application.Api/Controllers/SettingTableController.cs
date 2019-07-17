@@ -58,6 +58,7 @@ namespace Cell.Application.Api.Controllers
             var settingTableItems = new List<SettingTableCommand>();
             var spec = SettingTableSpecs.SearchByQuery(command.Query);
             var objectIds = await ObjectIds(AuthorizedType);
+            if (objectIds.Count <= 0) return Ok();
             var queryable = _settingTableRepository.QueryAsync(spec, command.Sorts)
                 .Where(x => objectIds.Contains(x.Id));
             var items = await queryable.Skip(command.Skip).Take(command.Take).ToListAsync();
