@@ -1,0 +1,355 @@
+﻿[
+  /*T_DATA_BUSINESS_UNIT*/
+  {
+    "Name": "Save",
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Lưu", 
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Icon\":\"fal fa-save\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}"
+  },
+  {
+    "Name": "Save",
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT",
+    "Settings": "{\"Icon\":\"fal fa-save\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Đóng",
+    "Name": "Close",
+    "Settings": "{\"Icon\":\"fal fa-times\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Sửa",
+    "Name": "Edit",
+    "Settings": "{\"Icon\":\"fal fa-pencil\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"fal fa-trash\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "TableName": "T_DATA_BUSINESS_UNIT"
+  },
+  /*T_DATA_BUSINESS_UNIT*/
+
+  /*T_DATA_CONTACT*/
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"fal fa-save\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"fal fa-save\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Đóng",
+    "Name": "Close",
+    "Settings": "{\"Icon\":\"fal fa-times\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Sửa",
+    "Name": "Edit",
+    "Settings": "{\"Icon\":\"fal fa-pencil\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"fal fa-trash\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "TableName": "T_DATA_CONTACT"
+  },
+  /*T_DATA_CONTACT*/
+
+  /*T_DATA_CONTACT_LOGS*/
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"fal fa-save\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"fal fa-save\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Đóng",
+    "Name": "Close",
+    "Settings": "{\"Icon\":\"fal fa-times\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Sửa",
+    "Name": "Edit",
+    "Settings": "{\"Icon\":\"fal fa-pencil\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"fal fa-trash\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "TableName": "T_DATA_CONTACT_LOGS"
+  },
+  /*T_DATA_CONTACT_LOGS*/
+
+  /*T_DATA_CONTRACT*/
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"fal fa-save\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"fal fa-trash\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Đóng",
+    "Name": "Close",
+    "Settings": "{\"Icon\":\"fal fa-times\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Sửa",
+    "Name": "Edit",
+    "Settings": "{\"Icon\":\"fal fa-pencil\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"fal fa-trash\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Phê duyệt",
+    "Name": "Phê duyệt",
+    "Settings": "{\"Icon\":\"fal fa-save\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Phê duyệt",
+    "Name": "Control Approve",
+    "Settings": "{\"Icon\":\"fal fa-save\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "TableName": "T_DATA_CONTRACT"
+  },
+  /*T_DATA_CONTRACT*/
+
+  /*T_DATA_CONTRACT_PRODUCT*/
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"fal fa-save\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "TableName": "T_DATA_CONTRACT_PRODUCT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"fal fa-save\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "TableName": "T_DATA_CONTRACT_PRODUCT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Đóng",
+    "Name": "Close",
+    "Settings": "{\"Icon\":\"fal fa-times\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "TableName": "T_DATA_CONTRACT_PRODUCT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Sửa",
+    "Name": "Edit",
+    "Settings": "{\"Icon\":\"fal fa-pencil\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "TableName": "T_DATA_CONTRACT_PRODUCT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"fal fa-trash\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "TableName": "T_DATA_CONTRACT_PRODUCT"
+  },
+  /*T_DATA_CONTRACT_PRODUCT*/
+
+  /*T_DATA_INVOICE*/
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"fal fa-save\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"fal fa-save\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Đóng",
+    "Name": "Close",
+    "Settings": "{\"Icon\":\"fal fa-times\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Sửa",
+    "Name": "Edit",
+    "Settings": "{\"Icon\":\"fal fa-pencil\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"fal fa-trash\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "TableName": "T_DATA_INVOICE"
+  },
+  /*T_DATA_INVOICE*/
+
+  /*T_DATA_PRODUCT*/
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"fal fa-save\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Lưu",
+    "Name": "Save",
+    "Settings": "{\"Icon\":\"fal fa-save\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Đóng",
+    "Name": "Close",
+    "Settings": "{\"Icon\":\"fal fa-times\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Sửa",
+    "Name": "Edit",
+    "Settings": "{\"Icon\":\"fal fa-pencil\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT"
+  },
+  {
+    "Code": "TEMPLATE",
+    "ContainerType": "FORM",
+    "Description": "Xóa",
+    "Name": "Delete",
+    "Settings": "{\"Icon\":\"fal fa-trash\",\"Style\":\"\",\"InitSource\":\"\",\"Steps\":[{\"StepType\":\"\",\"Description\":\"\",\"Parameters\":{\"Key\":\"\",\"Value\":\"\",\"Table\":\"\",\"ComponentType\":\"\",\"Component\":\"\",\"AdvanceParameter\":\"\",\"Feature\":\"\",\"Link\":\"\",\"CustomApi\":\"\"}}]}",
+    "TableId": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "TableName": "T_DATA_PRODUCT"
+  }
+  /*T_DATA_PRODUCT*/
+]

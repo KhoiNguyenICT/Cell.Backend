@@ -1,0 +1,9 @@
+﻿{
+  "Code": "SYSTEM",
+  "Account": "administrator",
+  "DefaultRole": "70886CC0-5566-4B48-8B2A-E9818CFCB5D8",
+  "Email": "contact@vatgia.com",
+  "EncryptedPassword": "02fcdb81781c12d13ee67bbf56c0fba02af236f41aefb8e3bda4331132fb5971",
+  "Phone": "0987654321",
+  "Settings": "{\"Information\":{\"ProfileImage\":null,\"FullName\":\"Super Admin\",\"BirthDay\":\"2019-07-12T00:00:00Z\",\"Address\":\"Số 102, Thái Thịnh, Đống Đa, Hà Nội\"},\"Departments\":[],\"DefaultDepartmentData\":null,\"Roles\":[{\"Id\":\"70886cc0-5566-4b48-8b2a-e9818cfcb5d8\",\"Name\":\"System\",\"Description\":\"System\"}],\"DefaultRoleData\":null}"
+}

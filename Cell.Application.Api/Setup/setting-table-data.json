@@ -1,0 +1,82 @@
+﻿[
+  {
+    "Description": "Thực thể kinh doanh",
+    "Id": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C00",
+    "Name": "BusinessUnit",
+    "Code": "LIST",
+    "BasedTable": "T_DATA_BUSINESS_UNIT",
+    "Settings": "[{\"Key\": \"CODE\",\"Value\": \"CRM-BusinessUnit\"}]"
+  },
+  {
+    "Description": "Khách hàng",
+    "Id": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C01",
+    "Name": "Contact",
+    "Code": "LIST",
+    "BasedTable": "T_DATA_CONTACT",
+    "Settings": "[{\"Key\": \"CODE\",\"Value\": \"CRM-Contact\"}]"
+  },
+  {
+    "Description": "Lịch sử liên hệ khách hàng",
+    "Id": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C02",
+    "Name": "Contact-Logs",
+    "Code": "LIST",
+    "BasedTable": "T_DATA_CONTACT_LOGS",
+    "Settings": "[{\"Key\": \"CODE\",\"Value\": \"CRM-Contact-Logs\"}]"
+  },
+  {
+    "Description": "Hợp đồng",
+    "Id": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C03",
+    "Name": "Contract",
+    "Code": "LIST",
+    "BasedTable": "T_DATA_CONTRACT",
+    "Settings": "[{\"Key\": \"CODE\",\"Value\": \"CRM-Contract\"}]"
+  },
+  {
+    "Description": "Danh sách sản phẩm theo hợp đồng",
+    "Id": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C04",
+    "Name": "Contract-Product",
+    "Code": "LIST",
+    "BasedTable": "T_DATA_CONTRACT_PRODUCT",
+    "Settings": "[{\"Key\": \"CODE\",\"Value\": \"CRM-Contract-Product\"}]"
+  },
+  {
+    "Description": "Hóa đơn",
+    "Id": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C05",
+    "Name": "Invoice",
+    "Code": "LIST",
+    "BasedTable": "T_DATA_INVOICE",
+    "Settings": "[{\"Key\": \"CODE\",\"Value\": \"CRM-Invoice\"}]"
+  },
+  {
+    "Description": "Sản phẩm, dịch vụ",
+    "Id": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C06",
+    "Name": "Product",
+    "Code": "LIST",
+    "BasedTable": "T_DATA_PRODUCT",
+    "Settings": "[{\"Key\": \"CODE\",\"Value\": \"CRM-Product\"}]"
+  },
+  {
+    "Description": "Biên lai, phiếu thu",
+    "Id": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C07",
+    "Name": "Receipt",
+    "Code": "LIST",
+    "BasedTable": "T_DATA_RECEIPT",
+    "Settings": "[{\"Key\": \"CODE\",\"Value\": \"CRM-Receipt\"}]"
+  },
+  {
+    "Description": "Quận huyện",
+    "Id": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C08",
+    "Name": "District",
+    "Code": "LIST",
+    "BasedTable": "T_DATA_DISTRICT",
+    "Settings": "[{\"Key\": \"CODE\",\"Value\": \"District\"}]"
+  },
+  {
+    "Description": "Tỉnh thành",
+    "Id": "9E55FF9F-7E64-4B04-10F9-08D6E8C68C09",
+    "Name": "Province",
+    "Code": "LIST",
+    "BasedTable": "T_DATA_PROVINCE",
+    "Settings": "[{\"Key\": \"CODE\",\"Value\": \"Province\"}]"
+  }
+]
