@@ -20,7 +20,7 @@ namespace Cell.Application.Api.Controllers
         }
 
         [HttpPost("create")]
-        protected virtual async Task<IActionResult> Create(TModelCreate model)
+        public virtual async Task<IActionResult> Create(TModelCreate model)
         {
             var entity = model.To<TEntity>();
             var result = await _service.AddAsync(entity);
@@ -29,7 +29,7 @@ namespace Cell.Application.Api.Controllers
         }
 
         [HttpPost("update")]
-        protected virtual async Task<IActionResult> Update(TModelUpdate model)
+        public virtual async Task<IActionResult> Update(TModelUpdate model)
         {
             var entity = model.To<TEntity>();
             _service.Update(entity);
@@ -38,7 +38,7 @@ namespace Cell.Application.Api.Controllers
         }
 
         [HttpPost("delete/{id}")]
-        protected virtual async Task<IActionResult> Delete(Guid id)
+        public virtual async Task<IActionResult> Delete(Guid id)
         {
             _service.Delete(id);
             await _service.CommitAsync();

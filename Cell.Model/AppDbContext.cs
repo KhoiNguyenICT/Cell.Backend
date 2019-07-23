@@ -18,14 +18,20 @@ using Cell.Model.Entities.SettingFormEntity;
 using Cell.Model.Entities.SettingReportEntity;
 using Cell.Model.Entities.SettingTableEntity;
 using Cell.Model.Entities.SettingViewEntity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cell.Model
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions options) : base(options)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public AppDbContext(
+            DbContextOptions options, 
+            IHttpContextAccessor httpContextAccessor) : base(options)
         {
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public DbSet<SecurityGroup> SecurityGroups { get; set; }
@@ -44,6 +50,8 @@ namespace Cell.Model
         public DbSet<SettingTable> SettingTables { get; set; }
         public DbSet<SettingView> SettingViews { get; set; }
 
+        private Guid CurrentAccountId => Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Account"]);
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             var modified = ChangeTracker.Entries().Where(e => e.State == EntityState.Modified || e.State == EntityState.Added);
@@ -52,12 +60,14 @@ namespace Cell.Model
                 if (!(item.Entity is IEntity changedOrAddedItem)) continue;
                 if (item.State == EntityState.Added)
                 {
+                    changedOrAddedItem.CreatedBy = CurrentAccountId != Guid.Empty ? CurrentAccountId : Guid.Empty;
                     changedOrAddedItem.Created = DateTimeOffset.Now;
                     changedOrAddedItem.Modified = DateTimeOffset.Now;
                     changedOrAddedItem.Version = 0;
                 }
 
                 changedOrAddedItem.Modified = DateTimeOffset.Now;
+                changedOrAddedItem.ModifiedBy = CurrentAccountId != Guid.Empty ? CurrentAccountId : Guid.Empty;
                 changedOrAddedItem.Version += 1;
             }
             return base.SaveChangesAsync(cancellationToken);

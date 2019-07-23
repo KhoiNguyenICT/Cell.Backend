@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cell.Application.Api", "Cell.Application.Api\Cell.Application.Api.csproj", "{5BB580A0-400D-4D4E-AE8B-1EA23CDCCF4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cell.Application.Api", "Cell.Application.Api\Cell.Application.Api.csproj", "{5BB580A0-400D-4D4E-AE8B-1EA23CDCCF4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cell.Model", "Cell.Model\Cell.Model.csproj", "{E4B8888E-252B-4B93-8681-D6EB4D86887A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cell.Model", "Cell.Model\Cell.Model.csproj", "{E4B8888E-252B-4B93-8681-D6EB4D86887A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cell.Service", "Cell.Service\Cell.Service.csproj", "{C5DEF5A6-8BE3-43A0-B945-5E5ACA38CEB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cell.Service", "Cell.Service\Cell.Service.csproj", "{C5DEF5A6-8BE3-43A0-B945-5E5ACA38CEB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cell.Common", "Cell.Common\Cell.Common.csproj", "{BC02E1BA-0D83-4ACB-87BF-CA8961F42E96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cell.Common", "Cell.Common\Cell.Common.csproj", "{BC02E1BA-0D83-4ACB-87BF-CA8961F42E96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
