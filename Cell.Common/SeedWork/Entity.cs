@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cell.Common.SeedWork
 {
-    public abstract class Entity : IEntity
+    public class Entity : IEntity
     {
         [Key]
         [Column("ID")]
@@ -38,7 +38,7 @@ namespace Cell.Common.SeedWork
         public int Version { get; set; }
     }
 
-    public abstract class TreeEntity : Entity
+    public class TreeEntity : Entity
     {
         [Column("INDEX_LEFT")]
         public int IndexLeft { get; set; }

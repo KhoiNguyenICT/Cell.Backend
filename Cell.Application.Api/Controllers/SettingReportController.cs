@@ -1,12 +1,20 @@
-﻿using Cell.Application.Api.Models.SettingReport;
+﻿using Cell.Common.Constants;
+using Cell.Model;
 using Cell.Model.Entities.SettingReportEntity;
+using FluentValidation;
+using Microsoft.AspNetCore.Http;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingReportController : CellController<SettingReport, SettingReportCreateModel, SettingReportUpdateModel, ISettingReportService>
+    public class SettingReportController : CellController<SettingReport>
     {
-        public SettingReportController(ISettingReportService service) : base(service)
+        public SettingReportController(
+            AppDbContext context,
+            IHttpContextAccessor httpContextAccessor,
+            IValidator<SettingReport> entityValidator) :
+            base(context, httpContextAccessor, entityValidator)
         {
+            AuthorizedType = ConfigurationKeys.SettingReport;
         }
     }
 }

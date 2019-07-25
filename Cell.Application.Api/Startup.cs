@@ -1,5 +1,6 @@
 ﻿using Cell.Application.Api.Helpers;
 using Cell.Common.Constants;
+using Cell.Common.Errors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -7,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using Cell.Helpers;
 
 namespace Cell.Application.Api
 {
@@ -27,6 +30,7 @@ namespace Cell.Application.Api
                 .ConfigIoc()
                 .ConfigValidator()
                 .ConfigIdentity()
+                .ConfigHelpers()
                 .ConfigSwagger().AddCors(options =>
                 {
                     options.AddPolicy("CorsPolicy",
@@ -36,8 +40,16 @@ namespace Cell.Application.Api
                             .AllowAnyHeader()
                             .AllowCredentials()
                             .WithOrigins(Configuration.GetSection(ConfigurationKeys.WebClient).Get<string[]>()));
-                }); ;
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                });
+            services.AddMvc(options => { options.Filters.Add<CellExceptionFilter>(); })
+                .AddJsonOptions(options =>
+                {
+                    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    options.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+                    options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

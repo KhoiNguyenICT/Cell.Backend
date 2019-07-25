@@ -478,6 +478,15 @@ namespace Cell.Application.Api.Migrations
                         .HasColumnName("ICON")
                         .HasMaxLength(50);
 
+                    b.Property<int>("IndexLeft")
+                        .HasColumnName("INDEX_LEFT");
+
+                    b.Property<int>("IndexRight")
+                        .HasColumnName("INDEX_RIGHT");
+
+                    b.Property<int>("IsLeaf")
+                        .HasColumnName("IS_LEAF");
+
                     b.Property<DateTimeOffset>("Modified")
                         .HasColumnName("MODIFIED");
 
@@ -486,6 +495,20 @@ namespace Cell.Application.Api.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnName("NAME");
+
+                    b.Property<int>("NodeLevel")
+                        .HasColumnName("NODE_LEVEL");
+
+                    b.Property<Guid?>("Parent")
+                        .HasColumnName("PARENT");
+
+                    b.Property<string>("PathCode")
+                        .HasColumnName("PATH_CODE")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("PathId")
+                        .HasColumnName("PATH_ID")
+                        .HasMaxLength(1000);
 
                     b.Property<string>("Settings")
                         .HasColumnName("SETTINGS");
@@ -504,10 +527,10 @@ namespace Cell.Application.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("ID");
 
-                    b.Property<int>("AllowFilter")
+                    b.Property<bool>("AllowFilter")
                         .HasColumnName("ALLOW_FILTER");
 
-                    b.Property<int>("AllowSummary")
+                    b.Property<bool>("AllowSummary")
                         .HasColumnName("ALLOW_SUMMARY");
 
                     b.Property<string>("Caption")

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Cell.Model.Entities.SettingFeatureEntity
 {
     [Table("T_SETTING_FEATURE")]
-    public class SettingFeature : Entity
+    public class SettingFeature : TreeEntity
     {
         [Column("ICON")]
         [StringLength(50)]

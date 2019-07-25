@@ -9,10 +9,10 @@ namespace Cell.Model.Entities.SettingFieldEntity
     public class SettingField : Entity
     {
         [Column("ALLOW_FILTER")]
-        public int AllowFilter { get; set; }
+        public bool AllowFilter { get; set; }
 
         [Column("ALLOW_SUMMARY")]
-        public int AllowSummary { get; set; }
+        public bool AllowSummary { get; set; }
 
         [Column("CAPTION")]
         [StringLength(200)]

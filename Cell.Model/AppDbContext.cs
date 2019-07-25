@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Cell.Common.Extensions;
 using Cell.Common.SeedWork;
 using Cell.Model.Entities.SecurityGroupEntity;
 using Cell.Model.Entities.SecurityPermissionEntity;
@@ -20,6 +21,7 @@ using Cell.Model.Entities.SettingTableEntity;
 using Cell.Model.Entities.SettingViewEntity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Cell.Model
 {
@@ -50,6 +52,8 @@ namespace Cell.Model
         public DbSet<SettingTable> SettingTables { get; set; }
         public DbSet<SettingView> SettingViews { get; set; }
 
+        private Guid CurrentSessionId => Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Session"]);
+
         private Guid CurrentAccountId => Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Account"]);
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
@@ -60,14 +64,14 @@ namespace Cell.Model
                 if (!(item.Entity is IEntity changedOrAddedItem)) continue;
                 if (item.State == EntityState.Added)
                 {
-                    changedOrAddedItem.CreatedBy = CurrentAccountId != Guid.Empty ? CurrentAccountId : Guid.Empty;
+                    changedOrAddedItem.CreatedBy = Guid.Empty;
                     changedOrAddedItem.Created = DateTimeOffset.Now;
                     changedOrAddedItem.Modified = DateTimeOffset.Now;
                     changedOrAddedItem.Version = 0;
                 }
 
                 changedOrAddedItem.Modified = DateTimeOffset.Now;
-                changedOrAddedItem.ModifiedBy = CurrentAccountId != Guid.Empty ? CurrentAccountId : Guid.Empty;
+                changedOrAddedItem.ModifiedBy = Guid.Empty;
                 changedOrAddedItem.Version += 1;
             }
             return base.SaveChangesAsync(cancellationToken);

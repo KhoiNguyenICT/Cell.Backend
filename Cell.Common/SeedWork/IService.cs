@@ -20,6 +20,8 @@ namespace Cell.Common.SeedWork
 
         Task<bool> ExistsAsync(ISpecification<T> spec);
 
+        Task<bool> ExistsAsync();
+
         Task<T> AddAsync(T entity);
 
         void Update(T entity);

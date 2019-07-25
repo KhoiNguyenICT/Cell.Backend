@@ -4,6 +4,7 @@ using AutoMapper;
 using Cell.Application.Api.Mappers;
 using Cell.Common.Constants;
 using Cell.Common.Extensions;
+using Cell.Common.Filters;
 using Cell.Model;
 using Cell.Model.Entities.SecurityGroupEntity;
 using Cell.Model.Entities.SecurityPermissionEntity;
@@ -23,6 +24,7 @@ using Cell.Model.Entities.SettingViewEntity;
 using Cell.Service.Implementations;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -52,7 +54,9 @@ namespace Cell.Application.Api.Helpers
         {
             var mapperConfig = new MapperConfiguration(cfg =>
             {
+                cfg.AddProfile<EntityMappingModel>();
                 cfg.AddProfile<ModelMappingEntity>();
+                cfg.AddProfile<ModelMappingModel>();
             });
             service.AddSingleton(mapperConfig.CreateMapper().RegisterMap());
             return service;
@@ -84,6 +88,7 @@ namespace Cell.Application.Api.Helpers
             service.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v5", new Info { Title = "CELL APIs", Version = "5.0.0" });
+                c.OperationFilter<SwaggerHeaderFilter>();
             });
             return service;
         }
@@ -101,6 +106,8 @@ namespace Cell.Application.Api.Helpers
         public static IServiceCollection ConfigIoc(this IServiceCollection service)
         {
             service.AddScoped<AppDbContextSeed>();
+            service.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            service.AddScoped<IBasedTableService, BasedTableService>();
             service.AddScoped<ISecurityGroupService, SecurityGroupService>();
             service.AddScoped<ISecurityPermissionService, SecurityPermissionService>();
             service.AddScoped<ISecuritySessionService, SecuritySessionService>();

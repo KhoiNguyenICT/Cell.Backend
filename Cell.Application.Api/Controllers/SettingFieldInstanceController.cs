@@ -1,12 +1,105 @@
-﻿using Cell.Application.Api.Models.SettingFieldInstance;
+﻿using Cell.Common.Constants;
+using Cell.Common.Extensions;
+using Cell.Common.SeedWork;
+using Cell.Model;
 using Cell.Model.Entities.SettingFieldInstanceEntity;
+using Cell.Model.Models.Others;
+using FluentValidation;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Cell.Model.Models.SettingFieldInstance;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SettingFieldInstanceController : CellController<SettingFieldInstance, SettingFieldInstanceCreateModel, SettingFieldInstanceUpdateModel, ISettingFieldInstanceService>
+    public class SettingFieldInstanceController : CellController<SettingFieldInstance>
     {
-        public SettingFieldInstanceController(ISettingFieldInstanceService service) : base(service)
+        private readonly ISettingFieldInstanceService _settingFieldInstanceService;
+
+        public SettingFieldInstanceController(
+            AppDbContext context,
+            IHttpContextAccessor httpContextAccessor,
+            IValidator<SettingFieldInstance> entityValidator,
+            ISettingFieldInstanceService settingFieldInstanceService) :
+            base(context, httpContextAccessor, entityValidator)
         {
+            _settingFieldInstanceService = settingFieldInstanceService;
+            AuthorizedType = ConfigurationKeys.SettingFieldInstance;
+        }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody] List<SettingFieldInstanceCreateModel> models)
+        {
+            await ValidateModels(models.To<List<SettingFieldInstanceModel>>());
+            foreach (var settingFieldInstanceCommand in models)
+            {
+                var settingFieldInstance = settingFieldInstanceCommand.To<SettingFieldInstance>();
+                var result = await _settingFieldInstanceService.AddAsync(new SettingFieldInstance
+                {
+                    Name = settingFieldInstance.Name,
+                    Description = settingFieldInstance.Description,
+                    Caption = settingFieldInstance.Caption,
+                    ContainerType = settingFieldInstance.ContainerType,
+                    DataType = settingFieldInstance.DataType,
+                    FieldId = settingFieldInstance.FieldId,
+                    OrdinalPosition = settingFieldInstance.OrdinalPosition,
+                    Parent = settingFieldInstance.Parent,
+                    ParentText = settingFieldInstance.ParentText,
+                    StorageType = settingFieldInstance.StorageType,
+                    Settings = settingFieldInstance.Settings
+                });
+                await AssignPermission(result.Id, result.Name);
+            }
+            await _settingFieldInstanceService.CommitAsync();
+            return Ok();
+        }
+
+        [HttpPost("update")]
+        public async Task<IActionResult> Update([FromBody] List<SettingFieldInstanceUpdateModel> models)
+        {
+            await ValidateModels(models.To<List<SettingFieldInstanceModel>>());
+            foreach (var model in models)
+            {
+                var settingFieldInstance = model.To<SettingFieldInstance>();
+                var entity = await _settingFieldInstanceService.GetByIdAsync(model.Id);
+                entity.Settings = settingFieldInstance.Settings;
+                _settingFieldInstanceService.Update(entity);
+            }
+            await _settingFieldInstanceService.CommitAsync();
+            return Ok();
+        }
+
+        [HttpPost("search")]
+        public async Task<IActionResult> Search(SearchSettingFieldInstanceModel model)
+        {
+            var spec = SettingFieldInstanceSpecs.SearchByQuery(model.Query)
+                .And(SettingFieldInstanceSpecs.GetManyByParentId(model.ParentId));
+            var queryable = Queryable(spec, model.Sorts);
+            var items = await queryable.Skip(model.Skip).Take(model.Take).ToListAsync();
+            return Ok(new QueryResult<SettingFieldInstanceModel>
+            {
+                Count = queryable.Count(),
+                Items = items.To<List<SettingFieldInstanceModel>>()
+            });
+        }
+
+        [HttpPost("{id}")]
+        public async Task<IActionResult> SettingFieldInstance(Guid id)
+        {
+            var settingFieldInstance = await _settingFieldInstanceService.GetByIdAsync(id);
+            return Ok(settingFieldInstance.To<SettingFieldInstanceModel>());
+        }
+
+        [HttpPost("delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            _settingFieldInstanceService.Delete(id);
+            await _settingFieldInstanceService.CommitAsync();
+            return Ok();
         }
     }
 }

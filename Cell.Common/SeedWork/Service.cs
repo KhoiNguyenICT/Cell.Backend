@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cell.Common.Extensions;
 using Cell.Common.Linq;
 using Cell.Common.Specifications;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ namespace Cell.Common.SeedWork
 {
     public class Service<T, TDbContext> : IService<T> where T : class where TDbContext : DbContext
     {
-        private TDbContext Context { get; }
+        protected TDbContext Context { get; }
 
         public Service(TDbContext context)
         {
@@ -39,6 +40,11 @@ namespace Cell.Common.SeedWork
             return await Context.Set<T>().AnyAsync(spec.Predicate);
         }
 
+        public async Task<bool> ExistsAsync()
+        {
+            return await Context.Set<T>().AnyAsync();
+        }
+
         public async Task<T> GetByIdAsync(Guid entityId)
         {
             return await Context.Set<T>().FindAsync(entityId);
@@ -46,27 +52,22 @@ namespace Cell.Common.SeedWork
 
         public async Task<IList<T>> GetManyAsync(ISpecification<T> spec, string[] sorts = null)
         {
-            return await Context.Set<T>().Where(spec.Predicate).SortBy(sorts ?? GetDefaultSorts()).ToListAsync();
+            return await Context.Set<T>().Where(spec.Predicate).SortBy(sorts ?? StringExtensions.GetDefaultSorts()).ToListAsync();
         }
 
         public async Task<T> GetSingleAsync(ISpecification<T> spec, string[] sorts = null)
         {
-            return await Context.Set<T>().Where(t => true).SortBy(sorts ?? GetDefaultSorts()).FirstOrDefaultAsync(spec.Predicate);
+            return await Context.Set<T>().Where(t => true).SortBy(sorts ?? StringExtensions.GetDefaultSorts()).FirstOrDefaultAsync(spec.Predicate);
         }
 
         public IQueryable<T> QueryAsync(ISpecification<T> spec, string[] sorts = null)
         {
-            return Context.Set<T>().Where(t => true).SortBy(sorts ?? GetDefaultSorts());
+            return Context.Set<T>().Where(t => true).SortBy(sorts ?? StringExtensions.GetDefaultSorts());
         }
 
         public void Update(T entity)
         {
             Context.Entry(entity).State = EntityState.Modified;
-        }
-
-        private string[] GetDefaultSorts()
-        {
-            return new[] { "-created" };
         }
     }
 }

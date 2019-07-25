@@ -1,12 +1,21 @@
-﻿using Cell.Application.Api.Models.SecurityPermission;
+﻿using Cell.Common.Constants;
+using Cell.Model;
 using Cell.Model.Entities.SecurityPermissionEntity;
+using FluentValidation;
+using Microsoft.AspNetCore.Http;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class SecurityPermissionController : CellController<SecurityPermission, SecurityPermissionCreateModel, object, ISecurityPermissionService>
+    public class SecurityPermissionController : CellController<SecurityPermission>
     {
-        public SecurityPermissionController(ISecurityPermissionService service) : base(service)
+        public SecurityPermissionController(
+            ISecurityPermissionService service,
+            AppDbContext context,
+            IHttpContextAccessor httpContextAccessor,
+            IValidator<SecurityPermission> entityValidator) :
+            base(context, httpContextAccessor, entityValidator)
         {
+            AuthorizedType = ConfigurationKeys.SecurityPermission;
         }
     }
 }
