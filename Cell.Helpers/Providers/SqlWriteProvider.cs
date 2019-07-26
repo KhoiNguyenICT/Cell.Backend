@@ -15,7 +15,7 @@ namespace Cell.Helpers.Providers
             var parameters = model.Data.Where(x => x.Value != null).Select(x => x.Key.ToColumnName().ToUpper())
                 .ToArray().JoinString(",");
             var values = model.Data.Where(x => x.Value != null).Select(x => "@" + x.Key.ToColumnName().ToUpper()).JoinString(",");
-            var query = $"INSERT INTO {model.TableName} ({parameters}) VALUE ({values})";
+            var query = $"INSERT INTO {model.TableName} ({parameters}) VALUES ({values})";
             var assignValuesToParams = model.Data.Where(x => x.Value != null).Select(x => x.Key).ToArray()
                 .Select(parameter => new KeyValuePair<string, object>("@" + parameter.ToColumnName().ToUpper(),
                     model.Data.FirstOrDefault(x => x.Key == parameter.ToString()).Value)).ToList();

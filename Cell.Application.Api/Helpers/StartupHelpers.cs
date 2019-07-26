@@ -5,7 +5,9 @@ using Cell.Application.Api.Mappers;
 using Cell.Common.Constants;
 using Cell.Common.Extensions;
 using Cell.Common.Filters;
+using Cell.Common.SeedWork;
 using Cell.Model;
+using Cell.Model.Entities.DynamicEntity;
 using Cell.Model.Entities.SecurityGroupEntity;
 using Cell.Model.Entities.SecurityPermissionEntity;
 using Cell.Model.Entities.SecuritySessionEntity;
@@ -123,6 +125,7 @@ namespace Cell.Application.Api.Helpers
             service.AddScoped<ISettingReportService, SettingReportService>();
             service.AddScoped<ISettingTableService, SettingTableService>();
             service.AddScoped<ISettingViewService, SettingViewService>();
+            service.AddScoped<IDynamicService, DynamicService>();
             return service;
         }
 

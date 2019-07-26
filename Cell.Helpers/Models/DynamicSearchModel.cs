@@ -11,7 +11,7 @@ namespace Cell.Helpers.Models
         public IEnumerable<Where> Where { get; set; }
     }
 
-    public abstract class Select
+    public class Select
     {
         public string Table { get; set; }
 
@@ -20,7 +20,7 @@ namespace Cell.Helpers.Models
         public string Alias { get; set; }
     }
 
-    public abstract class From
+    public class From
     {
         public string Table { get; set; }
 
@@ -31,17 +31,23 @@ namespace Cell.Helpers.Models
         public IEnumerable<JoinCondition> JoinConditions { get; set; }
     }
 
-    public abstract class JoinCondition
+    public class JoinCondition
     {
         public string Field { get; set; }
 
         public string JoinField { get; set; }
     }
 
-    public abstract class Where
+    public class Where
     {
         public string Table { get; set; }
 
         public string Field { get; set; }
+
+        public string DataType { get; set; }
+
+        public string Value { get; set; }
+
+        public string Function { get; set; }
     }
 }

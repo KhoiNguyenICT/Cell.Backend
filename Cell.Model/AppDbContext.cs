@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Cell.Common.Extensions;
-using Cell.Common.SeedWork;
+﻿using Cell.Common.SeedWork;
 using Cell.Model.Entities.SecurityGroupEntity;
 using Cell.Model.Entities.SecurityPermissionEntity;
 using Cell.Model.Entities.SecuritySessionEntity;
@@ -21,7 +16,10 @@ using Cell.Model.Entities.SettingTableEntity;
 using Cell.Model.Entities.SettingViewEntity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Cell.Model
 {
@@ -30,7 +28,7 @@ namespace Cell.Model
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public AppDbContext(
-            DbContextOptions options, 
+            DbContextOptions options,
             IHttpContextAccessor httpContextAccessor) : base(options)
         {
             _httpContextAccessor = httpContextAccessor;
@@ -75,6 +73,27 @@ namespace Cell.Model
                 changedOrAddedItem.Version += 1;
             }
             return base.SaveChangesAsync(cancellationToken);
+        }
+
+        public override int SaveChanges()
+        {
+            var modified = ChangeTracker.Entries().Where(e => e.State == EntityState.Modified || e.State == EntityState.Added);
+            foreach (var item in modified)
+            {
+                if (!(item.Entity is IEntity changedOrAddedItem)) continue;
+                if (item.State == EntityState.Added)
+                {
+                    changedOrAddedItem.CreatedBy = Guid.Empty;
+                    changedOrAddedItem.Created = DateTimeOffset.Now;
+                    changedOrAddedItem.Modified = DateTimeOffset.Now;
+                    changedOrAddedItem.Version = 0;
+                }
+
+                changedOrAddedItem.Modified = DateTimeOffset.Now;
+                changedOrAddedItem.ModifiedBy = Guid.Empty;
+                changedOrAddedItem.Version += 1;
+            }
+            return base.SaveChanges();
         }
     }
 }

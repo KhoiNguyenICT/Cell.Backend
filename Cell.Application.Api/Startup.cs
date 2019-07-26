@@ -30,7 +30,7 @@ namespace Cell.Application.Api
                 .ConfigIoc()
                 .ConfigValidator()
                 .ConfigIdentity()
-                .ConfigHelpers()
+                .ConfigHelpers(Configuration)
                 .ConfigSwagger().AddCors(options =>
                 {
                     options.AddPolicy("CorsPolicy",

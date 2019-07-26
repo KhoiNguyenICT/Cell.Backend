@@ -1,25 +1,18 @@
-﻿using System;
-using Cell.Common.SeedWork;
-using Cell.Helpers.Models;
-using Cell.Model;
+﻿using Cell.Helpers.Models;
 using Cell.Model.Entities.DynamicEntity;
-using FluentValidation;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace Cell.Application.Api.Controllers
 {
-    public class DynamicController : CellController<Entity>
+    [Route("api/[controller]")]
+    [ApiController]
+    public class DynamicController : ControllerBase
     {
         private readonly IDynamicService _dynamicService;
 
-        public DynamicController(
-            AppDbContext context,
-            IHttpContextAccessor httpContextAccessor,
-            IValidator<Entity> entityValidator,
-            IDynamicService dynamicService) :
-            base(context, httpContextAccessor, entityValidator)
+        public DynamicController(IDynamicService dynamicService)
         {
             _dynamicService = dynamicService;
         }

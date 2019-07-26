@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using Cell.Helpers.Interfaces;
+﻿using Cell.Helpers.Interfaces;
 using Cell.Helpers.Models;
 using Cell.Model;
 using Cell.Model.Entities.DynamicEntity;
 using Cell.Model.Entities.SettingFieldEntity;
 using Cell.Model.Entities.SettingTableEntity;
 using Dapper;
+using System;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Cell.Service.Implementations
 {
-    public class DynamicService: IDynamicService
+    public class DynamicService : IDynamicService
     {
         private readonly ISearchProvider _searchProvider;
         private readonly IWriteProvider _writeProvider;
@@ -23,11 +22,11 @@ namespace Cell.Service.Implementations
         private readonly AppDbContext _context;
 
         public DynamicService(
-            ISearchProvider searchProvider, 
-            IWriteProvider writeProvider, 
-            IDbConnection connection, 
-            AppDbContext context, 
-            ISettingTableService settingTableService, 
+            ISearchProvider searchProvider,
+            IWriteProvider writeProvider,
+            IDbConnection connection,
+            AppDbContext context,
+            ISettingTableService settingTableService,
             ISettingFieldService settingFieldService)
         {
             _searchProvider = searchProvider;
@@ -40,16 +39,14 @@ namespace Cell.Service.Implementations
 
         public async Task<object> SearchAsync(DynamicSearchModel dynamicSearchModel)
         {
-            var query = _searchProvider.GetSearchQuery(dynamicSearchModel);
-            var result = await _connection.QueryAsync<object>(query);
+            var result = await _searchProvider.ExecuteSearch(dynamicSearchModel);
             return result;
         }
 
         public async Task<object> GetSingleAsync(Guid tableId, Guid id)
         {
-            var settingTable = await _context.SettingTables.FindAsync(tableId);
-            var query = _searchProvider.GetSingleQuery(settingTable.BasedTable, id);
-            var result = await _connection.QueryAsync<object>(query);
+            var settingTable = await _settingTableService.GetByIdAsync(tableId);
+            var result = await _searchProvider.GetSingleQuery(settingTable.BasedTable, id);
             return result;
         }
 
@@ -65,7 +62,7 @@ namespace Cell.Service.Implementations
             var insertData = settingFields.Where(x => fieldsNameExists.Select(y => y.Key).Contains(x.Name)).ToList();
             foreach (var settingField in insertData)
             {
-                writeModel.Data.Add(nameof(settingField.Name), fieldsNameExists.FirstOrDefault(x => x.Key == settingField.Name).Value);
+                writeModel.Data.Add(settingField.Name, fieldsNameExists.FirstOrDefault(x => x.Key == settingField.Name).Value);
             }
             var outputQuery = _writeProvider.InsertQuery(writeModel);
             await _connection.ExecuteAsync(outputQuery.Query, outputQuery.Parameters);

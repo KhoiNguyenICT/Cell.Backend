@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Cell.Helpers.Models
 {
-    public abstract class WriteModel
+    public class WriteModel
     {
         public Guid TableId { get; set; }
         public string TableName { get; set; }

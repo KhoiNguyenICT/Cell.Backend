@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cell.Common", "Cell.Common\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cell.Helpers", "Cell.Helpers\Cell.Helpers.csproj", "{659DD20F-655E-4CDD-A6CD-D85E97894F69}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cell.UnitTest", "Cell.UnitTest\Cell.UnitTest.csproj", "{8B946546-550B-455B-B4B4-7754B748E052}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{659DD20F-655E-4CDD-A6CD-D85E97894F69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{659DD20F-655E-4CDD-A6CD-D85E97894F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{659DD20F-655E-4CDD-A6CD-D85E97894F69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B946546-550B-455B-B4B4-7754B748E052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B946546-550B-455B-B4B4-7754B748E052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B946546-550B-455B-B4B4-7754B748E052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B946546-550B-455B-B4B4-7754B748E052}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
