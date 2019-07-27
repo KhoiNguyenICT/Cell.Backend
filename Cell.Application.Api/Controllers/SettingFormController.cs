@@ -38,7 +38,7 @@ namespace Cell.Application.Api.Controllers
             _settingFormService = settingFormService;
             _settingActionService = settingActionService;
             _settingFieldService = settingFieldService;
-            AuthorizedType = ConfigurationKeys.SettingForm;
+            AuthorizedType = ConfigurationKeys.SettingFormTableName;
         }
 
         [HttpPost("search")]
@@ -70,9 +70,9 @@ namespace Cell.Application.Api.Controllers
                 TableId = settingForm.TableId,
                 TableName = settingForm.TableName
             });
-            await AssignPermission(result.Id, result.Name);
+            await InitPermission(result.Id, result.Name);
             await _settingFormService.CommitAsync();
-            return Ok();
+            return Ok(result);
         }
 
         [HttpPost("update")]

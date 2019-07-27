@@ -29,7 +29,7 @@ namespace Cell.Application.Api.Controllers
             ISecurityUserService securityUserService) :
             base(context, httpContextAccessor, entityValidator)
         {
-            AuthorizedType = ConfigurationKeys.SecurityUser;
+            AuthorizedType = ConfigurationKeys.SecurityUserTableName;
             _securityUserService = securityUserService;
         }
 
@@ -56,9 +56,9 @@ namespace Cell.Application.Api.Controllers
             if (isInvalid)
                 throw new CellException("User name or account must be unique");
             var result = await _securityUserService.AddAsync(model.To<SecurityUser>());
-            await AssignPermission(result.Id, result.Account);
+            await InitPermission(result.Id, result.Account);
             await _securityUserService.CommitAsync();
-            return Ok();
+            return Ok(result);
         }
 
         [HttpPost("update")]

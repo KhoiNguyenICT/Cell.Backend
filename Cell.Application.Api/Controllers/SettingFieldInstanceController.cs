@@ -28,7 +28,7 @@ namespace Cell.Application.Api.Controllers
             base(context, httpContextAccessor, entityValidator)
         {
             _settingFieldInstanceService = settingFieldInstanceService;
-            AuthorizedType = ConfigurationKeys.SettingFieldInstance;
+            AuthorizedType = ConfigurationKeys.SettingFieldInstanceTableName;
         }
 
         [HttpPost("create")]
@@ -52,7 +52,7 @@ namespace Cell.Application.Api.Controllers
                     StorageType = settingFieldInstance.StorageType,
                     Settings = settingFieldInstance.Settings
                 });
-                await AssignPermission(result.Id, result.Name);
+                await InitPermission(result.Id, result.Name);
             }
             await _settingFieldInstanceService.CommitAsync();
             return Ok();

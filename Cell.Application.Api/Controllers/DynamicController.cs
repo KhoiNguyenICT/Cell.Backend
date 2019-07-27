@@ -1,5 +1,6 @@
 ﻿using Cell.Helpers.Models;
 using Cell.Model.Entities.DynamicEntity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -11,10 +12,16 @@ namespace Cell.Application.Api.Controllers
     public class DynamicController : ControllerBase
     {
         private readonly IDynamicService _dynamicService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public DynamicController(IDynamicService dynamicService)
+        private Guid CurrentAccountId => Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Account"]);
+
+        public DynamicController(
+            IDynamicService dynamicService,
+            IHttpContextAccessor httpContextAccessor)
         {
             _dynamicService = dynamicService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpPost("search")]
@@ -34,6 +41,7 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create(WriteModel model)
         {
+            model.Data.Add("CREATED_BY", CurrentAccountId);
             await _dynamicService.InsertAsync(model);
             return Ok();
         }
@@ -41,11 +49,12 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update(WriteModel model)
         {
+            model.Data.Add("MODIFIED_BY", CurrentAccountId);
             await _dynamicService.UpdateAsync(model);
             return Ok();
         }
 
-        [HttpPost("delete")]
+        [HttpPost("delete/{tableId}/{id}")]
         public async Task<IActionResult> Delete(Guid tableId, Guid id)
         {
             await _dynamicService.DeleteAsync(tableId, id);

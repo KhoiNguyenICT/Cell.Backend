@@ -9,13 +9,12 @@ namespace Cell.Application.Api.Controllers
     public class SecurityPermissionController : CellController<SecurityPermission>
     {
         public SecurityPermissionController(
-            ISecurityPermissionService service,
             AppDbContext context,
             IHttpContextAccessor httpContextAccessor,
             IValidator<SecurityPermission> entityValidator) :
             base(context, httpContextAccessor, entityValidator)
         {
-            AuthorizedType = ConfigurationKeys.SecurityPermission;
+            AuthorizedType = ConfigurationKeys.SecurityPermissionTableName;
         }
     }
 }

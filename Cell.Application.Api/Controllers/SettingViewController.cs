@@ -38,7 +38,7 @@ namespace Cell.Application.Api.Controllers
             _settingViewService = settingViewService;
             _settingFieldInstanceService = settingFieldInstanceService;
             _settingActionInstanceService = settingActionInstanceService;
-            AuthorizedType = ConfigurationKeys.SettingView;
+            AuthorizedType = ConfigurationKeys.SettingViewTableName;
         }
 
         [HttpPost("search")]
@@ -84,9 +84,9 @@ namespace Cell.Application.Api.Controllers
                 TableName = settingView.TableName,
                 Settings = settingView.Settings
             });
-            await AssignPermission(result.Id, result.Name);
+            await InitPermission(result.Id, result.Name);
             await _settingViewService.CommitAsync();
-            return Ok();
+            return Ok(result);
         }
 
         [HttpPost("update")]

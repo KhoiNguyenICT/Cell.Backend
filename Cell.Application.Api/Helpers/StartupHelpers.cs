@@ -126,6 +126,8 @@ namespace Cell.Application.Api.Helpers
             service.AddScoped<ISettingTableService, SettingTableService>();
             service.AddScoped<ISettingViewService, SettingViewService>();
             service.AddScoped<IDynamicService, DynamicService>();
+            service.AddScoped<ISettingTreeService<SettingAdvanced>, SettingTreeService<SettingAdvanced>>();
+            service.AddScoped<ISettingTreeService<SecurityGroup>, SettingTreeService<SecurityGroup>>();
             return service;
         }
 

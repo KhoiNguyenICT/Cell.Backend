@@ -80,7 +80,7 @@ namespace Cell.Service.Implementations
             var updateData = settingFields.Where(x => fieldsNameExists.Select(y => y.Key).Contains(x.Name)).ToList();
             foreach (var settingField in updateData)
             {
-                writeModel.Data.Add(nameof(settingField.Name), fieldsNameExists.FirstOrDefault(x => x.Key == settingField.Name).Value);
+                writeModel.Data.Add(settingField.Name, fieldsNameExists.FirstOrDefault(x => x.Key == settingField.Name).Value);
             }
             var outputQuery = _writeProvider.UpdateQuery(writeModel);
             await _connection.ExecuteAsync(outputQuery.Query, outputQuery.Parameters);

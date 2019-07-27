@@ -26,7 +26,7 @@ namespace Cell.Application.Api.Controllers
             ISettingTreeService<SecurityGroup> treeService) :
             base(context, httpContextAccessor, entityValidator)
         {
-            AuthorizedType = ConfigurationKeys.SecurityGroup;
+            AuthorizedType = ConfigurationKeys.SecurityGroupTableName;
             _securityGroupService = securityGroupService;
             _treeService = treeService;
         }
@@ -39,13 +39,13 @@ namespace Cell.Application.Api.Controllers
             var any = await _securityGroupService.ExistsAsync();
             if (any)
             {
-                await _treeService.InsertLastChildNode(settingGroup, model.Parent, ConfigurationKeys.SecurityGroup);
+                await _treeService.InsertLastChildNode(settingGroup, model.Parent, ConfigurationKeys.SecurityGroupTableName);
             }
             else
             {
-                await _treeService.InsertFirstRootNode(settingGroup, ConfigurationKeys.SecurityGroup);
+                await _treeService.InsertFirstRootNode(settingGroup, ConfigurationKeys.SecurityGroupTableName);
             }
-            await AssignPermission(settingGroup.Id, settingGroup.Name);
+            await InitPermission(settingGroup.Id, settingGroup.Name);
             await _securityGroupService.CommitAsync();
             return Ok();
         }

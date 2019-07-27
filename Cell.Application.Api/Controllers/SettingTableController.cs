@@ -4,19 +4,22 @@ using Cell.Common.SeedWork;
 using Cell.Core.Errors;
 using Cell.Model;
 using Cell.Model.Entities.SettingActionEntity;
+using Cell.Model.Entities.SettingAdvancedEntity;
 using Cell.Model.Entities.SettingFieldEntity;
 using Cell.Model.Entities.SettingTableEntity;
 using Cell.Model.Models.Others;
+using Cell.Model.Models.SettingTable;
 using Cell.Service.Implementations;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cell.Model.Models.SettingTable;
+using Cell.Model.Models.SettingField;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -26,6 +29,7 @@ namespace Cell.Application.Api.Controllers
         private readonly ISettingActionService _settingActionService;
         private readonly ISettingTableService _settingTableService;
         private readonly IBasedTableService _basedTableService;
+        private readonly ISettingAdvancedService _settingAdvancedService;
 
         public SettingTableController(
             AppDbContext context,
@@ -34,14 +38,16 @@ namespace Cell.Application.Api.Controllers
             ISettingFieldService settingFieldService,
             ISettingActionService settingActionService,
             ISettingTableService settingTableService,
-            IBasedTableService basedTableService) :
+            IBasedTableService basedTableService,
+            ISettingAdvancedService settingAdvancedService) :
             base(context, httpContextAccessor, entityValidator)
         {
             _settingFieldService = settingFieldService;
             _settingActionService = settingActionService;
             _settingTableService = settingTableService;
             _basedTableService = basedTableService;
-            AuthorizedType = ConfigurationKeys.SettingTable;
+            _settingAdvancedService = settingAdvancedService;
+            AuthorizedType = ConfigurationKeys.SettingTableTableName;
         }
 
         [HttpPost("search")]
@@ -92,9 +98,20 @@ namespace Cell.Application.Api.Controllers
                 BasedTable = settingTable.BasedTable,
                 Settings = settingTable.Settings
             });
-            await AssignPermission(result.Id, result.Name);
             await _settingTableService.CommitAsync();
-            return Ok();
+            var settingAdvancedFieldBasedSpec = SettingAdvancedSpecs.GetBySettingFieldBased();
+            var settingAdvancedFieldsBased = await _settingAdvancedService.GetManyAsync(settingAdvancedFieldBasedSpec);
+            foreach (var advanced in settingAdvancedFieldsBased)
+            {
+                var input = advanced.SettingValue.Replace("###TABLE_NAME###", result.BasedTable)
+                    .Replace("###TABLE_ID###", result.Id.ToString());
+                var settingFieldModel = JsonConvert.DeserializeObject<SettingFieldModel>(input);
+                var settingField = await _settingFieldService.AddAsync(settingFieldModel.To<SettingField>());
+                await InitPermission(settingField.Id, settingField.Name);
+            }
+            await InitPermission(result.Id, result.Name);
+            await _settingFieldService.CommitAsync();
+            return Ok(result);
         }
 
         [HttpPost("update")]

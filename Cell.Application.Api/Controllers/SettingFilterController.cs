@@ -14,7 +14,7 @@ namespace Cell.Application.Api.Controllers
             IValidator<SettingFilter> entityValidator) :
             base(context, httpContextAccessor, entityValidator)
         {
-            AuthorizedType = ConfigurationKeys.SettingFilter;
+            AuthorizedType = ConfigurationKeys.SettingFilterTableName;
         }
     }
 }

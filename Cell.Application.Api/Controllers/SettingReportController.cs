@@ -14,7 +14,7 @@ namespace Cell.Application.Api.Controllers
             IValidator<SettingReport> entityValidator) :
             base(context, httpContextAccessor, entityValidator)
         {
-            AuthorizedType = ConfigurationKeys.SettingReport;
+            AuthorizedType = ConfigurationKeys.SettingReportTableName;
         }
     }
 }

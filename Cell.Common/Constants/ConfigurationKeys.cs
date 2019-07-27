@@ -12,21 +12,25 @@
         public const string Department = "DEPARTMENT";
         public const string SystemRole = "SYSTEM.ROLE";
         public const string Role = "ROLE";
+        public const string SettingFieldBased = "SETTING_FIELD_BASED";
 
-        public const string SecurityGroup = "T_SECURITY_GROUP";
-        public const string SecurityPermission = "T_SECURITY_PERMISSION";
-        public const string SecuritySession = "T_SECURITY_SESSION";
-        public const string SecurityUser = "T_SECURITY_USER";
-        public const string SettingAction = "T_SETTING_ACTION";
-        public const string SettingActionInstance = "T_SETTING_ACTION_INSTANCE";
-        public const string SettingAdvanced = "T_SETTING_ADVANCED";
-        public const string SettingFeature = "T_SETTING_FEATURE";
-        public const string SettingField = "T_SETTING_FIELD";
-        public const string SettingFieldInstance = "T_SETTING_FIELD_INSTANCE";
-        public const string SettingFilter = "T_SETTING_FILTER";
-        public const string SettingForm = "T_SETTING_FORM";
-        public const string SettingReport = "T_SETTING_REPORT";
-        public const string SettingTable = "T_SETTING_TABLE";
-        public const string SettingView = "T_SETTING_VIEW";
+        public const string SecurityGroupTableName = "T_SECURITY_GROUP";
+        public const string SecurityPermissionTableName = "T_SECURITY_PERMISSION";
+        public const string SecuritySessionTableName = "T_SECURITY_SESSION";
+        public const string SecurityUserTableName = "T_SECURITY_USER";
+        public const string SettingActionTableName = "T_SETTING_ACTION";
+        public const string SettingActionInstanceTableName = "T_SETTING_ACTION_INSTANCE";
+        public const string SettingAdvancedTableName = "T_SETTING_ADVANCED";
+        public const string SettingFeatureTableName = "T_SETTING_FEATURE";
+        public const string SettingFieldTableName = "T_SETTING_FIELD";
+        public const string SettingFieldInstanceTableName = "T_SETTING_FIELD_INSTANCE";
+        public const string SettingFilterTableName = "T_SETTING_FILTER";
+        public const string SettingFormTableName = "T_SETTING_FORM";
+        public const string SettingReportTableName = "T_SETTING_REPORT";
+        public const string SettingTableTableName = "T_SETTING_TABLE";
+        public const string SettingViewTableName = "T_SETTING_VIEW";
+
+        public const string SecurityGroup = "SecurityGroup";
+        public const string SecurityUser = "SecurityUser";
     }
 }

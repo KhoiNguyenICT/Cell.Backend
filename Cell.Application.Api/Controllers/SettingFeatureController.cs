@@ -29,7 +29,7 @@ namespace Cell.Application.Api.Controllers
         {
             _settingFeatureService = settingFeatureService;
             _treeService = treeService;
-            AuthorizedType = ConfigurationKeys.SettingFeature;
+            AuthorizedType = ConfigurationKeys.SettingFeatureTableName;
         }
 
         [HttpPost("create")]
@@ -40,14 +40,13 @@ namespace Cell.Application.Api.Controllers
             var any = await _settingFeatureService.ExistsAsync();
             if (any)
             {
-                await _treeService.InsertLastChildNode(settingFeature, model.Parent, ConfigurationKeys.SettingFeature);
+                await _treeService.InsertLastChildNode(settingFeature, model.Parent, ConfigurationKeys.SettingFeatureTableName);
             }
             else
             {
-                await _treeService.InsertFirstRootNode(settingFeature, ConfigurationKeys.SettingFeature);
+                await _treeService.InsertFirstRootNode(settingFeature, ConfigurationKeys.SettingFeatureTableName);
             }
-
-            await AssignPermission(settingFeature.Id, settingFeature.Name);
+            await InitPermission(settingFeature.Id, settingFeature.Name);
             await _settingFeatureService.CommitAsync();
             return Ok();
         }

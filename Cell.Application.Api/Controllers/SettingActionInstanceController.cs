@@ -28,7 +28,7 @@ namespace Cell.Application.Api.Controllers
             base(context, httpContextAccessor, entityValidator)
         {
             _settingActionInstanceService = settingActionInstanceService;
-            AuthorizedType = ConfigurationKeys.SettingActionInstance;
+            AuthorizedType = ConfigurationKeys.SettingActionInstanceTableName;
         }
 
         [HttpPost("create")]
@@ -51,7 +51,7 @@ namespace Cell.Application.Api.Controllers
                     TableId = settingActionInstance.TableId,
                     TableName = settingActionInstance.TableName
                 });
-                await AssignPermission(result.Id, result.Name);
+                await InitPermission(result.Id, result.Name);
             }
             await _settingActionInstanceService.CommitAsync();
             return Ok();

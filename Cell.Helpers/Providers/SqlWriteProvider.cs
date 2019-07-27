@@ -30,7 +30,6 @@ namespace Cell.Helpers.Providers
         {
             var listParamUpdateString = new List<string>();
             var id = model.Data.FirstOrDefault(x => x.Key == "ID").Value;
-            model.Data.Remove("ID");
             model.Data.AddRange(UpdateValueBase());
             var query = "UPDATE " + model.TableName + " SET";
             foreach (var (key, value) in model.Data)

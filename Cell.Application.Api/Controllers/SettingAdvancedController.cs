@@ -29,7 +29,7 @@ namespace Cell.Application.Api.Controllers
         {
             _settingAdvancedService = settingAdvancedService;
             _treeService = treeService;
-            AuthorizedType = ConfigurationKeys.SettingAdvanced;
+            AuthorizedType = ConfigurationKeys.SettingAdvancedTableName;
         }
 
         [HttpPost("getTree")]
@@ -48,14 +48,13 @@ namespace Cell.Application.Api.Controllers
             var any = await _settingAdvancedService.ExistsAsync();
             if (any)
             {
-                await _treeService.InsertLastChildNode(settingAdvanced, model.Parent, ConfigurationKeys.SettingAdvanced);
+                await _treeService.InsertLastChildNode(settingAdvanced, model.Parent, ConfigurationKeys.SettingAdvancedTableName);
             }
             else
             {
-                await _treeService.InsertFirstRootNode(settingAdvanced, ConfigurationKeys.SettingAdvanced);
+                await _treeService.InsertFirstRootNode(settingAdvanced, ConfigurationKeys.SettingAdvancedTableName);
             }
-
-            await AssignPermission(settingAdvanced.Id, settingAdvanced.Name);
+            await InitPermission(settingAdvanced.Id, settingAdvanced.Name);
             await _settingAdvancedService.CommitAsync();
             return Ok();
         }

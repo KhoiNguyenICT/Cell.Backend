@@ -14,7 +14,7 @@ namespace Cell.Application.Api.Controllers
             IValidator<SecuritySession> entityValidator) :
             base(context, httpContextAccessor, entityValidator)
         {
-            AuthorizedType = ConfigurationKeys.SecuritySession;
+            AuthorizedType = ConfigurationKeys.SecuritySessionTableName;
         }
     }
 }

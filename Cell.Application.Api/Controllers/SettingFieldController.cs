@@ -29,7 +29,7 @@ namespace Cell.Application.Api.Controllers
             base(context, httpContextAccessor, entityValidator)
         {
             _settingFieldService = settingFieldService;
-            AuthorizedType = ConfigurationKeys.SettingField;
+            AuthorizedType = ConfigurationKeys.SettingFieldTableName;
         }
 
         [HttpPost("search")]
@@ -78,9 +78,9 @@ namespace Cell.Application.Api.Controllers
                 TableId = settingField.TableId,
                 TableName = settingField.TableName
             });
-            await AssignPermission(result.Id, result.Name);
+            await InitPermission(result.Id, result.Name);
             await _settingFieldService.CommitAsync();
-            return Ok();
+            return Ok(result);
         }
 
         [HttpPost("update")]

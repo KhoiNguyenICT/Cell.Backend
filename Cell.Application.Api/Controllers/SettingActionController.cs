@@ -65,9 +65,9 @@ namespace Cell.Application.Api.Controllers
                 TableId = settingAction.TableId,
                 TableName = settingAction.TableName
             });
-            await AssignPermission(result.Id, result.Name);
+            await InitPermission(result.Id, result.Name);
             await _settingActionService.CommitAsync();
-            return Ok();
+            return Ok(result);
         }
 
         [HttpPost("update")]

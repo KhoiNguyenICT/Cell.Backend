@@ -30,7 +30,7 @@ namespace Cell.Helpers.Providers
         public async Task<object> GetSingleQuery(string tableName, Guid id)
         {
             var query = $"SELECT TOP(1) * FROM {tableName} WHERE ID = '{id}'".Trim();
-            return await _connection.QueryAsync(query);
+            return await _connection.QueryFirstOrDefaultAsync(query);
         }
 
         public async Task<object> ExecuteSearch(DynamicSearchModel searchModel)
@@ -47,25 +47,31 @@ namespace Cell.Helpers.Providers
 
         private static string GetSelectStatement(DynamicSearchModel searchModel)
         {
-            return " SELECT " + searchModel
-                    .Select
-                    .Select(t => $"{t.Table}.[{t.Field}] {(string.IsNullOrEmpty(t.Alias) ? "" : $"[{t.Alias}]")}")
-                    .JoinString(",");
+            var selectStatement = " SELECT " + searchModel
+                                      .Select
+                                      .Select(t =>
+                                          $"{t.Table}.[{t.Field}] {(string.IsNullOrEmpty(t.Alias) ? "" : $"[{t.Alias}]")}")
+                                      .JoinString(",");
+            return selectStatement;
         }
 
         private static string GetFromStatement(DynamicSearchModel searchModel)
         {
-            return "FROM " + searchModel
-                .From
-                .Select((t, index) =>
-                {
-                    if (string.IsNullOrEmpty(t.JoinTable)) return t.Table;
-                    var ret = new StringBuilder(index == 0 ? $"{t.Table} {t.JoinClause} {t.JoinTable}" : $"{t.JoinClause} {t.JoinTable}");
-                    ret.AppendLine($" ON {t.JoinConditions.Select(x => $"{t.Table}.[{x.Field}]={t.JoinTable}.[{x.JoinField}]").JoinString(" AND ")}");
+            var fromStatement = "FROM " + searchModel
+                                    .From
+                                    .Select((t, index) =>
+                                    {
+                                        if (string.IsNullOrEmpty(t.JoinTable)) return t.Table;
+                                        var ret = new StringBuilder(index == 0
+                                            ? $"{t.Table} {t.JoinClause} {t.JoinTable}"
+                                            : $"{t.JoinClause} {t.JoinTable}");
+                                        ret.AppendLine(
+                                            $" ON {t.JoinConditions.Select(x => $"{t.Table}.[{x.Field}]={t.JoinTable}.[{x.JoinField}]").JoinString(" AND ")}");
 
-                    return ret.ToString().Trim();
-                })
-                .JoinString(Environment.NewLine);
+                                        return ret.ToString().Trim();
+                                    })
+                                    .JoinString(Environment.NewLine);
+            return fromStatement;
         }
 
         private static string GetWhereStatement(DynamicSearchModel searchModel, out object parameter)
