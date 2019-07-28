@@ -9,6 +9,10 @@ namespace Cell.Helpers.Models
         public IEnumerable<From> From { get; set; }
 
         public IEnumerable<Where> Where { get; set; }
+
+        public IEnumerable<GroupBy> GroupBy { get; set; }
+
+        public IEnumerable<OrderBy> OrderBy { get; set; }
     }
 
     public class Select
@@ -48,6 +52,26 @@ namespace Cell.Helpers.Models
 
         public string Value { get; set; }
 
+        public string Operator { get; set; }
+
         public string Function { get; set; }
+
+        public string Combine { get; set; }
+    }
+
+    public class GroupBy
+    {
+        public string Table { get; set; }
+
+        public string Field { get; set; }
+    }
+
+    public class OrderBy
+    {
+        public string Table { get; set; }
+
+        public string Field { get; set; }
+
+        public string Direction { get; set; }
     }
 }
