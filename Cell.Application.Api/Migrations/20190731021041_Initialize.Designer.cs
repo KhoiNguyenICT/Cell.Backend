@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cell.Application.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190730161540_RemoveData")]
-    partial class RemoveData
+    [Migration("20190731021041_Initialize")]
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,10 @@ namespace Cell.Application.Api.Migrations
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION");
@@ -107,6 +111,10 @@ namespace Cell.Application.Api.Migrations
                     b.Property<Guid>("CreatedBy")
                         .HasColumnName("CREATED_BY");
 
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION");
 
@@ -155,6 +163,10 @@ namespace Cell.Application.Api.Migrations
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION");
@@ -210,6 +222,10 @@ namespace Cell.Application.Api.Migrations
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
 
                     b.Property<Guid>("DefaultDepartment")
                         .HasColumnName("DEFAULT_DEPARTMENT");
@@ -274,6 +290,10 @@ namespace Cell.Application.Api.Migrations
                     b.Property<Guid>("CreatedBy")
                         .HasColumnName("CREATED_BY");
 
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION");
 
@@ -325,6 +345,10 @@ namespace Cell.Application.Api.Migrations
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION");
@@ -379,6 +403,10 @@ namespace Cell.Application.Api.Migrations
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION");
@@ -440,6 +468,10 @@ namespace Cell.Application.Api.Migrations
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION");
@@ -516,6 +548,10 @@ namespace Cell.Application.Api.Migrations
                     b.Property<Guid>("CreatedBy")
                         .HasColumnName("CREATED_BY");
 
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
+
                     b.Property<string>("DataType")
                         .HasColumnName("DATA_TYPE")
                         .HasMaxLength(50);
@@ -584,6 +620,10 @@ namespace Cell.Application.Api.Migrations
                     b.Property<Guid>("CreatedBy")
                         .HasColumnName("CREATED_BY");
 
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
+
                     b.Property<string>("DataType")
                         .HasColumnName("DATA_TYPE")
                         .HasMaxLength(50);
@@ -642,6 +682,10 @@ namespace Cell.Application.Api.Migrations
                     b.Property<Guid>("CreatedBy")
                         .HasColumnName("CREATED_BY");
 
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION");
 
@@ -690,6 +734,10 @@ namespace Cell.Application.Api.Migrations
                     b.Property<Guid>("CreatedBy")
                         .HasColumnName("CREATED_BY");
 
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION");
 
@@ -737,6 +785,10 @@ namespace Cell.Application.Api.Migrations
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION");
@@ -790,6 +842,10 @@ namespace Cell.Application.Api.Migrations
                     b.Property<Guid>("CreatedBy")
                         .HasColumnName("CREATED_BY");
 
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION");
 
@@ -827,6 +883,10 @@ namespace Cell.Application.Api.Migrations
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION");
