@@ -16,27 +16,23 @@ using Cell.Model.Entities.SettingTableEntity;
 using Cell.Model.Entities.SettingViewEntity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Distributed;
-using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Cell.Model.Entities.SettingApiEntity;
 
 namespace Cell.Model
 {
     public class AppDbContext : DbContext
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IDistributedCache _distributedCache;
 
         public AppDbContext(
             DbContextOptions options,
-            IHttpContextAccessor httpContextAccessor,
-            IDistributedCache distributedCache) : base(options)
+            IHttpContextAccessor httpContextAccessor) : base(options)
         {
             _httpContextAccessor = httpContextAccessor;
-            _distributedCache = distributedCache;
         }
 
         public DbSet<SecurityGroup> SecurityGroups { get; set; }
@@ -46,6 +42,7 @@ namespace Cell.Model
         public DbSet<SettingAction> SettingActions { get; set; }
         public DbSet<SettingActionInstance> SettingActionInstances { get; set; }
         public DbSet<SettingAdvanced> SettingAdvanceds { get; set; }
+        public DbSet<SettingApi> SettingApi { get; set; }
         public DbSet<SettingFeature> SettingFeatures { get; set; }
         public DbSet<SettingField> SettingFields { get; set; }
         public DbSet<SettingFieldInstance> SettingFieldInstances { get; set; }
@@ -74,20 +71,15 @@ namespace Cell.Model
                         changedOrAddedItem.Modified = DateTimeOffset.Now;
                         changedOrAddedItem.ModifiedBy = CurrentAccountId;
                         changedOrAddedItem.Version = 0;
-                        await _distributedCache.SetStringAsync(changedOrAddedItem.Id.ToString(),
-                            JsonConvert.SerializeObject(changedOrAddedItem), token: cancellationToken);
                         break;
 
                     case EntityState.Modified:
                         changedOrAddedItem.Modified = DateTimeOffset.Now;
                         changedOrAddedItem.ModifiedBy = Guid.Empty;
                         changedOrAddedItem.Version += 1;
-                        await _distributedCache.SetStringAsync(changedOrAddedItem.Id.ToString(),
-                            JsonConvert.SerializeObject(changedOrAddedItem), token: cancellationToken);
                         break;
 
                     case EntityState.Deleted:
-                        await _distributedCache.RemoveAsync(changedOrAddedItem.Id.ToString(), cancellationToken);
                         break;
                 }
             }

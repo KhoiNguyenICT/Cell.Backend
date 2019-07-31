@@ -47,7 +47,7 @@ namespace Cell.Application.Api.Controllers
         }
 
         [HttpPost("{id}")]
-        public async Task<IActionResult> SettingField(Guid id)
+        public async Task<IActionResult> Field(Guid id)
         {
             var settingField = await _settingFieldService.GetByIdAsync(id);
             return Ok(settingField.To<SettingFieldModel>());

@@ -31,6 +31,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Reflection;
+using Cell.Model.Entities.SettingApiEntity;
 
 namespace Cell.Application.Api.Helpers
 {
@@ -126,6 +127,7 @@ namespace Cell.Application.Api.Helpers
             service.AddScoped<ISettingActionService, SettingActionService>();
             service.AddScoped<ISettingActionInstanceService, SettingActionInstanceService>();
             service.AddScoped<ISettingAdvancedService, SettingAdvancedService>();
+            service.AddScoped<ISettingApiService, SettingApiService>();
             service.AddScoped<ISettingFeatureService, SettingFeatureService>();
             service.AddScoped<ISettingFieldService, SettingFieldService>();
             service.AddScoped<ISettingFieldInstanceService, SettingFieldInstanceService>();
@@ -151,6 +153,7 @@ namespace Cell.Application.Api.Helpers
             service.AddTransient<IValidator<SettingTable>, SettingTableValidator>();
             service.AddTransient<IValidator<SettingView>, SettingViewValidator>();
             service.AddTransient<IValidator<SettingAdvanced>, SettingAdvancedValidator>();
+            service.AddTransient<IValidator<SettingApi>, SettingApiValidator>();
             service.AddTransient<IValidator<SettingFilter>, SettingFilterValidator>();
             service.AddTransient<IValidator<SettingReport>, SettingReportValidator>();
             service.AddTransient<IValidator<SecurityGroup>, SecurityGroupValidator>();
