@@ -16,26 +16,27 @@ using Cell.Model.Entities.SettingTableEntity;
 using Cell.Model.Entities.SettingViewEntity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Cell.Common.Constants;
-using Cell.Common.Specifications;
-using Newtonsoft.Json.Bson;
 
 namespace Cell.Model
 {
     public class AppDbContext : DbContext
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IDistributedCache _distributedCache;
 
         public AppDbContext(
             DbContextOptions options,
-            IHttpContextAccessor httpContextAccessor) : base(options)
+            IHttpContextAccessor httpContextAccessor,
+            IDistributedCache distributedCache) : base(options)
         {
             _httpContextAccessor = httpContextAccessor;
+            _distributedCache = distributedCache;
         }
 
         public DbSet<SecurityGroup> SecurityGroups { get; set; }
@@ -58,25 +59,39 @@ namespace Cell.Model
 
         private Guid CurrentAccountId => Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Account"]);
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             var modified = ChangeTracker.Entries().Where(e => e.State == EntityState.Modified || e.State == EntityState.Added);
             foreach (var item in modified)
             {
                 if (!(item.Entity is IEntity changedOrAddedItem)) continue;
-                if (item.State == EntityState.Added)
+                switch (item.State)
                 {
-                    changedOrAddedItem.CreatedBy = Guid.Empty;
-                    changedOrAddedItem.Created = DateTimeOffset.Now;
-                    changedOrAddedItem.Modified = DateTimeOffset.Now;
-                    changedOrAddedItem.Version = 0;
-                }
+                    case EntityState.Added:
+                        changedOrAddedItem.CreatedBy = CurrentAccountId;
+                        changedOrAddedItem.Created = DateTimeOffset.Now;
+                        changedOrAddedItem.Modified = DateTimeOffset.Now;
+                        changedOrAddedItem.Modified = DateTimeOffset.Now;
+                        changedOrAddedItem.ModifiedBy = CurrentAccountId;
+                        changedOrAddedItem.Version = 0;
+                        await _distributedCache.SetStringAsync(changedOrAddedItem.Id.ToString(),
+                            JsonConvert.SerializeObject(changedOrAddedItem), token: cancellationToken);
+                        break;
 
-                changedOrAddedItem.Modified = DateTimeOffset.Now;
-                changedOrAddedItem.ModifiedBy = Guid.Empty;
-                changedOrAddedItem.Version += 1;
+                    case EntityState.Modified:
+                        changedOrAddedItem.Modified = DateTimeOffset.Now;
+                        changedOrAddedItem.ModifiedBy = Guid.Empty;
+                        changedOrAddedItem.Version += 1;
+                        await _distributedCache.SetStringAsync(changedOrAddedItem.Id.ToString(),
+                            JsonConvert.SerializeObject(changedOrAddedItem), token: cancellationToken);
+                        break;
+
+                    case EntityState.Deleted:
+                        await _distributedCache.RemoveAsync(changedOrAddedItem.Id.ToString(), cancellationToken);
+                        break;
+                }
             }
-            return base.SaveChangesAsync(cancellationToken);
+            return await base.SaveChangesAsync(cancellationToken);
         }
 
         public override int SaveChanges()

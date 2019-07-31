@@ -6,17 +6,15 @@ using Cell.Model.Entities.SettingActionInstanceEntity;
 using Cell.Model.Entities.SettingFieldInstanceEntity;
 using Cell.Model.Entities.SettingViewEntity;
 using Cell.Model.Models.Others;
-using FluentValidation;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Cell.Model.Models.SettingActionInstance;
 using Cell.Model.Models.SettingFieldInstance;
 using Cell.Model.Models.SettingView;
+using FluentValidation;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -45,12 +43,11 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> Search(SearchSettingViewModel model)
         {
             var spec = SettingViewSpecs.SearchByQuery(model.Query);
-            var queryable = Queryable(spec);
-            var items = await queryable.OrderBy(x => x.Name).Skip(model.Skip).Take(model.Take).ToListAsync();
+            var queryable = await Queryable(spec);
             return Ok(new QueryResult<SettingViewModel>
             {
-                Count = queryable.Count(),
-                Items = items.To<List<SettingViewModel>>()
+                Count = queryable.Count,
+                Items = queryable.Items.To<List<SettingViewModel>>()
             });
         }
 

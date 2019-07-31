@@ -1,11 +1,8 @@
-﻿using System;
-using System.Reflection;
-using AutoMapper;
+﻿using AutoMapper;
 using Cell.Application.Api.Mappers;
 using Cell.Common.Constants;
 using Cell.Common.Extensions;
 using Cell.Common.Filters;
-using Cell.Common.SeedWork;
 using Cell.Model;
 using Cell.Model.Entities.DynamicEntity;
 using Cell.Model.Entities.SecurityGroupEntity;
@@ -32,6 +29,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.Reflection;
 
 namespace Cell.Application.Api.Helpers
 {
@@ -103,6 +102,16 @@ namespace Cell.Application.Api.Helpers
                 c.SwaggerEndpoint("/swagger/v5/swagger.json", "CELL APPLICATION");
             });
             return app;
+        }
+
+        public static IServiceCollection ConfigureStagingServices(this IServiceCollection service, IConfiguration configuration)
+        {
+            service.AddDistributedRedisCache(options =>
+            {
+                options.Configuration = configuration["Redis:Host"];
+                options.InstanceName = configuration["Redis:DefaultInstance"];
+            });
+            return service;
         }
 
         public static IServiceCollection ConfigIoc(this IServiceCollection service)

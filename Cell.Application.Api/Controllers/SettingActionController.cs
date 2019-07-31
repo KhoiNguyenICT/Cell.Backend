@@ -34,17 +34,16 @@ namespace Cell.Application.Api.Controllers
         {
             var spec = SettingActionSpecs.SearchByQuery(model.Query)
                 .And(SettingActionSpecs.SearchByTableId(model.TableId));
-            var queryable = Queryable(spec);
-            var items = await queryable.Skip(model.Skip).Take(model.Take).ToListAsync();
+            var queryable = await Queryable(spec, model.Sorts, model.Skip, model.Take);
             return Ok(new QueryResult<SettingActionModel>
             {
-                Count = Queryable(spec).Count(),
-                Items = items.To<List<SettingActionModel>>()
+                Count = queryable.Count,
+                Items = queryable.Items.To<List<SettingActionModel>>()
             });
         }
 
         [HttpPost("{id}")]
-        public async Task<IActionResult> SettingTable(Guid id)
+        public async Task<IActionResult> Table(Guid id)
         {
             var settingField = await _settingActionService.GetByIdAsync(id);
             return Ok(settingField);

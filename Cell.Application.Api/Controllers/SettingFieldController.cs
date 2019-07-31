@@ -5,15 +5,14 @@ using Cell.Core.Errors;
 using Cell.Model;
 using Cell.Model.Entities.SettingFieldEntity;
 using Cell.Model.Models.Others;
+using Cell.Model.Models.SettingField;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cell.Model.Models.SettingField;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -35,13 +34,14 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("search")]
         public async Task<IActionResult> Search(SearchSettingFieldModel model)
         {
-            var spec = SettingFieldSpecs.SearchByQuery(model.Query).And(SettingFieldSpecs.SearchByTableId(model.TableId));
-            var queryable = Queryable(spec);
-            var items = await queryable.OrderBy(x => x.OrdinalPosition).ThenBy(x => x.Caption).ThenBy(x => x.Name)
-                .Skip(model.Skip).Take(model.Take).ToListAsync();
+            var spec = SettingFieldSpecs.SearchByQuery(model.Query)
+                .And(SettingFieldSpecs.SearchByTableId(model.TableId));
+            var queryable = await Queryable(spec, model.Sorts, model.Skip, model.Take);
+            var items = queryable.Items.OrderBy(x => x.OrdinalPosition).ThenBy(x => x.Caption)
+                .ThenBy(x => x.Name).ToList();
             return Ok(new QueryResult<SettingFieldModel>
             {
-                Count = queryable.Count(),
+                Count = queryable.Count,
                 Items = items.To<List<SettingFieldModel>>()
             });
         }
@@ -119,8 +119,8 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> SearchFieldName(Guid tableId)
         {
             var spec = SettingFieldSpecs.SearchByTableId(tableId);
-            var result = await Queryable(spec).Select(x => x.Name).ToListAsync();
-            return Ok(result);
+            var result = await Queryable(spec);
+            return Ok(result.Items.Select(x => x.Name));
         }
     }
 }

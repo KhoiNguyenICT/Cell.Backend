@@ -26,6 +26,7 @@ namespace Cell.Application.Api
         {
             services
                 .AddCustomDbContext(Configuration)
+                .ConfigureStagingServices(Configuration)
                 .AddMapper()
                 .ConfigIoc()
                 .ConfigValidator()

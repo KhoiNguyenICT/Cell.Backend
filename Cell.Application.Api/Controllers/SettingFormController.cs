@@ -6,17 +6,15 @@ using Cell.Model.Entities.SettingActionEntity;
 using Cell.Model.Entities.SettingFieldEntity;
 using Cell.Model.Entities.SettingFormEntity;
 using Cell.Model.Models.Others;
-using FluentValidation;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Cell.Model.Models.SettingAction;
 using Cell.Model.Models.SettingField;
 using Cell.Model.Models.SettingForm;
+using FluentValidation;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -47,12 +45,11 @@ namespace Cell.Application.Api.Controllers
             var spec = SettingFormSpecs.SearchByQuery(model.Query);
             if (model.TableId != Guid.Empty)
                 spec.And(SettingFormSpecs.SearchByTableId(model.TableId));
-            var queryable = Queryable(spec);
-            var items = await queryable.Skip(model.Skip).Take(model.Take).ToListAsync();
+            var queryable = await Queryable(spec);
             return Ok(new QueryResult<SettingFormModel>
             {
-                Count = queryable.Count(),
-                Items = items.To<List<SettingFormModel>>()
+                Count = queryable.Count,
+                Items = queryable.Items.To<List<SettingFormModel>>()
             });
         }
 
@@ -90,7 +87,7 @@ namespace Cell.Application.Api.Controllers
         }
 
         [HttpPost("{id}")]
-        public async Task<IActionResult> SettingForm(Guid id)
+        public async Task<IActionResult> Form(Guid id)
         {
             var settingForm = await _settingFormService.GetByIdAsync(id);
             return Ok(settingForm.To<SettingFormModel>());

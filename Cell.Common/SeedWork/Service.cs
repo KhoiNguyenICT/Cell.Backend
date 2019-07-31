@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Cell.Common.Extensions;
+﻿using Cell.Common.Extensions;
 using Cell.Common.Linq;
 using Cell.Common.Specifications;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Cell.Common.SeedWork
 {

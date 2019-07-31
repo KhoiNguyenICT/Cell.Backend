@@ -78,17 +78,16 @@ namespace Cell.Application.Api.Controllers
         {
             var spec = SettingFieldInstanceSpecs.SearchByQuery(model.Query)
                 .And(SettingFieldInstanceSpecs.GetManyByParentId(model.ParentId));
-            var queryable = Queryable(spec, model.Sorts);
-            var items = await queryable.Skip(model.Skip).Take(model.Take).ToListAsync();
+            var queryable = await Queryable(spec, model.Sorts);
             return Ok(new QueryResult<SettingFieldInstanceModel>
             {
-                Count = queryable.Count(),
-                Items = items.To<List<SettingFieldInstanceModel>>()
+                Count = queryable.Count,
+                Items = queryable.Items.To<List<SettingFieldInstanceModel>>()
             });
         }
 
         [HttpPost("{id}")]
-        public async Task<IActionResult> SettingFieldInstance(Guid id)
+        public async Task<IActionResult> FieldInstance(Guid id)
         {
             var settingFieldInstance = await _settingFieldInstanceService.GetByIdAsync(id);
             return Ok(settingFieldInstance.To<SettingFieldInstanceModel>());

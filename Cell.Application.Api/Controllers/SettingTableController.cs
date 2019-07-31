@@ -8,18 +8,16 @@ using Cell.Model.Entities.SettingAdvancedEntity;
 using Cell.Model.Entities.SettingFieldEntity;
 using Cell.Model.Entities.SettingTableEntity;
 using Cell.Model.Models.Others;
+using Cell.Model.Models.SettingField;
 using Cell.Model.Models.SettingTable;
 using Cell.Service.Implementations;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Cell.Model.Models.SettingField;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -55,9 +53,8 @@ namespace Cell.Application.Api.Controllers
         {
             var settingTableItems = new List<SettingTableModel>();
             var spec = SettingTableSpecs.SearchByQuery(model.Query);
-            var queryable = Queryable(spec);
-            var items = await queryable.Skip(model.Skip).Take(model.Take).ToListAsync();
-            foreach (var settingTable in items)
+            var queryable = await Queryable(spec, model.Sorts, model.Skip, model.Take);
+            foreach (var settingTable in queryable.Items)
             {
                 var countFieldItems = await _settingFieldService.CountAsync(settingTable.Id);
                 var countActionItems = await _settingActionService.CountAsync(settingTable.Id);
@@ -68,13 +65,13 @@ namespace Cell.Application.Api.Controllers
             }
             return Ok(new QueryResult<SettingTableModel>
             {
-                Count = queryable.Count(),
+                Count = queryable.Count,
                 Items = settingTableItems
             });
         }
 
         [HttpPost("{id}")]
-        public async Task<IActionResult> SettingTable(Guid id)
+        public async Task<IActionResult> Table(Guid id)
         {
             var settingTable = await _settingTableService.GetByIdAsync(id);
             return Ok(settingTable.To<SettingTableModel>());

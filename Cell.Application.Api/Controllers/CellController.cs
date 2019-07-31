@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -22,7 +23,7 @@ namespace Cell.Application.Api.Controllers
     public class CellController<TEntity> : ControllerBase
         where TEntity : Entity
     {
-        private readonly AppDbContext _context;
+        protected readonly AppDbContext Context;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IValidator<TEntity> _entityValidator;
         protected string AuthorizedType;
@@ -36,7 +37,7 @@ namespace Cell.Application.Api.Controllers
             IHttpContextAccessor httpContextAccessor,
             IValidator<TEntity> entityValidator)
         {
-            _context = context;
+            Context = context;
             _httpContextAccessor = httpContextAccessor;
             _entityValidator = entityValidator;
         }
@@ -58,33 +59,41 @@ namespace Cell.Application.Api.Controllers
             }
         }
 
-        protected virtual IQueryable<TEntity> Queryable(ISpecification<TEntity> spec, string[] sorts = null)
+        protected virtual async Task<QueryResult<TEntity>> Queryable(
+            ISpecification<TEntity> spec, 
+            string[] sorts = null, 
+            int skip = 0, 
+            int take = 10)
         {
-            var entities = from entity in _context.Set<TEntity>()
-                           join permission in _context.SecurityPermissions on entity.Id equals permission.ObjectId
+            var entities = from entity in Context.Set<TEntity>()
+                           join permission in Context.SecurityPermissions on entity.Id equals permission.ObjectId
                            where GroupIds().Contains(permission.AuthorizedId)
                            select entity;
-            if (spec == null) return entities;
+            if (spec == null)
+            {
+                var result = await entities.ToListAsync();
+                return new QueryResult<TEntity>(entities.Count(), entities.ToList());
+            }
             entities = entities.Where(spec.Predicate).SortBy(sorts ?? StringExtensions.GetDefaultSorts());
-            return entities;
+            return new QueryResult<TEntity>(entities.Count(),  entities.Skip(skip).Take(take).ToList());
         }
 
-        protected virtual IQueryable<TEntity> Queryable(string[] sorts = null)
+        protected virtual async Task<QueryResult<TEntity>> Queryable(string[] sorts = null)
         {
-            return Queryable(null, sorts);
+            return await Queryable(null, sorts);
         }
 
         private List<Guid> GroupIds()
         {
             var sessionId = Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Session"]);
-            var session = _context.SecuritySessions.Find(sessionId);
+            var session = Context.SecuritySessions.Find(sessionId);
             var groupIds = session.To<SecuritySessionModel>().Settings.GroupIds;
             return groupIds;
         }
 
         protected async Task InitPermission(Guid objectId, string objectName)
         {
-            var systemRole = _context.SecurityGroups.FirstOrDefault(t => t.Code == "SYSTEM.ROLE" && t.Name == "System");
+            var systemRole = Context.SecurityGroups.FirstOrDefault(t => t.Code == "SYSTEM.ROLE" && t.Name == "System");
             if (systemRole == null) return;
             var securityPermissions = new List<SecurityPermission>
             {
@@ -105,8 +114,8 @@ namespace Cell.Application.Api.Controllers
                     TableName = ConfigurationKeys.SecurityUserTableName
                 }
             };
-            await _context.SecurityPermissions.AddRangeAsync(securityPermissions);
-            await _context.SaveChangesAsync();
+            await Context.SecurityPermissions.AddRangeAsync(securityPermissions);
+            await Context.SaveChangesAsync();
         }
     }
 }

@@ -5,16 +5,14 @@ using Cell.Core.Errors;
 using Cell.Model;
 using Cell.Model.Entities.SecurityUserEntity;
 using Cell.Model.Models.Others;
+using Cell.Model.Models.SecurityGroup;
+using Cell.Model.Models.SecurityUser;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Cell.Model.Models.SecurityGroup;
-using Cell.Model.Models.SecurityUser;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -37,12 +35,11 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> Search(SearchModel model)
         {
             var spec = SecurityUserSpecs.SearchByQuery(model.Query);
-            var queryable = Queryable(spec);
-            var items = await queryable.Skip(model.Skip).Take(model.Take).ToListAsync();
+            var queryable = await Queryable(spec, model.Sorts, model.Skip, model.Take);
             return Ok(new QueryResult<SecurityUserModel>
             {
-                Count = queryable.Count(),
-                Items = items.To<List<SecurityUserModel>>()
+                Count = queryable.Count,
+                Items = queryable.Items.To<List<SecurityUserModel>>()
             });
         }
 
@@ -90,7 +87,7 @@ namespace Cell.Application.Api.Controllers
         }
 
         [HttpPost("{id}")]
-        public async Task<IActionResult> SettingUser(Guid id)
+        public async Task<IActionResult> User(Guid id)
         {
             var result = await _securityUserService.GetByIdAsync(id);
             return Ok(result.To<SecurityUserModel>());

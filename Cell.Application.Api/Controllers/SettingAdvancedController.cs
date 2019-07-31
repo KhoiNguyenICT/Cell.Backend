@@ -2,15 +2,15 @@
 using Cell.Common.Extensions;
 using Cell.Model;
 using Cell.Model.Entities.SettingAdvancedEntity;
+using Cell.Model.Models.SettingAdvanced;
 using Cell.Service.Implementations;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Cell.Model.Models.SettingAdvanced;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -35,8 +35,8 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("getTree")]
         public async Task<IActionResult> GetTree()
         {
-            var settingAdvanced = await Queryable().ToListAsync();
-            var result = _settingAdvancedService.GetTreeAsync(settingAdvanced);
+            var queryResult = await Queryable();
+            var result = _settingAdvancedService.GetTreeAsync(queryResult.Items.ToList());
             return Ok(result.To<List<SettingAdvancedModel>>());
         }
 

@@ -2,15 +2,15 @@
 using Cell.Common.Extensions;
 using Cell.Model;
 using Cell.Model.Entities.SettingFeatureEntity;
+using Cell.Model.Models.SettingFeature;
 using Cell.Service.Implementations;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Cell.Model.Models.SettingFeature;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -83,8 +83,8 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("getTree")]
         public async Task<IActionResult> GetTree()
         {
-            var settingFeatures = await Queryable().ToListAsync();
-            var result = _settingFeatureService.GetTreeAsync(settingFeatures);
+            var queryResult = await Queryable();
+            var result = _settingFeatureService.GetTreeAsync(queryResult.Items.ToList());
             return Ok(result.To<List<SettingFeatureModel>>());
         }
     }
