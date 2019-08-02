@@ -76,7 +76,7 @@ namespace Cell.Application.Api.Controllers
         [HttpPost("{id}")]
         public async Task<IActionResult> SettingGroup(Guid id)
         {
-            var settingGroup = await _securityPermissionService.GetByIdAsync(id);
+            var settingGroup = await _securityGroupService.GetByIdAsync(id);
             return Ok(settingGroup.To<SecurityGroupModel>());
         }
 
