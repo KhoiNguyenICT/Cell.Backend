@@ -7,5 +7,8 @@ namespace Cell.Model.Entities.SecurityPermissionEntity
 {
     public interface ISecurityPermissionService : IService<SecurityPermission>
     {
+        Task<List<Guid>> GetGroupIdsByAccountId(Guid accountId);
+
+        Task InitPermission(Guid objectId, string objectName, string authorizedType);
     }
 }

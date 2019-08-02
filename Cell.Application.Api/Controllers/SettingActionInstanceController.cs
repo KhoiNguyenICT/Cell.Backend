@@ -2,17 +2,16 @@
 using Cell.Common.Extensions;
 using Cell.Common.SeedWork;
 using Cell.Model;
+using Cell.Model.Entities.SecurityPermissionEntity;
 using Cell.Model.Entities.SettingActionInstanceEntity;
 using Cell.Model.Models.Others;
+using Cell.Model.Models.SettingActionInstance;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Cell.Model.Models.SettingActionInstance;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -24,8 +23,9 @@ namespace Cell.Application.Api.Controllers
             AppDbContext context,
             IHttpContextAccessor httpContextAccessor,
             IValidator<SettingActionInstance> entityValidator,
-            ISettingActionInstanceService settingActionInstanceService) :
-            base(context, httpContextAccessor, entityValidator)
+            ISettingActionInstanceService settingActionInstanceService,
+            ISecurityPermissionService securityPermissionService) :
+            base(context, httpContextAccessor, entityValidator, securityPermissionService)
         {
             _settingActionInstanceService = settingActionInstanceService;
             AuthorizedType = ConfigurationKeys.SettingActionInstanceTableName;

@@ -1,6 +1,7 @@
 ﻿using Cell.Common.Constants;
 using Cell.Common.Extensions;
 using Cell.Model;
+using Cell.Model.Entities.SecurityPermissionEntity;
 using Cell.Model.Entities.SettingFeatureEntity;
 using Cell.Model.Models.SettingFeature;
 using Cell.Service.Implementations;
@@ -24,8 +25,9 @@ namespace Cell.Application.Api.Controllers
             IHttpContextAccessor httpContextAccessor,
             IValidator<SettingFeature> entityValidator,
             ISettingFeatureService settingFeatureService,
-            ISettingTreeService<SettingFeature> treeService) :
-            base(context, httpContextAccessor, entityValidator)
+            ISettingTreeService<SettingFeature> treeService,
+            ISecurityPermissionService securityPermissionService) :
+            base(context, httpContextAccessor, entityValidator, securityPermissionService)
         {
             _settingFeatureService = settingFeatureService;
             _treeService = treeService;

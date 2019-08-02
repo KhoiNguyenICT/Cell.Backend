@@ -1,20 +1,18 @@
-﻿using Cell.Common.Constants;
-using Cell.Common.Extensions;
+﻿using Cell.Common.Extensions;
 using Cell.Common.Linq;
 using Cell.Common.SeedWork;
 using Cell.Common.Specifications;
 using Cell.Core.Errors;
 using Cell.Model;
 using Cell.Model.Entities.SecurityPermissionEntity;
-using Cell.Model.Models.SecuritySession;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -23,23 +21,26 @@ namespace Cell.Application.Api.Controllers
     public class CellController<TEntity> : ControllerBase
         where TEntity : Entity
     {
-        protected readonly AppDbContext Context;
+        private readonly AppDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IValidator<TEntity> _entityValidator;
+        private readonly ISecurityPermissionService _securityPermissionService;
         protected string AuthorizedType;
 
-        private Guid CurrentSessionId => Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Session"]);
+        private Guid CurrentSessionId => Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Session"] ?? throw new InvalidOperationException());
 
-        private Guid CurrentAccountId => Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Account"]);
+        private Guid CurrentAccountId => Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Account"] ?? throw new InvalidOperationException());
 
         public CellController(
             AppDbContext context,
             IHttpContextAccessor httpContextAccessor,
-            IValidator<TEntity> entityValidator)
+            IValidator<TEntity> entityValidator,
+            ISecurityPermissionService securityPermissionService)
         {
-            Context = context;
+            _context = context;
             _httpContextAccessor = httpContextAccessor;
             _entityValidator = entityValidator;
+            _securityPermissionService = securityPermissionService;
         }
 
         protected async Task ValidateModel(BaseModel model)
@@ -60,22 +61,23 @@ namespace Cell.Application.Api.Controllers
         }
 
         protected virtual async Task<QueryResult<TEntity>> Queryable(
-            ISpecification<TEntity> spec, 
-            string[] sorts = null, 
-            int skip = 0, 
+            ISpecification<TEntity> spec,
+            string[] sorts = null,
+            int skip = 0,
             int take = 10)
         {
-            var entities = from entity in Context.Set<TEntity>()
-                           join permission in Context.SecurityPermissions on entity.Id equals permission.ObjectId
-                           where GroupIds().Contains(permission.AuthorizedId)
+            var groupIds = await _securityPermissionService.GetGroupIdsByAccountId(CurrentAccountId);
+            var entities = from entity in _context.Set<TEntity>()
+                           join permission in _context.SecurityPermissions on entity.Id equals permission.ObjectId
+                           where groupIds.Contains(permission.AuthorizedId)
                            select entity;
             if (spec == null)
             {
-                var result = await entities.ToListAsync();
                 return new QueryResult<TEntity>(entities.Count(), entities.ToList());
             }
             entities = entities.Where(spec.Predicate).SortBy(sorts ?? StringExtensions.GetDefaultSorts());
-            return new QueryResult<TEntity>(entities.Count(),  entities.Skip(skip).Take(take).ToList());
+            var result = await entities.Skip(skip).Take(take).ToListAsync();
+            return new QueryResult<TEntity>(entities.Count(), result);
         }
 
         protected virtual async Task<QueryResult<TEntity>> Queryable(string[] sorts = null)
@@ -83,39 +85,9 @@ namespace Cell.Application.Api.Controllers
             return await Queryable(null, sorts);
         }
 
-        private List<Guid> GroupIds()
-        {
-            var sessionId = Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Session"]);
-            var session = Context.SecuritySessions.Find(sessionId);
-            var groupIds = session.To<SecuritySessionModel>().Settings.GroupIds;
-            return groupIds;
-        }
-
         protected async Task InitPermission(Guid objectId, string objectName)
         {
-            var systemRole = Context.SecurityGroups.FirstOrDefault(t => t.Code == "SYSTEM.ROLE" && t.Name == "System");
-            if (systemRole == null) return;
-            var securityPermissions = new List<SecurityPermission>
-            {
-                new SecurityPermission
-                {
-                    AuthorizedId = systemRole.Id,
-                    AuthorizedType = AuthorizedType,
-                    ObjectId = objectId,
-                    ObjectName = objectName,
-                    TableName = ConfigurationKeys.SecurityGroupTableName
-                },
-                new SecurityPermission
-                {
-                    AuthorizedId = CurrentAccountId,
-                    AuthorizedType = AuthorizedType,
-                    ObjectId = objectId,
-                    ObjectName = objectName,
-                    TableName = ConfigurationKeys.SecurityUserTableName
-                }
-            };
-            await Context.SecurityPermissions.AddRangeAsync(securityPermissions);
-            await Context.SaveChangesAsync();
+            await _securityPermissionService.InitPermission(objectId, objectName, AuthorizedType);
         }
     }
 }

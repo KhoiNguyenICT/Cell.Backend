@@ -21,6 +21,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Cell.Model.Entities.SettingApiEntity;
+using Cell.Model.Entities.SystemLogEntity;
 
 namespace Cell.Model
 {
@@ -51,10 +52,11 @@ namespace Cell.Model
         public DbSet<SettingReport> SettingReports { get; set; }
         public DbSet<SettingTable> SettingTables { get; set; }
         public DbSet<SettingView> SettingViews { get; set; }
+        public DbSet<SystemLog> SystemLogs { get; set; }
 
-        private Guid CurrentSessionId => Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Session"]);
+        private Guid CurrentSessionId => Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Session"] ?? throw new InvalidOperationException());
 
-        private Guid CurrentAccountId => Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Account"]);
+        private Guid CurrentAccountId => Guid.Parse(_httpContextAccessor.HttpContext.Request?.Headers["Account"] ?? throw new InvalidOperationException());
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -97,6 +99,8 @@ namespace Cell.Model
                     changedOrAddedItem.CreatedBy = Guid.Empty;
                     changedOrAddedItem.Created = DateTimeOffset.Now;
                     changedOrAddedItem.Modified = DateTimeOffset.Now;
+                    changedOrAddedItem.Modified = DateTimeOffset.Now;
+                    changedOrAddedItem.ModifiedBy = Guid.Empty;
                     changedOrAddedItem.Version = 0;
                 }
 

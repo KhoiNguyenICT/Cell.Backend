@@ -32,6 +32,9 @@ using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Reflection;
 using Cell.Model.Entities.SettingApiEntity;
+using Microsoft.Extensions.Logging;
+using NLog;
+using NLog.Extensions.Logging;
 
 namespace Cell.Application.Api.Helpers
 {
@@ -105,14 +108,11 @@ namespace Cell.Application.Api.Helpers
             return app;
         }
 
-        public static IServiceCollection ConfigureStagingServices(this IServiceCollection service, IConfiguration configuration)
+        public static void ConfigNLog(ILoggerFactory loggerFactory, IConfiguration configuration)
         {
-            service.AddDistributedRedisCache(options =>
-            {
-                options.Configuration = configuration["Redis:Host"];
-                options.InstanceName = configuration["Redis:DefaultInstance"];
-            });
-            return service;
+            LogManager.LoadConfiguration("NLog.config");
+            LogManager.Configuration.Variables.Add("connectionString", configuration.GetConnectionString(ConfigurationKeys.DefaultConnection));
+            loggerFactory.AddNLog();
         }
 
         public static IServiceCollection ConfigIoc(this IServiceCollection service)

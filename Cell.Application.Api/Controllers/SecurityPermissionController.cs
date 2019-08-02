@@ -11,8 +11,9 @@ namespace Cell.Application.Api.Controllers
         public SecurityPermissionController(
             AppDbContext context,
             IHttpContextAccessor httpContextAccessor,
-            IValidator<SecurityPermission> entityValidator) :
-            base(context, httpContextAccessor, entityValidator)
+            IValidator<SecurityPermission> entityValidator,
+            ISecurityPermissionService securityPermissionService) :
+            base(context, httpContextAccessor, entityValidator, securityPermissionService)
         {
             AuthorizedType = ConfigurationKeys.SecurityPermissionTableName;
         }

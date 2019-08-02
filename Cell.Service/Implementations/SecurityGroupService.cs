@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Cell.Common.SeedWork;
+﻿using Cell.Common.SeedWork;
 using Cell.Model;
 using Cell.Model.Entities.SecurityGroupEntity;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Cell.Service.Implementations
 {

@@ -3,87 +3,129 @@
     "Id": "3E8CCE7D-64CF-4BA8-506F-08D711A323F7",
     "Name": "Setting Field Based Items",
     "Code": "",
-    "IndexLeft": "1",
-    "IndexRight": "20"
+    "IndexLeft": 1,
+    "IndexRight": 22
   },
   {
     "Name": "Setting Field {{ID}}",
-    "CODE": "SETTING_FIELD_BASED",
+    "Code": "SETTING_FIELD_BASED",
     "SettingValue": "{\"allowFilter\":false,\"allowSummary\":false,\"caption\":\"ID\",\"dataType\":\"GUID\",\"ordinalPosition\":0,\"placeHolder\":\"ID\",\"settings\":{\"dataSize\":0,\"form\":{\"formElementType\":\"TEXT\",\"max\":0,\"min\":0},\"view\":{\"fontSize\":12,\"fontWidth\":0}},\"storageType\":\"STATIC\",\"tableId\":\"###TABLE_ID###\",\"tableName\":\"###TABLE_NAME###\",\"code\":\"SYSTEM\",\"name\":\"ID\",\"description\":\"ID\",\"created\":\"2019-07-26T14:57:08.039144+07:00\",\"createdBy\":\"00000000-0000-0000-0000-000000000000\",\"modified\":\"2019-07-26T14:57:08.0393283+07:00\",\"modifiedBy\":\"00000000-0000-0000-0000-000000000000\",\"version\":1}",
     "Parent": "3E8CCE7D-64CF-4BA8-506F-08D711A323F7",
-    "IndexLeft": "2",
-    "IndexRight": "3"
+    "IndexLeft": 2,
+    "IndexRight": 3
   },
   {
     "Name": "Setting Field {{CODE}}",
-    "CODE": "SETTING_FIELD_BASED",
+    "Code": "SETTING_FIELD_BASED",
     "SettingValue": "{\"allowFilter\":false,\"allowSummary\":false,\"caption\":\"Code\",\"dataType\":\"STRING\",\"ordinalPosition\":0,\"placeHolder\":\"Code\",\"settings\":{\"dataSize\":200,\"form\":{\"formElementType\":\"TEXT\",\"max\":0,\"min\":0},\"view\":{\"fontSize\":12,\"fontWidth\":0}},\"storageType\":\"STATIC\",\"tableId\":\"###TABLE_ID###\",\"tableName\":\"###TABLE_NAME###\",\"code\":\"SYSTEM\",\"name\":\"CODE\",\"description\":\"Code\",\"created\":\"2019-07-26T15:09:40.147887+07:00\",\"createdBy\":\"00000000-0000-0000-0000-000000000000\",\"modified\":\"2019-07-26T15:09:40.1478989+07:00\",\"modifiedBy\":\"00000000-0000-0000-0000-000000000000\",\"version\":1}",
     "Parent": "3E8CCE7D-64CF-4BA8-506F-08D711A323F7",
-    "IndexLeft": "4",
-    "IndexRight": "5"
+    "IndexLeft": 4,
+    "IndexRight": 5
   },
   {
     "Name": "Setting Field {{NAME}}",
-    "CODE": "SETTING_FIELD_BASED",
+    "Code": "SETTING_FIELD_BASED",
     "SettingValue": "{\"allowFilter\":false,\"allowSummary\":false,\"caption\":\"Name\",\"dataType\":\"STRING\",\"ordinalPosition\":0,\"placeHolder\":\"Name\",\"settings\":{\"dataSize\":200,\"form\":{\"formElementType\":\"TEXT\",\"max\":0,\"min\":0},\"view\":{\"fontSize\":12,\"fontWidth\":0}},\"storageType\":\"STATIC\",\"tableId\":\"###TABLE_ID###\",\"tableName\":\"###TABLE_NAME###\",\"code\":\"SYSTEM\",\"name\":\"NAME\",\"description\":\"Name\",\"created\":\"2019-07-26T15:09:58.6689903+07:00\",\"createdBy\":\"00000000-0000-0000-0000-000000000000\",\"modified\":\"2019-07-26T15:09:58.6689941+07:00\",\"modifiedBy\":\"00000000-0000-0000-0000-000000000000\",\"version\":1}",
     "Parent": "3E8CCE7D-64CF-4BA8-506F-08D711A323F7",
-    "IndexLeft": "6",
-    "IndexRight": "7"
+    "IndexLeft": 6,
+    "IndexRight": 7
   },
   {
     "Name": "Setting Field {{DATA}}",
-    "CODE": "SETTING_FIELD_BASED",
+    "Code": "SETTING_FIELD_BASED",
     "SettingValue": "{\"allowFilter\":false,\"allowSummary\":false,\"caption\":\"Data\",\"dataType\":\"STRING\",\"ordinalPosition\":0,\"placeHolder\":\"Data\",\"settings\":{\"dataSize\":0,\"form\":{\"formElementType\":\"TEXT\",\"max\":0,\"min\":0},\"view\":{\"fontSize\":12,\"fontWidth\":0}},\"storageType\":\"STATIC\",\"tableId\":\"###TABLE_ID###\",\"tableName\":\"###TABLE_NAME###\",\"code\":\"SYSTEM\",\"name\":\"DATA\",\"description\":\"Code\",\"created\":\"2019-07-26T15:09:58.6689903+07:00\",\"createdBy\":\"00000000-0000-0000-0000-000000000000\",\"modified\":\"2019-07-26T15:09:58.6689941+07:00\",\"modifiedBy\":\"00000000-0000-0000-0000-000000000000\",\"version\":1}",
     "Parent": "3E8CCE7D-64CF-4BA8-506F-08D711A323F7",
-    "IndexLeft": "6",
-    "IndexRight": "7"
+    "IndexLeft": 8,
+    "IndexRight": 9
   },
   {
     "Name": "Setting Field {{CREATED}}",
-    "CODE": "SETTING_FIELD_BASED",
+    "Code": "SETTING_FIELD_BASED",
     "SettingValue": "{\"allowFilter\":false,\"allowSummary\":false,\"caption\":\"Created\",\"dataType\":\"DATE_TIME\",\"ordinalPosition\":0,\"placeHolder\":\"Created\",\"settings\":{\"dataSize\":0,\"form\":{\"formElementType\":\"TEXT\",\"max\":0,\"min\":0},\"view\":{\"fontSize\":12,\"fontWidth\":0}},\"storageType\":\"STATIC\",\"tableId\":\"###TABLE_ID###\",\"tableName\":\"###TABLE_NAME###\",\"code\":\"SYSTEM\",\"name\":\"CREATED\",\"description\":\"Created\",\"created\":\"2019-07-26T15:10:20.063594+07:00\",\"createdBy\":\"00000000-0000-0000-0000-000000000000\",\"modified\":\"2019-07-26T15:10:20.0635978+07:00\",\"modifiedBy\":\"00000000-0000-0000-0000-000000000000\",\"version\":1}",
     "Parent": "3E8CCE7D-64CF-4BA8-506F-08D711A323F7",
-    "IndexLeft": "8",
-    "IndexRight": "9"
+    "IndexLeft": 10,
+    "IndexRight": 11
   },
   {
     "Name": "Setting Field {{CREATED_BY}}",
-    "CODE": "SETTING_FIELD_BASED",
+    "Code": "SETTING_FIELD_BASED",
     "SettingValue": "{\"allowFilter\":false,\"allowSummary\":false,\"caption\":\"Created by\",\"dataType\":\"GUID\",\"ordinalPosition\":0,\"placeHolder\":\"Created by\",\"settings\":{\"dataSize\":0,\"form\":{\"formElementType\":\"TEXT\",\"max\":0,\"min\":0},\"view\":{\"fontSize\":12,\"fontWidth\":0}},\"storageType\":\"STATIC\",\"tableId\":\"###TABLE_ID###\",\"tableName\":\"###TABLE_NAME###\",\"code\":\"SYSTEM\",\"name\":\"CREATED_BY\",\"description\":\"Created by\",\"created\":\"2019-07-26T15:10:42.8838806+07:00\",\"createdBy\":\"00000000-0000-0000-0000-000000000000\",\"modified\":\"2019-07-26T15:10:42.8838852+07:00\",\"modifiedBy\":\"00000000-0000-0000-0000-000000000000\",\"version\":1}",
     "Parent": "3E8CCE7D-64CF-4BA8-506F-08D711A323F7",
-    "IndexLeft": "10",
-    "IndexRight": "11"
+    "IndexLeft": 12,
+    "IndexRight": 13
   },
   {
     "Name": "Setting Field {{MODIFIED}}",
-    "CODE": "SETTING_FIELD_BASED",
+    "Code": "SETTING_FIELD_BASED",
     "SettingValue": "{\"allowFilter\":false,\"allowSummary\":false,\"caption\":\"Modified\",\"dataType\":\"DATE_TIME\",\"ordinalPosition\":0,\"placeHolder\":\"Modified\",\"settings\":{\"dataSize\":0,\"form\":{\"formElementType\":\"TEXT\",\"max\":0,\"min\":0},\"view\":{\"fontSize\":12,\"fontWidth\":0}},\"storageType\":\"STATIC\",\"tableId\":\"###TABLE_ID###\",\"tableName\":\"###TABLE_NAME###\",\"code\":\"SYSTEM\",\"name\":\"MODIFIED\",\"description\":\"Modified\",\"created\":\"2019-07-26T15:11:06.9194633+07:00\",\"createdBy\":\"00000000-0000-0000-0000-000000000000\",\"modified\":\"2019-07-26T15:11:06.9194671+07:00\",\"modifiedBy\":\"00000000-0000-0000-0000-000000000000\",\"version\":1}",
     "Parent": "3E8CCE7D-64CF-4BA8-506F-08D711A323F7",
-    "IndexLeft": "12",
-    "IndexRight": "13"
+    "IndexLeft": 14,
+    "IndexRight": 15
   },
   {
     "Name": "Setting Field {{MODIFIED_BY}}",
-    "CODE": "SETTING_FIELD_BASED",
+    "Code": "SETTING_FIELD_BASED",
     "SettingValue": "{\"allowFilter\":false,\"allowSummary\":false,\"caption\":\"Modified by\",\"dataType\":\"GUID\",\"ordinalPosition\":0,\"placeHolder\":\"Modified by\",\"settings\":{\"dataSize\":0,\"form\":{\"formElementType\":\"TEXT\",\"max\":0,\"min\":0},\"view\":{\"fontSize\":12,\"fontWidth\":0}},\"storageType\":\"STATIC\",\"tableId\":\"###TABLE_ID###\",\"tableName\":\"###TABLE_NAME###\",\"code\":\"SYSTEM\",\"name\":\"MODIFIED_BY\",\"description\":\"Modified by\",\"created\":\"2019-07-26T15:11:31.2522851+07:00\",\"createdBy\":\"00000000-0000-0000-0000-000000000000\",\"modified\":\"2019-07-26T15:11:31.2522893+07:00\",\"modifiedBy\":\"00000000-0000-0000-0000-000000000000\",\"version\":1}",
     "Parent": "3E8CCE7D-64CF-4BA8-506F-08D711A323F7",
-    "IndexLeft": "14",
-    "IndexRight": "15"
+    "IndexLeft": 16,
+    "IndexRight": 17
   },
   {
     "Name": "Setting Field {{DESCRIPTION}}",
-    "CODE": "SETTING_FIELD_BASED",
+    "Code": "SETTING_FIELD_BASED",
     "SettingValue": "{\"allowFilter\":false,\"allowSummary\":false,\"caption\":\"Description\",\"dataType\":\"STRING\",\"ordinalPosition\":0,\"placeHolder\":\"Description\",\"settings\":{\"dataSize\":1000,\"form\":{\"formElementType\":\"TEXT\",\"max\":0,\"min\":0},\"view\":{\"fontSize\":12,\"fontWidth\":0}},\"storageType\":\"STATIC\",\"tableId\":\"###TABLE_ID###\",\"tableName\":\"###TABLE_NAME###\",\"code\":\"SYSTEM\",\"name\":\"DESCRIPTION\",\"description\":\"Description\",\"created\":\"2019-07-26T15:11:53.3330433+07:00\",\"createdBy\":\"00000000-0000-0000-0000-000000000000\",\"modified\":\"2019-07-26T15:11:53.3330476+07:00\",\"modifiedBy\":\"00000000-0000-0000-0000-000000000000\",\"version\":1}",
     "Parent": "3E8CCE7D-64CF-4BA8-506F-08D711A323F7",
-    "IndexLeft": "16",
-    "IndexRight": "17"
+    "IndexLeft": 18,
+    "IndexRight": 19
   },
   {
     "Name": "Setting Field {{VERSION}}",
-    "CODE": "SETTING_FIELD_BASED",
+    "Code": "SETTING_FIELD_BASED",
     "SettingValue": "{\"allowFilter\":false,\"allowSummary\":false,\"caption\":\"Version\",\"dataType\":\"INT\",\"ordinalPosition\":0,\"placeHolder\":\"Version\",\"settings\":{\"dataSize\":0,\"form\":{\"formElementType\":\"TEXT\",\"max\":0,\"min\":0},\"view\":{\"fontSize\":12,\"fontWidth\":0}},\"storageType\":\"STATIC\",\"tableId\":\"###TABLE_ID###\",\"tableName\":\"###TABLE_NAME###\",\"code\":\"SYSTEM\",\"name\":\"VERSION\",\"description\":\"Version\",\"created\":\"2019-07-26T15:12:10.7652322+07:00\",\"createdBy\":\"00000000-0000-0000-0000-000000000000\",\"modified\":\"2019-07-26T15:12:10.7652357+07:00\",\"modifiedBy\":\"00000000-0000-0000-0000-000000000000\",\"version\":1}",
     "Parent": "3E8CCE7D-64CF-4BA8-506F-08D711A323F7",
-    "IndexLeft": "18",
-    "IndexRight": "19"
+    "IndexLeft": 20,
+    "IndexRight": 21
+  },
+  {
+    "Id": "3E8CCE7D-64CF-4BA8-506F-08D711A323F8",
+    "Name": "Setting Api Based Items",
+    "Code": "SETTING_API_BASED",
+    "IndexLeft": 23,
+    "IndexRight": 31
+  },
+  {
+    "Id": "3E8CCE7D-64CF-4BA8-506F-08D711A323E0",
+    "Name": "Setting Api Table Configuration",
+    "Code": "SETTING_API_BASED",
+    "Parent": "3E8CCE7D-64CF-4BA8-506F-08D711A323F8",
+    "IndexLeft": 24,
+    "IndexRight": 25
+  },
+  {
+    "Id": "3E8CCE7D-64CF-4BA8-506F-08D711A32E01",
+    "Name": "Setting Api Table {{INSERT}}",
+    "Code": "SETTING_API_TABLE_BASED",
+    "Parent": "3E8CCE7D-64CF-4BA8-506F-08D711A323E0",
+    "SettingValue": "{\"Code\": \"TEMPLATE\",\"Name\": \"Dynamic.Table.###ID###.Insert\",\"Library\": \"Dynamic\",\"Method\": \"Insert\",\"Settings\": [{\"Name\": null,\"Caption\": null,\"PlaceHolder\": null}],\"TableName\": \"###TABLE_NAME###\",\"TableId\": \"###TABLE_ID###\"}",
+    "IndexLeft": 25,
+    "IndexRight": 26
+  },
+  {
+    "Id": "3E8CCE7D-64CF-4BA8-506F-08D711A32E02",
+    "Name": "Setting Api Table {{UPDATE}}",
+    "Code": "SETTING_API_TABLE_BASED",
+    "Parent": "3E8CCE7D-64CF-4BA8-506F-08D711A323E0",
+    "SettingValue": "{\"Code\": \"TEMPLATE\",\"Name\": \"Dynamic.Table.###ID###.Update\",\"Library\": \"Dynamic\",\"Method\": \"Update\",\"Settings\": [{\"Name\": null,\"Caption\": null,\"PlaceHolder\": null}],\"TableName\": \"###TABLE_NAME###\",\"TableId\": \"###TABLE_ID###\"}",
+    "IndexLeft": 27,
+    "IndexRight": 28
+  },
+  {
+    "Id": "3E8CCE7D-64CF-4BA8-506F-08D711A32E03",
+    "Name": "Setting Api Table {{DELETE}}",
+    "Code": "SETTING_API_TABLE_BASED",
+    "Parent": "3E8CCE7D-64CF-4BA8-506F-08D711A323E0",
+    "SettingValue": "{\"Code\": \"TEMPLATE\",\"Name\": \"Dynamic.Table.###ID###.Delete\",\"Library\": \"Dynamic\",\"Method\": \"Delete\",\"Settings\": [{\"Name\": \"ID\",\"Caption\": \"ID\",\"PlaceHolder\": \"ID\"}],\"TableName\": \"###TABLE_NAME###\",\"TableId\": \"###TABLE_ID###\"}",
+    "IndexLeft": 29,
+    "IndexRight": 30
   }
 ]

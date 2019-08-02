@@ -3,6 +3,7 @@ using Cell.Common.Extensions;
 using Cell.Common.SeedWork;
 using Cell.Core.Errors;
 using Cell.Model;
+using Cell.Model.Entities.SecurityPermissionEntity;
 using Cell.Model.Entities.SettingFieldEntity;
 using Cell.Model.Models.Others;
 using Cell.Model.Models.SettingField;
@@ -24,8 +25,9 @@ namespace Cell.Application.Api.Controllers
             AppDbContext context,
             IHttpContextAccessor httpContextAccessor,
             IValidator<SettingField> entityValidator,
-            ISettingFieldService settingFieldService) :
-            base(context, httpContextAccessor, entityValidator)
+            ISettingFieldService settingFieldService,
+            ISecurityPermissionService securityPermissionService) :
+            base(context, httpContextAccessor, entityValidator, securityPermissionService)
         {
             _settingFieldService = settingFieldService;
             AuthorizedType = ConfigurationKeys.SettingFieldTableName;

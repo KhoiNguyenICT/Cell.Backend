@@ -18,6 +18,10 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Cell.Model.Entities.SecurityGroupEntity;
+using Cell.Model.Entities.SecurityPermissionEntity;
+using Cell.Model.Entities.SettingApiEntity;
+using Cell.Model.Models.SettingApi;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -28,6 +32,7 @@ namespace Cell.Application.Api.Controllers
         private readonly ISettingTableService _settingTableService;
         private readonly IBasedTableService _basedTableService;
         private readonly ISettingAdvancedService _settingAdvancedService;
+        private readonly ISettingApiService _settingApiService;
 
         public SettingTableController(
             AppDbContext context,
@@ -37,14 +42,17 @@ namespace Cell.Application.Api.Controllers
             ISettingActionService settingActionService,
             ISettingTableService settingTableService,
             IBasedTableService basedTableService,
-            ISettingAdvancedService settingAdvancedService) :
-            base(context, httpContextAccessor, entityValidator)
+            ISettingAdvancedService settingAdvancedService, 
+            ISettingApiService settingApiService,
+            ISecurityPermissionService securityPermissionService) :
+            base(context, httpContextAccessor, entityValidator, securityPermissionService)
         {
             _settingFieldService = settingFieldService;
             _settingActionService = settingActionService;
             _settingTableService = settingTableService;
             _basedTableService = basedTableService;
             _settingAdvancedService = settingAdvancedService;
+            _settingApiService = settingApiService;
             AuthorizedType = ConfigurationKeys.SettingTableTableName;
         }
 
@@ -96,6 +104,7 @@ namespace Cell.Application.Api.Controllers
                 Settings = settingTable.Settings
             });
             await _settingTableService.CommitAsync();
+
             var settingAdvancedFieldBasedSpec = SettingAdvancedSpecs.GetBySettingFieldBased();
             var settingAdvancedFieldsBased = await _settingAdvancedService.GetManyAsync(settingAdvancedFieldBasedSpec);
             foreach (var advanced in settingAdvancedFieldsBased)
@@ -106,6 +115,18 @@ namespace Cell.Application.Api.Controllers
                 var settingField = await _settingFieldService.AddAsync(settingFieldModel.To<SettingField>());
                 await InitPermission(settingField.Id, settingField.Name);
             }
+
+            var settingAdvancedApiBasedSpec = SettingAdvancedSpecs.GetBySettingTableApiBased();
+            var settingAdvancedApisBased = await _settingAdvancedService.GetManyAsync(settingAdvancedApiBasedSpec);
+            foreach (var advanced in settingAdvancedApisBased)
+            {
+                var input = advanced.SettingValue.Replace("###TABLE_NAME###", result.BasedTable)
+                    .Replace("###TABLE_ID###", result.Id.ToString()).Replace("###ID###", result.Id.ToString());
+                var settingApiModel = JsonConvert.DeserializeObject<SettingApiModel>(input);
+                var settingApi = await _settingApiService.AddAsync(settingApiModel.To<SettingApi>());
+                await InitPermission(settingApi.Id, settingApi.Name);
+            }
+
             await InitPermission(result.Id, result.Name);
             await _settingFieldService.CommitAsync();
             return Ok(result);

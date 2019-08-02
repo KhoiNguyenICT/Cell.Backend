@@ -2,6 +2,7 @@
 using Cell.Common.Extensions;
 using Cell.Model;
 using Cell.Model.Entities.SecurityGroupEntity;
+using Cell.Model.Entities.SecurityPermissionEntity;
 using Cell.Model.Models.SecurityGroup;
 using Cell.Service.Implementations;
 using FluentValidation;
@@ -15,18 +16,21 @@ namespace Cell.Application.Api.Controllers
 {
     public class SecurityGroupController : CellController<SecurityGroup>
     {
+        private readonly ISecurityPermissionService _securityPermissionService;
         private readonly ISecurityGroupService _securityGroupService;
         private readonly ISettingTreeService<SecurityGroup> _treeService;
 
         public SecurityGroupController(
             AppDbContext context,
             IHttpContextAccessor httpContextAccessor,
-            ISecurityGroupService securityGroupService,
             IValidator<SecurityGroup> entityValidator,
-            ISettingTreeService<SecurityGroup> treeService) :
-            base(context, httpContextAccessor, entityValidator)
+            ISettingTreeService<SecurityGroup> treeService,
+            ISecurityPermissionService securityPermissionService,
+            ISecurityGroupService securityGroupService) :
+            base(context, httpContextAccessor, entityValidator, securityPermissionService)
         {
             AuthorizedType = ConfigurationKeys.SecurityGroupTableName;
+            _securityPermissionService = securityPermissionService;
             _securityGroupService = securityGroupService;
             _treeService = treeService;
         }
@@ -36,7 +40,7 @@ namespace Cell.Application.Api.Controllers
         {
             await ValidateModel(model.To<SecurityGroupModel>());
             var settingGroup = model.To<SecurityGroup>();
-            var any = await _securityGroupService.ExistsAsync();
+            var any = await _securityPermissionService.ExistsAsync();
             if (any)
             {
                 await _treeService.InsertLastChildNode(settingGroup, model.Parent, ConfigurationKeys.SecurityGroupTableName);
@@ -46,18 +50,18 @@ namespace Cell.Application.Api.Controllers
                 await _treeService.InsertFirstRootNode(settingGroup, ConfigurationKeys.SecurityGroupTableName);
             }
             await InitPermission(settingGroup.Id, settingGroup.Name);
-            await _securityGroupService.CommitAsync();
+            await _securityPermissionService.CommitAsync();
             return Ok();
         }
 
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] SecurityGroupUpdateModel model)
         {
-            var settingGroup = await _securityGroupService.GetByIdAsync(model.Id);
+            var settingGroup = await _securityPermissionService.GetByIdAsync(model.Id);
             settingGroup.Name = model.Name;
             settingGroup.Description = model.Description;
-            _securityGroupService.Update(settingGroup);
-            await _securityGroupService.CommitAsync();
+            _securityPermissionService.Update(settingGroup);
+            await _securityPermissionService.CommitAsync();
             return Ok();
         }
 
@@ -65,14 +69,14 @@ namespace Cell.Application.Api.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             await _treeService.RemoveNode(id);
-            await _securityGroupService.CommitAsync();
+            await _securityPermissionService.CommitAsync();
             return Ok();
         }
 
         [HttpPost("{id}")]
         public async Task<IActionResult> SettingGroup(Guid id)
         {
-            var settingGroup = await _securityGroupService.GetByIdAsync(id);
+            var settingGroup = await _securityPermissionService.GetByIdAsync(id);
             return Ok(settingGroup.To<SecurityGroupModel>());
         }
 

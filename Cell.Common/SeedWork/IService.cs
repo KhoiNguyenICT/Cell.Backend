@@ -10,6 +10,8 @@ namespace Cell.Common.SeedWork
     {
         Task CommitAsync();
 
+        void Commit();
+
         IQueryable<T> QueryAsync(ISpecification<T> spec, string[] sorts = null);
 
         Task<IList<T>> GetManyAsync(ISpecification<T> spec, string[] sorts = null);

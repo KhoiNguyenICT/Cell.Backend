@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Cell.Model.Entities.SecurityGroupEntity;
+using Cell.Model.Entities.SecurityPermissionEntity;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -30,8 +32,9 @@ namespace Cell.Application.Api.Controllers
             IValidator<SettingForm> entityValidator,
             ISettingFormService settingFormService,
             ISettingActionService settingActionService,
-            ISettingFieldService settingFieldService) :
-            base(context, httpContextAccessor, entityValidator)
+            ISettingFieldService settingFieldService,
+            ISecurityPermissionService securityPermissionService) :
+            base(context, httpContextAccessor, entityValidator, securityPermissionService)
         {
             _settingFormService = settingFormService;
             _settingActionService = settingActionService;
@@ -45,7 +48,7 @@ namespace Cell.Application.Api.Controllers
             var spec = SettingFormSpecs.SearchByQuery(model.Query);
             if (model.TableId != Guid.Empty)
                 spec.And(SettingFormSpecs.SearchByTableId(model.TableId));
-            var queryable = await Queryable(spec);
+            var queryable = await Queryable(spec, model.Sorts, model.Skip, model.Take);
             return Ok(new QueryResult<SettingFormModel>
             {
                 Count = queryable.Count,

@@ -29,6 +29,11 @@ namespace Cell.Common.SeedWork
             await Context.SaveChangesAsync();
         }
 
+        public void Commit()
+        {
+            Context.SaveChanges();
+        }
+
         public void Delete(Guid id)
         {
             var entity = Context.Find<T>(id);

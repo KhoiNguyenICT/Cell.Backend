@@ -1,5 +1,6 @@
 ﻿using Cell.Common.Constants;
 using Cell.Model;
+using Cell.Model.Entities.SecurityPermissionEntity;
 using Cell.Model.Entities.SettingReportEntity;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
@@ -11,8 +12,9 @@ namespace Cell.Application.Api.Controllers
         public SettingReportController(
             AppDbContext context,
             IHttpContextAccessor httpContextAccessor,
-            IValidator<SettingReport> entityValidator) :
-            base(context, httpContextAccessor, entityValidator)
+            IValidator<SettingReport> entityValidator,
+            ISecurityPermissionService securityPermissionService) :
+            base(context, httpContextAccessor, entityValidator, securityPermissionService)
         {
             AuthorizedType = ConfigurationKeys.SettingReportTableName;
         }

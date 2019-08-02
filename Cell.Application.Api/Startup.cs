@@ -1,15 +1,15 @@
 ﻿using Cell.Application.Api.Helpers;
 using Cell.Common.Constants;
 using Cell.Common.Errors;
+using Cell.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Cell.Helpers;
 
 namespace Cell.Application.Api
 {
@@ -26,7 +26,6 @@ namespace Cell.Application.Api
         {
             services
                 .AddCustomDbContext(Configuration)
-                .ConfigureStagingServices(Configuration)
                 .AddMapper()
                 .ConfigIoc()
                 .ConfigValidator()
@@ -53,10 +52,9 @@ namespace Cell.Application.Api
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
-            app.UseRequestLocalization(options.Value);
+            Helpers.StartupHelpers.ConfigNLog(loggerFactory, Configuration);
 
             if (env.IsDevelopment())
             {

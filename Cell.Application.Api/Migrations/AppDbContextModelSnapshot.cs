@@ -478,7 +478,8 @@ namespace Cell.Application.Api.Migrations
                         .HasColumnName("LIBRARY");
 
                     b.Property<string>("Method")
-                        .HasColumnName("METHOD");
+                        .HasColumnName("METHOD")
+                        .HasMaxLength(200);
 
                     b.Property<DateTimeOffset>("Modified")
                         .HasColumnName("MODIFIED");
@@ -496,7 +497,8 @@ namespace Cell.Application.Api.Migrations
                         .HasColumnName("TABLE_ID");
 
                     b.Property<string>("TableName")
-                        .HasColumnName("TABLE_NAME");
+                        .HasColumnName("TABLE_NAME")
+                        .HasMaxLength(200);
 
                     b.Property<int>("Version")
                         .HasColumnName("VERSION");
@@ -968,6 +970,39 @@ namespace Cell.Application.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("T_SETTING_VIEW");
+                });
+
+            modelBuilder.Entity("Cell.Model.Entities.SystemLogEntity.SystemLog", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Application")
+                        .HasColumnName("APPLICATION");
+
+                    b.Property<string>("Callsite")
+                        .HasColumnName("CALL_SITE");
+
+                    b.Property<string>("Exception")
+                        .HasColumnName("EXCEPTION");
+
+                    b.Property<string>("Level")
+                        .HasColumnName("LEVEL");
+
+                    b.Property<string>("Logged")
+                        .HasColumnName("LOGGED");
+
+                    b.Property<string>("Logger")
+                        .HasColumnName("LOGGER");
+
+                    b.Property<string>("Message")
+                        .HasColumnName("MESSAGE");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_SYSTEM_LOG");
                 });
 #pragma warning restore 612, 618
         }

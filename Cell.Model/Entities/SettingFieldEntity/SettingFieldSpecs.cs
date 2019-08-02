@@ -1,7 +1,6 @@
-﻿using System;
-using Cell.Common.Constants;
-using Cell.Common.Specifications;
+﻿using Cell.Common.Specifications;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Cell.Model.Entities.SettingFieldEntity
 {

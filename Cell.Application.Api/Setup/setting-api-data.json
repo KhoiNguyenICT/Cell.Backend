@@ -1,0 +1,11 @@
+﻿[
+  {
+    "Code": "TEMPLATE",
+    "Name": "Dynamic.View.###ID###.Insert",
+    "Library": "Dynamic",
+    "Method": "Insert",
+    "Settings": "",
+    "TableName": "###TABLE_NAME###",
+    "TableId": "###TABLE_ID###"
+  }
+]

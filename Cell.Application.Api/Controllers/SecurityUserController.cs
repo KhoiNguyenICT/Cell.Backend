@@ -3,6 +3,7 @@ using Cell.Common.Extensions;
 using Cell.Common.SeedWork;
 using Cell.Core.Errors;
 using Cell.Model;
+using Cell.Model.Entities.SecurityPermissionEntity;
 using Cell.Model.Entities.SecurityUserEntity;
 using Cell.Model.Models.Others;
 using Cell.Model.Models.SecurityGroup;
@@ -24,8 +25,9 @@ namespace Cell.Application.Api.Controllers
             AppDbContext context,
             IHttpContextAccessor httpContextAccessor,
             IValidator<SecurityUser> entityValidator,
-            ISecurityUserService securityUserService) :
-            base(context, httpContextAccessor, entityValidator)
+            ISecurityUserService securityUserService,
+            ISecurityPermissionService securityPermissionService) :
+            base(context, httpContextAccessor, entityValidator, securityPermissionService)
         {
             AuthorizedType = ConfigurationKeys.SecurityUserTableName;
             _securityUserService = securityUserService;
@@ -87,7 +89,7 @@ namespace Cell.Application.Api.Controllers
         }
 
         [HttpPost("{id}")]
-        public async Task<IActionResult> User(Guid id)
+        public async Task<IActionResult> SecurityUser(Guid id)
         {
             var result = await _securityUserService.GetByIdAsync(id);
             return Ok(result.To<SecurityUserModel>());

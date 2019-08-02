@@ -1,6 +1,7 @@
 ﻿using Cell.Common.Constants;
 using Cell.Common.Extensions;
 using Cell.Model;
+using Cell.Model.Entities.SecurityPermissionEntity;
 using Cell.Model.Entities.SettingAdvancedEntity;
 using Cell.Model.Models.SettingAdvanced;
 using Cell.Service.Implementations;
@@ -24,8 +25,9 @@ namespace Cell.Application.Api.Controllers
             IHttpContextAccessor httpContextAccessor,
             IValidator<SettingAdvanced> entityValidator,
             ISettingAdvancedService settingAdvancedService,
-            ISettingTreeService<SettingAdvanced> treeService) :
-            base(context, httpContextAccessor, entityValidator)
+            ISettingTreeService<SettingAdvanced> treeService,
+            ISecurityPermissionService securityPermissionService) :
+            base(context, httpContextAccessor, entityValidator, securityPermissionService)
         {
             _settingAdvancedService = settingAdvancedService;
             _treeService = treeService;

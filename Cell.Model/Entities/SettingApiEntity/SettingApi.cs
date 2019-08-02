@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Cell.Common.SeedWork;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,6 +12,7 @@ namespace Cell.Model.Entities.SettingApiEntity
         public string Library { get; set; }
 
         [Column("METHOD")]
+        [StringLength(200)]
         public string Method { get; set; }
 
         [Column("SETTINGS")]
@@ -20,6 +22,7 @@ namespace Cell.Model.Entities.SettingApiEntity
         public Guid TableId { get; set; }
 
         [Column("TABLE_NAME")]
+        [StringLength(200)]
         public string TableName { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using Cell.Model.Entities.SecurityUserEntity;
 using Cell.Model.Entities.SettingActionEntity;
 using Cell.Model.Entities.SettingActionInstanceEntity;
 using Cell.Model.Entities.SettingAdvancedEntity;
+using Cell.Model.Entities.SettingApiEntity;
 using Cell.Model.Entities.SettingFeatureEntity;
 using Cell.Model.Entities.SettingFieldEntity;
 using Cell.Model.Entities.SettingFieldInstanceEntity;
@@ -21,6 +22,7 @@ using Cell.Model.Models.SecurityUser;
 using Cell.Model.Models.SettingAction;
 using Cell.Model.Models.SettingActionInstance;
 using Cell.Model.Models.SettingAdvanced;
+using Cell.Model.Models.SettingApi;
 using Cell.Model.Models.SettingFeature;
 using Cell.Model.Models.SettingField;
 using Cell.Model.Models.SettingFieldInstance;
@@ -152,6 +154,15 @@ namespace Cell.Application.Api.Mappers
             CreateMap<SettingViewUpdateModel, SettingView>()
                 .ForMember(d => d.Settings,
                     s => s.MapFrom(x => JsonConvert.SerializeObject(x.Settings)));
+
+            CreateMap<SettingApiModel, SettingApi>()
+                .ForMember(d => d.Settings,
+                    s => s.MapFrom(x => JsonConvert.SerializeObject(x.Settings)));
+            CreateMap<SettingApiCreateModel, SettingApi>()
+                .ForMember(d => d.Settings, 
+                    s => s.MapFrom(x => JsonConvert.SerializeObject(x.Settings)));
+            CreateMap<SettingApiUpdateModel, SettingApi>()
+                .ForMember(d => d.Settings, s => s.MapFrom(x => x.Settings));
         }
     }
 }

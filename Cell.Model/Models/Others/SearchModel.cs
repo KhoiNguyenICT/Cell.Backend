@@ -49,4 +49,9 @@ namespace Cell.Model.Models.Others
     {
         public Guid? TableId { get; set; }
     }
+
+    public class SearchSettingApiModel : SearchModel
+    {
+        public Guid? TableId { get; set; }
+    }
 }

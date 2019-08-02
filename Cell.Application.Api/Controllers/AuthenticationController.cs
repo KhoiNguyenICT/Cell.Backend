@@ -92,7 +92,7 @@ namespace Cell.Application.Api.Controllers
                 })
             };
             var session = await _securitySessionService.AddAsync(securitySession);
-            await _securitySessionService.CommitAsync();
+            _securitySessionService.Commit();
             return Ok(new { token = token, session = session.Id });
         }
 

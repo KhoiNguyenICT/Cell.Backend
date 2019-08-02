@@ -2,6 +2,7 @@
 using Cell.Common.Extensions;
 using Cell.Common.SeedWork;
 using Cell.Model;
+using Cell.Model.Entities.SecurityPermissionEntity;
 using Cell.Model.Entities.SettingActionInstanceEntity;
 using Cell.Model.Entities.SettingFieldInstanceEntity;
 using Cell.Model.Entities.SettingViewEntity;
@@ -30,8 +31,9 @@ namespace Cell.Application.Api.Controllers
             IValidator<SettingView> entityValidator,
             ISettingViewService settingViewService,
             ISettingFieldInstanceService settingFieldInstanceService,
-            ISettingActionInstanceService settingActionInstanceService) :
-            base(context, httpContextAccessor, entityValidator)
+            ISettingActionInstanceService settingActionInstanceService,
+            ISecurityPermissionService securityPermissionService) :
+            base(context, httpContextAccessor, entityValidator, securityPermissionService)
         {
             _settingViewService = settingViewService;
             _settingFieldInstanceService = settingFieldInstanceService;

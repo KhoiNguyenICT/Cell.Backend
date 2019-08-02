@@ -12,7 +12,10 @@
         public const string Department = "DEPARTMENT";
         public const string SystemRole = "SYSTEM.ROLE";
         public const string Role = "ROLE";
+
         public const string SettingFieldBased = "SETTING_FIELD_BASED";
+        public const string SettingApiBased = "SETTING_API_BASED";
+        public const string SettingApiTableBased = "SETTING_API_TABLE_BASED";
 
         public const string SecurityGroupTableName = "T_SECURITY_GROUP";
         public const string SecurityPermissionTableName = "T_SECURITY_PERMISSION";
@@ -30,7 +33,6 @@
         public const string SettingTableTableName = "T_SETTING_TABLE";
         public const string SettingViewTableName = "T_SETTING_VIEW";
 
-        public const string SecurityGroup = "SecurityGroup";
         public const string SecurityUser = "SecurityUser";
     }
 }

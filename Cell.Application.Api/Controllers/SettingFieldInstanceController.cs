@@ -2,17 +2,16 @@
 using Cell.Common.Extensions;
 using Cell.Common.SeedWork;
 using Cell.Model;
+using Cell.Model.Entities.SecurityPermissionEntity;
 using Cell.Model.Entities.SettingFieldInstanceEntity;
 using Cell.Model.Models.Others;
+using Cell.Model.Models.SettingFieldInstance;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Cell.Model.Models.SettingFieldInstance;
 
 namespace Cell.Application.Api.Controllers
 {
@@ -24,8 +23,9 @@ namespace Cell.Application.Api.Controllers
             AppDbContext context,
             IHttpContextAccessor httpContextAccessor,
             IValidator<SettingFieldInstance> entityValidator,
-            ISettingFieldInstanceService settingFieldInstanceService) :
-            base(context, httpContextAccessor, entityValidator)
+            ISettingFieldInstanceService settingFieldInstanceService,
+            ISecurityPermissionService securityPermissionService) :
+            base(context, httpContextAccessor, entityValidator, securityPermissionService)
         {
             _settingFieldInstanceService = settingFieldInstanceService;
             AuthorizedType = ConfigurationKeys.SettingFieldInstanceTableName;
@@ -93,10 +93,11 @@ namespace Cell.Application.Api.Controllers
             return Ok(settingFieldInstance.To<SettingFieldInstanceModel>());
         }
 
-        [HttpPost("delete/{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        [HttpPost("delete/{fieldId}")]
+        public async Task<IActionResult> Delete(Guid fieldId)
         {
-            _settingFieldInstanceService.Delete(id);
+            var settingFieldInstance = await _settingFieldInstanceService.GetByFieldId(fieldId);
+            _settingFieldInstanceService.Delete(settingFieldInstance.Id);
             await _settingFieldInstanceService.CommitAsync();
             return Ok();
         }

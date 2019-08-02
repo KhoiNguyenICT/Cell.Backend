@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cell.Application.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190731062507_CreateSettingApi")]
-    partial class CreateSettingApi
+    [Migration("20190801041727_Initialize")]
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -480,7 +480,8 @@ namespace Cell.Application.Api.Migrations
                         .HasColumnName("LIBRARY");
 
                     b.Property<string>("Method")
-                        .HasColumnName("METHOD");
+                        .HasColumnName("METHOD")
+                        .HasMaxLength(200);
 
                     b.Property<DateTimeOffset>("Modified")
                         .HasColumnName("MODIFIED");
@@ -498,7 +499,8 @@ namespace Cell.Application.Api.Migrations
                         .HasColumnName("TABLE_ID");
 
                     b.Property<string>("TableName")
-                        .HasColumnName("TABLE_NAME");
+                        .HasColumnName("TABLE_NAME")
+                        .HasMaxLength(200);
 
                     b.Property<int>("Version")
                         .HasColumnName("VERSION");

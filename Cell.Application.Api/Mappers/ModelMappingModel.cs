@@ -4,6 +4,7 @@ using Cell.Model.Models.SecurityUser;
 using Cell.Model.Models.SettingAction;
 using Cell.Model.Models.SettingActionInstance;
 using Cell.Model.Models.SettingAdvanced;
+using Cell.Model.Models.SettingApi;
 using Cell.Model.Models.SettingFeature;
 using Cell.Model.Models.SettingField;
 using Cell.Model.Models.SettingFieldInstance;
@@ -53,6 +54,9 @@ namespace Cell.Application.Api.Mappers
 
             CreateMap<SettingViewCreateModel, SettingViewModel>();
             CreateMap<SettingViewUpdateModel, SettingViewModel>();
+
+            CreateMap<SettingApiCreateModel, SettingApiModel>();
+            CreateMap<SettingApiUpdateModel, SettingApiUpdateModel>();
         }
     }
 }

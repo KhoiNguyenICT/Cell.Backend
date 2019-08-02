@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cell.Application.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190731021041_Initialize")]
-    partial class Initialize
+    [Migration("20190802064515_CreateSystemLog")]
+    partial class CreateSystemLog
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -452,6 +452,62 @@ namespace Cell.Application.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("T_SETTING_ADVANCED");
+                });
+
+            modelBuilder.Entity("Cell.Model.Entities.SettingApiEntity.SettingApi", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID");
+
+                    b.Property<string>("Code")
+                        .HasColumnName("CODE");
+
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnName("CREATED");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnName("CREATED_BY");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("DATA")
+                        .HasColumnType("xml");
+
+                    b.Property<string>("Description")
+                        .HasColumnName("DESCRIPTION");
+
+                    b.Property<string>("Library")
+                        .HasColumnName("LIBRARY");
+
+                    b.Property<string>("Method")
+                        .HasColumnName("METHOD")
+                        .HasMaxLength(200);
+
+                    b.Property<DateTimeOffset>("Modified")
+                        .HasColumnName("MODIFIED");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnName("MODIFIED_BY");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("NAME");
+
+                    b.Property<string>("Settings")
+                        .HasColumnName("SETTINGS");
+
+                    b.Property<Guid>("TableId")
+                        .HasColumnName("TABLE_ID");
+
+                    b.Property<string>("TableName")
+                        .HasColumnName("TABLE_NAME")
+                        .HasMaxLength(200);
+
+                    b.Property<int>("Version")
+                        .HasColumnName("VERSION");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_SETTING_API");
                 });
 
             modelBuilder.Entity("Cell.Model.Entities.SettingFeatureEntity.SettingFeature", b =>
@@ -916,6 +972,39 @@ namespace Cell.Application.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("T_SETTING_VIEW");
+                });
+
+            modelBuilder.Entity("Cell.Model.Entities.SystemLogEntity.SystemLog", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Application")
+                        .HasColumnName("APPLICATION");
+
+                    b.Property<string>("Callsite")
+                        .HasColumnName("CALL_SITE");
+
+                    b.Property<string>("Exception")
+                        .HasColumnName("EXCEPTION");
+
+                    b.Property<string>("Level")
+                        .HasColumnName("LEVEL");
+
+                    b.Property<string>("Logged")
+                        .HasColumnName("LOGGED");
+
+                    b.Property<string>("Logger")
+                        .HasColumnName("LOGGER");
+
+                    b.Property<string>("Message")
+                        .HasColumnName("MESSAGE");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_SYSTEM_LOG");
                 });
 #pragma warning restore 612, 618
         }

@@ -24,7 +24,7 @@ namespace Cell.Common.Filters
                 In = "header",
                 Type = "string",
                 Required = true,
-                Default = "62CFE46E-EDD7-44A8-B3BF-08D7101708E7"
+                Default = "60886CC0-5566-4B48-8B2A-E9818CFCB5D8"
             });
         }
     }
