@@ -13,6 +13,8 @@ namespace Cell.Helpers.Models
         public IEnumerable<GroupBy> GroupBy { get; set; }
 
         public IEnumerable<OrderBy> OrderBy { get; set; }
+
+        public Paging Paging { get; set; }
     }
 
     public class Select
@@ -73,5 +75,12 @@ namespace Cell.Helpers.Models
         public string Field { get; set; }
 
         public string Direction { get; set; }
+    }
+
+    public class Paging
+    {
+        public int CurrentPage { get; set; }
+
+        public int PageSize { get; set; }
     }
 }

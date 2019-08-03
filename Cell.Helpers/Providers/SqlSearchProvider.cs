@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cell.Helpers.Extensions;
+﻿using Cell.Helpers.Extensions;
 using Cell.Helpers.Interfaces;
 using Cell.Helpers.Models;
 using Dapper;
+using System;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Cell.Helpers.Providers
 {
@@ -21,16 +19,16 @@ namespace Cell.Helpers.Providers
             _connection = connection;
         }
 
-        protected virtual bool ValidateModel(DynamicSearchModel searchModel, out string errorMessage)
-        {
-            errorMessage = "";
-            return true;
-        }
-
         public async Task<object> GetSingleQuery(string tableName, Guid id)
         {
             var query = $"SELECT TOP(1) * FROM {tableName} WHERE ID = '{id}'".Trim();
             return await _connection.QueryFirstOrDefaultAsync(query);
+        }
+
+        public virtual bool ValidateModel(DynamicSearchModel searchModel, out string errorMessage)
+        {
+            errorMessage = "";
+            return true;
         }
 
         public async Task<object> ExecuteSearch(DynamicSearchModel searchModel)
@@ -38,56 +36,96 @@ namespace Cell.Helpers.Providers
             if (!ValidateModel(searchModel, out var err))
                 throw new Exception(err);
 
-            var query = BuildQuery(searchModel, out var parameter);
+            if (searchModel.Paging == null)
+            {
+                var query = BuildQuery(searchModel, out var parameter);
 
-            return await _connection.QueryAsync(query, parameter, commandType: CommandType.Text);
+                return await _connection.QueryAsync(query.ToString(), parameter, commandType: CommandType.Text);
+            }
+            else
+            {
+                var query = BuildPagingQuery(searchModel, out var parameter);
+
+                var result = await _connection.QueryAsync(query.ToString(), parameter, commandType: CommandType.Text);
+
+                return new PagingResult<dynamic>
+                {
+                    PageSize = searchModel.Paging.PageSize,
+                    TotalRecord = parameter.Get<int>("@TotalRecord"),
+                    Items = result
+                };
+            }
         }
 
-        private static string BuildQuery(DynamicSearchModel searchModel, out object parameter)
+
+        private static string BuildQuery(DynamicSearchModel searchModel, out DynamicParameters parameter)
         {
-            var query = new StringBuilder();
-            query.AppendLine(GetSelectStatement(searchModel));
-            query.AppendLine(GetFromStatement(searchModel));
-            query.AppendLine(GetWhereStatement(searchModel, out parameter));
-            query.AppendLine(GetGroupByStatement(searchModel));
-            query.AppendLine(GetOrderByStatement(searchModel));
-            return query.ToString().Trim();
+            var query = new StringBuilder()
+                .AppendLine(GetSelectStatement(searchModel))
+                .AppendLine(GetFromStatement(searchModel))
+                .AppendLine(GetWhereStatement(searchModel, out parameter))
+                .AppendLine(GetGroupByStatement(searchModel))
+                .AppendLine(GetOrderByStatement(searchModel))
+                .ToString()
+                .Trim();
+            return query;
+        }
+
+        private static string BuildPagingQuery(DynamicSearchModel searchModel, out DynamicParameters parameter)
+        {
+            var query = new StringBuilder()
+                .AppendLine(GetFromStatement(searchModel))
+                .AppendLine(GetWhereStatement(searchModel, out parameter))
+                .AppendLine(GetGroupByStatement(searchModel))
+                .ToString();
+
+            parameter.Add("@CurrentPage", searchModel.Paging.CurrentPage);
+            parameter.Add("@PageSize", searchModel.Paging.PageSize);
+            parameter.Add("@TotalRecord", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            return new StringBuilder("SELECT @TotalRecord = COUNT(*) ")
+                .AppendLine(query)
+                .AppendLine(GetSelectStatement(searchModel))
+                .AppendLine(query)
+                .AppendLine(GetOrderByStatement(searchModel))
+                .AppendLine("OFFSET (@CurrentPage - 1) * @PageSize ROWS")
+                .AppendLine("FETCH NEXT @PageSize ROWS ONLY")
+                .ToString()
+                .Trim();
         }
 
         private static string GetSelectStatement(DynamicSearchModel searchModel)
         {
-            var selectStatement = " SELECT " + searchModel
-                                      .Select
-                                      .Select(t =>
-                                          $"{t.Table}.[{t.Field}] {(string.IsNullOrEmpty(t.Alias) ? "" : $"[{t.Alias}]")}")
-                                      .JoinString(",");
-            return selectStatement;
+            return "SELECT " + searchModel
+                    .Select
+                    .Select(t => $"{t.Table}.[{t.Field}] {(string.IsNullOrEmpty(t.Alias) ? "" : $"[{t.Alias}]")}")
+                    .JoinString(",");
         }
 
         private static string GetFromStatement(DynamicSearchModel searchModel)
         {
-            var fromStatement = "FROM " + searchModel
-                                    .From
-                                    .Select((t, index) =>
-                                    {
-                                        if (string.IsNullOrEmpty(t.JoinTable)) return t.Table;
-                                        var ret = new StringBuilder(index == 0 ? $"{t.Table} {t.JoinClause} {t.JoinTable}" : $"{t.JoinClause} {t.JoinTable}");
-                                        ret.AppendLine($" ON {t.JoinConditions.Select(x => $"{t.Table}.[{x.Field}]={t.JoinTable}.[{x.JoinField}]").JoinString(" AND ")}");
+            return "FROM " + searchModel
+                .From
+                .Select((t, index) =>
+                {
+                    if (string.IsNullOrEmpty(t.JoinTable)) return t.Table;
+                    var ret = new StringBuilder(index == 0 ? $"{t.Table} {t.JoinClause} {t.JoinTable}" : $"{t.JoinClause} {t.JoinTable}");
+                    ret.AppendLine($" ON {t.JoinConditions.Select(x => $"{t.Table}.[{x.Field}]={t.JoinTable}.[{x.JoinField}]").JoinString(" AND ")}");
 
-                                        return ret.ToString().Trim();
-                                    })
-                                    .JoinString(Environment.NewLine);
-            return fromStatement;
+                    return ret.ToString().Trim();
+                })
+                .JoinString(Environment.NewLine);
         }
 
-        private static string GetWhereStatement(DynamicSearchModel searchModel, out object parameter)
+        private static string GetWhereStatement(DynamicSearchModel searchModel, out DynamicParameters parameter)
         {
             if (searchModel.Where?.Any() != true)
             {
                 parameter = null;
                 return string.Empty;
             }
-            IDictionary<string, object> objParam = new ExpandoObject();
+
+            DynamicParameters objParam = new DynamicParameters();
 
             var result = "WHERE " + searchModel
                 .Where
@@ -146,9 +184,9 @@ namespace Cell.Helpers.Providers
             }
 
             return "GROUP BY " + searchModel
-                       .GroupBy
-                       .Select(t => $"{t.Table}.[{t.Field}]")
-                       .JoinString(",");
+                .GroupBy
+                .Select(t => $"{t.Table}.[{t.Field}]")
+                .JoinString(",");
         }
 
         private static string GetOrderByStatement(DynamicSearchModel searchModel)
@@ -159,13 +197,13 @@ namespace Cell.Helpers.Providers
             }
 
             return "ORDER BY " + searchModel
-                       .OrderBy
-                       .Select(t =>
-                       {
-                           var direction = (t.Direction ?? "ASC").Trim().ToUpper();
-                           return $"{t.Table}.[{t.Field}] {(direction == "ASC" ? "ASC" : "DESC")}";
-                       })
-                       .JoinString(",");
+                .OrderBy
+                .Select(t =>
+                {
+                    var direction = (t.Direction ?? "ASC").Trim().ToUpper();
+                    return $"{t.Table}.[{t.Field}] {(direction == "ASC" ? "ASC" : "DESC")}";
+                })
+                .JoinString(",");
         }
 
         private static Type GetDataType(string type)
