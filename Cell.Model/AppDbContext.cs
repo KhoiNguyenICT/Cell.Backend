@@ -1,4 +1,4 @@
-﻿using Cell.Model.Entities;
+﻿using Cell.Common.SeedWork;
 using Cell.Model.Entities.SecurityGroupEntity;
 using Cell.Model.Entities.SecurityPermissionEntity;
 using Cell.Model.Entities.SecuritySessionEntity;

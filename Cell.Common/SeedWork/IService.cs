@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Cell.Service.Interfaces
+namespace Cell.Common.SeedWork
 {
     public interface IService<T> where T : class
     {

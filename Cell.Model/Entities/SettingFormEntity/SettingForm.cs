@@ -1,18 +1,15 @@
-﻿using System;
+﻿using Cell.Common.SeedWork;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Cell.Model.Entities.SettingApiEntity
+namespace Cell.Model.Entities.SettingFormEntity
 {
-    [Table("T_SETTING_API")]
-    public class SettingApi : Entity
+    [Table("T_SETTING_FORM")]
+    public class SettingForm : Entity
     {
-        [Column("LIBRARY")]
-        public string Library { get; set; }
-
-        [Column("METHOD")]
-        [StringLength(200)]
-        public string Method { get; set; }
+        [Column("LAYOUT_ID")]
+        public Guid LayoutId { get; set; }
 
         [Column("SETTINGS")]
         public string Settings { get; set; }

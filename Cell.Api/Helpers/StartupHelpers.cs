@@ -5,6 +5,8 @@ using Cell.Common.Constants;
 using Cell.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
+using Cell.Model.Entities.SecurityPermissionEntity;
+using Cell.Service.Implementations;
 
 namespace Cell.Api.Helpers
 {
@@ -30,6 +32,7 @@ namespace Cell.Api.Helpers
         {
             service.AddScoped<AppDbContextSeed>();
             service.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            service.AddScoped<ISecurityPermissionService, SecurityPermissionService>();
             return service;
         }
 

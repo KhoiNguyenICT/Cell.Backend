@@ -1,9 +1,16 @@
-﻿using Cell.Common.Extensions;
+﻿using Cell.Common.Constants;
+using Cell.Common.Extensions;
+using Cell.Model.Entities.SecurityGroupEntity;
+using Cell.Model.Entities.SecurityPermissionEntity;
 using Cell.Model.Entities.SecurityUserEntity;
+using Cell.Model.Entities.SettingAdvancedEntity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Cell.Model
@@ -12,29 +19,108 @@ namespace Cell.Model
     {
         private readonly AppDbContext _context;
         private readonly ILogger _logger;
+        private readonly ISecurityPermissionService _securityPermissionService;
         private readonly string _defaultUserFile = Path.Combine("Setup", "SecurityUser/setting-user-data.json");
+        private readonly string _defaultGroupFile = Path.Combine("Setup", "SecurityGroup/security-group-data.json");
+        private readonly string _defaultAdvancedFile = Path.Combine("Setup", "SettingAdvanced/setting-advanced-data.json");
 
         public AppDbContextSeed(
             AppDbContext context,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            ISecurityPermissionService securityPermissionService)
         {
             _context = context;
+            _securityPermissionService = securityPermissionService;
             _logger = loggerFactory.CreateLogger("CellContextSeed");
         }
 
         public async Task InitAsync()
         {
-            await InitAccount();
+            await _context.Database.MigrateAsync();
+            var account = await InitAccount();
+            var advanced = await InitAdvancedSetting();
+            if (account != null && advanced != null)
+            {
+                var groups = await InitGroup(account.Id);
+                var systemRole = groups.FirstOrDefault(t => t.Code == "SYSTEM.ROLE" && t.Name == "System");
+                foreach (var securityGroup in groups)
+                {
+                    await InitPermission(securityGroup.Id, securityGroup.Name, ConfigurationKeys.SecurityGroupTableName, systemRole);
+                }
+                foreach (var settingAdvanced in advanced)
+                {
+                    await InitPermission(settingAdvanced.Id, settingAdvanced.Name,
+                        ConfigurationKeys.SettingAdvancedTableName, systemRole);
+                }
+                await InitPermission(account.Id, account.Account, ConfigurationKeys.SecurityUserTableName, systemRole);
+                _context.SaveChanges();
+            }
         }
 
-        private async Task InitAccount()
+        private async Task<SecurityUser> InitAccount()
         {
             if (await _context.Set<SecurityUser>().AsNoTracking().AnyAsync())
-                return;
+                return null;
             var content = File.ReadAllText(_defaultUserFile);
             var account = JsonConvert.DeserializeObject<SecurityUser>(content);
             _context.SecurityUsers.Add(account);
             _context.SaveChanges();
+            return account;
+        }
+
+        private async Task<List<SettingAdvanced>> InitAdvancedSetting()
+        {
+            if (await _context.SettingAdvanceds.AnyAsync()) return null;
+            var input = File.ReadAllText(_defaultAdvancedFile);
+            var settingAdvanced = JsonConvert.DeserializeObject<List<SettingAdvanced>>(input);
+            _context.SettingAdvanceds.AddRange(settingAdvanced);
+            _context.SaveChanges();
+            return settingAdvanced;
+        }
+
+        private async Task<List<SecurityGroup>> InitGroup(Guid accountId)
+        {
+            if (await _context.SecurityGroups.AnyAsync()) return null;
+            var input = File.ReadAllText(_defaultGroupFile);
+            var settingGroups = JsonConvert.DeserializeObject<List<SecurityGroup>>(input);
+            foreach (var securityGroup in settingGroups)
+            {
+                securityGroup.CreatedBy = accountId;
+                securityGroup.ModifiedBy = accountId;
+                _context.SecurityGroups.Add(securityGroup);
+                await _securityPermissionService.InitPermission(securityGroup.Id, $"{securityGroup.Code}_{securityGroup.Name}",
+                    ConfigurationKeys.SecurityUserTableName);
+            }
+            _context.SaveChanges();
+            return settingGroups;
+        }
+
+        private async Task InitPermission(Guid objectId, string objectName, string tableType, SecurityGroup systemRole)
+        {
+            if (!await _context.SecurityPermissions.AnyAsync())
+            {
+                if (systemRole == null) return;
+                var securityPermissions = new List<SecurityPermission>
+                {
+                    new SecurityPermission
+                    {
+                        AuthorizedId = systemRole.Id,
+                        AuthorizedType = ConfigurationKeys.SecurityGroupTableName,
+                        ObjectId = objectId,
+                        ObjectName = objectName,
+                        TableName = ConfigurationKeys.SecurityGroupTableName
+                    },
+                    new SecurityPermission
+                    {
+                        AuthorizedId = Guid.Parse("60886CC0-5566-4B48-8B2A-E9818CFCB5D8"),
+                        AuthorizedType = ConfigurationKeys.SecurityUserTableName,
+                        ObjectId = objectId,
+                        ObjectName = objectName,
+                        TableName = tableType
+                    }
+                };
+                _context.SecurityPermissions.AddRange(securityPermissions);
+            }
         }
     }
 }

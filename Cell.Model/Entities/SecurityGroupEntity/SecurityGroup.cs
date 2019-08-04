@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cell.Common.SeedWork;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 

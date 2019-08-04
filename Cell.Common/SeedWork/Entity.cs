@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Cell.Model.Entities
+namespace Cell.Common.SeedWork
 {
     public class Entity
     {

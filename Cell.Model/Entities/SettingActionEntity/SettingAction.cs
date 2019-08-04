@@ -1,20 +1,22 @@
-﻿using System;
+﻿using Cell.Common.SeedWork;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Cell.Model.Entities.SettingReportEntity
+namespace Cell.Model.Entities.SettingActionEntity
 {
-    [Table("T_SETTING_REPORT")]
-    public class SettingReport : Entity
+    [Table("T_SETTING_ACTION")]
+    public class SettingAction : Entity
     {
+        [Column("CONTAINER_TYPE")]
+        [StringLength(50)]
+        public string ContainerType { get; set; }
+
         [Column("SETTINGS")]
         public string Settings { get; set; }
 
         [Column("TABLE_ID")]
         public Guid TableId { get; set; }
-
-        [Column("TABLE_ID_TEXT")]
-        public string TableIdText { get; set; }
 
         [Column("TABLE_NAME")]
         [StringLength(200)]

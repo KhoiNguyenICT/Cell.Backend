@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Cell.Common.SeedWork;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cell.Model.Entities.SettingAdvancedEntity
