@@ -28,6 +28,7 @@ namespace Cell.Api.Helpers
 
         public static IServiceCollection ConfigIoc(this IServiceCollection service)
         {
+            service.AddScoped<AppDbContextSeed>();
             service.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             return service;
         }

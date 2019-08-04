@@ -87,5 +87,28 @@ namespace Cell.Model
             }
             return await base.SaveChangesAsync(cancellationToken);
         }
+
+        public override int SaveChanges()
+        {
+            var modified = ChangeTracker.Entries().Where(e => e.State == EntityState.Modified || e.State == EntityState.Added);
+            foreach (var item in modified)
+            {
+                if (!(item.Entity is Entity changedOrAddedItem)) continue;
+                if (item.State == EntityState.Added)
+                {
+                    changedOrAddedItem.CreatedBy = Guid.Empty;
+                    changedOrAddedItem.Created = DateTimeOffset.Now;
+                    changedOrAddedItem.Modified = DateTimeOffset.Now;
+                    changedOrAddedItem.Modified = DateTimeOffset.Now;
+                    changedOrAddedItem.ModifiedBy = Guid.Empty;
+                    changedOrAddedItem.Version = 0;
+                }
+
+                changedOrAddedItem.Modified = DateTimeOffset.Now;
+                changedOrAddedItem.ModifiedBy = Guid.Empty;
+                changedOrAddedItem.Version += 1;
+            }
+            return base.SaveChanges();
+        }
     }
 }
