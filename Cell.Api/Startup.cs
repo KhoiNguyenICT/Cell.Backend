@@ -18,7 +18,10 @@ namespace Cell.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCustomDbContext(Configuration).ConfigIoc();
+            services
+                .AddCustomDbContext(Configuration)
+                .ConfigIoc()
+                .AddMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

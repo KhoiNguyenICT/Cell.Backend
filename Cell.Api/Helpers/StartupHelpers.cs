@@ -1,7 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using AutoMapper;
+using Cell.Api.Mappers;
+using Cell.Application.Api.Mappers;
 using Cell.Common.Constants;
+using Cell.Common.Extensions;
 using Cell.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
@@ -25,6 +29,18 @@ namespace Cell.Api.Helpers
                         b.MigrationsAssembly(AssemblyName);
                         b.MigrationsHistoryTable("__EFMigrationsHistory");
                     }));
+            return service;
+        }
+
+        public static IServiceCollection AddMapper(this IServiceCollection service)
+        {
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<EntityMappingModel>();
+                cfg.AddProfile<ModelMappingEntity>();
+                cfg.AddProfile<ModelMappingModel>();
+            });
+            service.AddSingleton(mapperConfig.CreateMapper().RegisterMap());
             return service;
         }
 
